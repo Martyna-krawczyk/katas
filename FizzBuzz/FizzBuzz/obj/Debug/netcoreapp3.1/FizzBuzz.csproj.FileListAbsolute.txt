@@ -1,0 +1,11 @@
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz.deps.json
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz.runtimeconfig.json
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz.runtimeconfig.dev.json
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz.dll
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/bin/Debug/netcoreapp3.1/FizzBuzz.pdb
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/obj/Debug/netcoreapp3.1/FizzBuzz.csprojAssemblyReference.cache
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/obj/Debug/netcoreapp3.1/FizzBuzz.AssemblyInfoInputs.cache
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/obj/Debug/netcoreapp3.1/FizzBuzz.AssemblyInfo.cs
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/obj/Debug/netcoreapp3.1/FizzBuzz.dll
+/Users/martyna.krawczyk/Projects/Katas/FizzBuzz/FizzBuzz/obj/Debug/netcoreapp3.1/FizzBuzz.pdb

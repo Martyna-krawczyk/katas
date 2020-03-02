@@ -1,14 +1,14 @@
-﻿<Properties StartupConfiguration="{DDDD92CE-E81C-4B42-9F04-38365DA11CD3}|Default">
-  <MonoDevelop.Ide.ItemProperties.FoundationalPayslip PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/Program.cs">
+﻿<Properties StartupConfiguration="{1B5D2A73-66DC-4950-8AAE-467358098D58}|Default">
+  <MonoDevelop.Ide.ItemProperties.FizzBuzz FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FizzBuzz/Program.cs">
     <Files>
-      <File FileName="FoundationalPayslip/Program.cs" Line="10" Column="30" />
+      <File FileName="FizzBuzz/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="FoundationalPayslip" expanded="True">
-            <Node name="FoundationalPayslip" expanded="True">
+          <Node name="FizzBuzz" expanded="True">
+            <Node name="FizzBuzz" expanded="True">
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>

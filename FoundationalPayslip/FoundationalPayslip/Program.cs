@@ -12,8 +12,6 @@ namespace FoundationalPayslip
             int grossIncome;
             double roundedSuperValue;
 
-            
-
 
             Console.WriteLine("Please input your name:");
             string name = Console.ReadLine();
