@@ -1,0 +1,11 @@
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip.deps.json
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip.runtimeconfig.json
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip.runtimeconfig.dev.json
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip.dll
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/bin/Debug/netcoreapp3.1/FoundationalPayslip.pdb
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/obj/Debug/netcoreapp3.1/FoundationalPayslip.csprojAssemblyReference.cache
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/obj/Debug/netcoreapp3.1/FoundationalPayslip.AssemblyInfoInputs.cache
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/obj/Debug/netcoreapp3.1/FoundationalPayslip.AssemblyInfo.cs
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/obj/Debug/netcoreapp3.1/FoundationalPayslip.dll
+/Users/martyna.krawczyk/Projects/Katas/FoundationalPayslip/FoundationalPayslip/obj/Debug/netcoreapp3.1/FoundationalPayslip.pdb
