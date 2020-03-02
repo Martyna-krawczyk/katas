@@ -11,18 +11,18 @@ namespace FoundationalPayslip
             double roundedIncomeTax;
             int grossIncome;
             double roundedSuperValue;
-            
 
+            
 
 
             Console.WriteLine("Please input your name:");
             string name = Console.ReadLine();
-
+            string nameCapitalised = name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1);
 
 
             Console.WriteLine("Please input your surname:");
             string surname = Console.ReadLine();
-
+            string surnameCapitalised = surname[0].ToString().ToUpper() + surname.Substring(1, surname.Length - 1);
 
 
             Console.WriteLine("Please enter your annual salary:");
@@ -83,14 +83,14 @@ namespace FoundationalPayslip
 
 
 
-            ReturnPayslip(name, surname, startDate, endDate, grossIncome, roundedIncomeTax, roundedSuperValue, netIncome);
+            ReturnPayslip(nameCapitalised, surnameCapitalised, startDate, endDate, grossIncome, roundedIncomeTax, roundedSuperValue, netIncome);
 
 
-            static void ReturnPayslip(string name, string surname, string startDate, string endDate, int grossIncome, double roundedIncomeTax, double roundedSuperValue, int netIncome)
+            static void ReturnPayslip(string nameCapitalised, string surnameCapitalised, string startDate, string endDate, int grossIncome, double roundedIncomeTax, double roundedSuperValue, int netIncome)
             {
 
                 Console.WriteLine("\nYour payslip has been generated:\n");
-                Console.WriteLine($"Name: {name} {surname}");
+                Console.WriteLine($"Name: {nameCapitalised} {surnameCapitalised}");
                 Console.WriteLine($"Pay Period: {startDate} - {endDate}");
                 Console.WriteLine($"Gross Income: {grossIncome}");
                 Console.WriteLine($"Income Tax: {roundedIncomeTax}");
