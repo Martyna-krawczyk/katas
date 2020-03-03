@@ -46,7 +46,7 @@ namespace FoundationalPayslip
 
             
 
-            emp1.ReturnPayslip();
+            Payslip.ReturnPayslip(emp1);
 
             
         }

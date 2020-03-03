@@ -5,16 +5,17 @@ namespace FoundationalPayslip
 {
     public class Employee
     {
-        private string _name; //enforces the privacy
+        private string _name; 
         private string _surname;
         private int _salaryInt;
         private int _superRateInt;
         private string _startDate;
         private string _endDate;
 
+
         public Employee(string name, string surname, int salaryInt, int superRateInt, string startDate, string endDate) 
         {
-            _name = name; //_private c# convention
+            _name = name; 
             _surname = surname;
             _salaryInt = salaryInt;
             _superRateInt = superRateInt;
@@ -22,6 +23,41 @@ namespace FoundationalPayslip
             _endDate = endDate;
         }
 
+        public string Name 
+        {
+            get{ return _name;}
+            set{ _name = value;}
+        }
+
+        public string Surname
+        {
+            get { return _surname; }
+            set { _surname = value; }
+        }
+
+        public int SalaryInt
+        {
+            get { return _salaryInt; }
+            set { _salaryInt = value; }
+        }
+
+        public int SuperRateInt
+        {
+            get { return _superRateInt; }
+            set { _superRateInt = value; }
+        }
+
+        public string StartDate
+        {
+            get { return _startDate; }
+            set { _startDate = value; }
+        }
+
+        public string EndDate
+        {
+            get { return _endDate; }
+            set { _endDate = value; }
+        }
 
         public static string capitaliseName(string name)
         {
@@ -69,32 +105,11 @@ namespace FoundationalPayslip
             return startDate;
         }
 
+
         public static string setEnd(string endDate)
         {
             return endDate;
         }
-
-
-
-
-        public void ReturnPayslip()
-        {
-            int grossIncome = Calculations.returnGrossIncome(_salaryInt);
-            
-
-
-            Console.WriteLine("\nYour payslip has been generated:\n");
-            Console.WriteLine($"Name: {_name} {_surname}");
-            Console.WriteLine($"Pay Period: {_startDate} - {_endDate}");
-            Console.WriteLine($"Gross Income: {grossIncome}");
-            Console.WriteLine($"Income Tax: {Calculations.CalculateIncomeTax(_salaryInt)}");
-            Console.WriteLine($"Net Income: {Calculations.ReturnNetIncome()}");
-            Console.WriteLine($"Super: {Calculations.CalculateSuper(grossIncome, _superRateInt)} \n");
-            Console.WriteLine("Thank you for using MYOB!");
-
-        }
-
-
 
     }
 }
