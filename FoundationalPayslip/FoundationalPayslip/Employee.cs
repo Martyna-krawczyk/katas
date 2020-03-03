@@ -5,96 +5,91 @@ namespace FoundationalPayslip
 {
     public class Employee
     {
-        public static string nameCapitalised;
-        public static string surnameCapitalised;
-        public static int salary;
-        public static int superRate;
-        public static string startDate;
-        public static string endDate;
+        private string _name; //enforces the privacy
+        private string _surname;
+        private int _salaryInt;
+        private int _superRateInt;
+        private string _startDate;
+        private string _endDate;
 
-
-        public static string inputName()
+        public Employee(string name, string surname, int salaryInt, int superRateInt, string startDate, string endDate) 
         {
-            Console.WriteLine("Please input your name:");
-            string name = Console.ReadLine();
-            nameCapitalised = name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1); //save this for the payslip generator??
-            
-            return nameCapitalised;
+            _name = name; //_private c# convention
+            _surname = surname;
+            _salaryInt = salaryInt;
+            _superRateInt = superRateInt;
+            _startDate = startDate;
+            _endDate = endDate;
         }
 
 
-        public static string inputSurname()
+        public static string capitaliseName(string name)
         {
-            Console.WriteLine("Please input your surname:");
-            string surname = Console.ReadLine();
-            surnameCapitalised = surname[0].ToString().ToUpper() + surname.Substring(1, surname.Length - 1);
-
-            return surnameCapitalised;
+            return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1);
         }
 
 
-        public static int inputSalary()
+        public static string capitaliseSurname(string surname)
         {
-            Console.WriteLine("Please enter your annual salary:");
-           
-            string annualSalary = Console.ReadLine();
-            if (!int.TryParse(annualSalary, out salary))
+            return surname[0].ToString().ToUpper() + surname.Substring(1, surname.Length - 1);
+        }
+
+
+        public static int setSalary(string salary)
+        {
+            int salaryInt;
+
+            if (!int.TryParse(salary, out salaryInt))
             {
                 Console.WriteLine("The salary tryparse has failed");
             }
             
-            Calculations.CalculateIncomeTax(salary);
-            return salary;
+            Calculations.CalculateIncomeTax(salaryInt);
+            return salaryInt;
 
         }
 
 
-        public static int inputSuper()
+        public static int setSuper(string super)
         {
-            Console.WriteLine("Please enter your super rate:");
-            string super = Console.ReadLine();
-            if (!int.TryParse(super, out superRate))
+            int superRateInt;
+
+            if (!int.TryParse(super, out superRateInt))
             {
                 Console.WriteLine("The super tryparse has failed");
             }
-            return superRate;
+            return superRateInt;
 
             
         }
 
 
-        public static string inputStart() //could this be set up as a DateTime field?
+        public static string setStart(string startDate) //could this be set up as a DateTime field?
         {
-            Console.WriteLine("Please enter your payment start date:");
-            startDate = Console.ReadLine();
-
             return startDate;
         }
 
-        public static string inputEnd()
+        public static string setEnd(string endDate)
         {
-            Console.WriteLine("Please enter your payment end date:");
-            endDate = Console.ReadLine();
-
             return endDate;
         }
 
 
 
 
-        public static void ReturnPayslip()
+        public void ReturnPayslip()
         {
-            int grossIncome = Calculations.returnGrossIncome(salary);
+            int grossIncome = Calculations.returnGrossIncome(_salaryInt);
             
 
 
             Console.WriteLine("\nYour payslip has been generated:\n");
-            Console.WriteLine($"Name: {nameCapitalised} {surnameCapitalised}");
-            Console.WriteLine($"Pay Period: {startDate} - {endDate}");
+            Console.WriteLine($"Name: {_name} {_surname}");
+            Console.WriteLine($"Pay Period: {_startDate} - {_endDate}");
             Console.WriteLine($"Gross Income: {grossIncome}");
-            Console.WriteLine($"Income Tax: {Calculations.CalculateIncomeTax(salary)}");
+            Console.WriteLine($"Income Tax: {Calculations.CalculateIncomeTax(_salaryInt)}");
             Console.WriteLine($"Net Income: {Calculations.ReturnNetIncome()}");
-            Console.WriteLine($"Super: {Calculations.CalculateSuper(grossIncome, superRate)} \n");
+            Console.WriteLine($"Super: {Calculations.CalculateSuper(grossIncome, _superRateInt)} \n");
             Console.WriteLine("Thank you for using MYOB!");
 
         }

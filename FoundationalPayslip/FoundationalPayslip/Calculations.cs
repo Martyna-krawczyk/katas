@@ -5,14 +5,15 @@ namespace FoundationalPayslip
     public class Calculations
     {
             public static  double incomeTax;
-            public static double roundedIncomeTax;
             public static int grossIncome;
+
 
         public static int returnGrossIncome(int salary)
         {
             grossIncome = salary / 12;
             return grossIncome;
         }
+
 
         public static double CalculateIncomeTax(int salary)
         {
@@ -38,17 +39,15 @@ namespace FoundationalPayslip
                 incomeTax = 0;
             }
             return Math.Round(incomeTax, 0, MidpointRounding.ToEven);
-
         }
 
 
         public static int ReturnNetIncome()
         {
-            double v = grossIncome - roundedIncomeTax;
+            double v = grossIncome - incomeTax;
             int netIncome = (int)v;
 
             return netIncome;
-
         }
 
 
@@ -62,12 +61,6 @@ namespace FoundationalPayslip
 
             return (int)roundedSuperValue;
         }
-
-        
-
- 
-
-     
 
     }
 }
