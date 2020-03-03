@@ -1,15 +1,18 @@
 ﻿<Properties StartupConfiguration="{DDDD92CE-E81C-4B42-9F04-38365DA11CD3}|Default">
   <MonoDevelop.Ide.ItemProperties.FoundationalPayslip PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/Calculations.cs">
     <Files>
-      <File FileName="FoundationalPayslip/Program.cs" Line="10" Column="30" />
+      <File FileName="FoundationalPayslip/Program.cs" Line="28" Column="6" />
+      <File FileName="FoundationalPayslip/Methods.cs" Line="45" Column="53" />
+      <File FileName="FoundationalPayslip/Calculations.cs" Line="70" Column="9" />
+      <File FileName="FoundationalPayslip/Payslip.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="FoundationalPayslip" expanded="True">
             <Node name="FoundationalPayslip" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="Calculations.cs" selected="True" />
             </Node>
           </Node>
         </State>

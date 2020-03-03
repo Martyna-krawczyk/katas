@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{1B5D2A73-66DC-4950-8AAE-467358098D58}|Default">
-  <MonoDevelop.Ide.ItemProperties.FizzBuzz FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.FizzBuzz PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="FizzBuzz/Program.cs">
     <Files>
-      <File FileName="FizzBuzz/Program.cs" Line="1" Column="1" />
+      <File FileName="FizzBuzz/Program.cs" Line="27" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
