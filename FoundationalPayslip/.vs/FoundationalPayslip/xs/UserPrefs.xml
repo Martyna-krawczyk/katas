@@ -1,24 +1,27 @@
 ﻿<Properties StartupConfiguration="{DDDD92CE-E81C-4B42-9F04-38365DA11CD3}|Default">
   <MonoDevelop.Ide.ItemProperties.FoundationalPayslip PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/Calculations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/UnitTest1.cs">
     <Files>
-      <File FileName="FoundationalPayslip/Program.cs" Line="28" Column="6" />
-      <File FileName="FoundationalPayslip/Methods.cs" Line="45" Column="53" />
-      <File FileName="FoundationalPayslip/Calculations.cs" Line="70" Column="9" />
-      <File FileName="FoundationalPayslip/Payslip.cs" Line="1" Column="1" />
+      <File FileName="FoundationalPayslip/Program.cs" Line="39" Column="57" />
+      <File FileName="FoundationalPayslip/Employee.cs" Line="90" Column="1" />
+      <File FileName="FoundationalPayslip/Calculations.cs" Line="65" Column="6" />
+      <File FileName="FoundationalPayslip/Payslip.cs" Line="11" Column="60" />
+      <File FileName="Tests/UnitTest1.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="FoundationalPayslip" expanded="True">
-            <Node name="FoundationalPayslip" expanded="True">
-              <Node name="Calculations.cs" selected="True" />
+            <Node name="FoundationalPayslip" expanded="True" />
+            <Node name="FoundationalPayslip.Tests" expanded="True">
+              <Node name="UnitTest1.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.FoundationalPayslip.Tests FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

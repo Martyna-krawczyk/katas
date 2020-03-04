@@ -68,7 +68,7 @@ namespace FoundationalPayslip
 
         public static string capitaliseName(string name)
         {
-            return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1);
+            return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1); //ToTitleCase() - check this out  whitespace??
         }
 
 
@@ -86,8 +86,6 @@ namespace FoundationalPayslip
             {
                 Console.WriteLine("The salary tryparse has failed");
             }
-            
-            Calculations.CalculateIncomeTax(salaryInt);
             return salaryInt;
 
         }

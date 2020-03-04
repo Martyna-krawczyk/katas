@@ -5,8 +5,6 @@ namespace FoundationalPayslip
 {
     class Program
     {
-        
-
         static void Main(string[] args)
         {
             Console.WriteLine("Please input your name:");
@@ -21,10 +19,10 @@ namespace FoundationalPayslip
             Console.WriteLine("Please enter your super rate:");
             string super = Console.ReadLine();
 
-            Console.WriteLine("Please enter your payment start date:");
+            Console.WriteLine("Please enter your payment start date (DD/MM/YYYY):");
             string startDate = Console.ReadLine();
 
-            Console.WriteLine("Please enter your payment end date:");
+            Console.WriteLine("Please enter your payment end date (DD/MM/YYYY):");
             string endDate = Console.ReadLine();
 
             Employee emp1 = new Employee
@@ -44,11 +42,7 @@ namespace FoundationalPayslip
 
                 );
 
-            
-
             Payslip.ReturnPayslip(emp1);
-
-            
         }
     }
 }
