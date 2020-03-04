@@ -38,9 +38,9 @@ namespace FoundationalPayslip
 
                 Employee.setSuper(super),
 
-                Employee.setStart(startDate),
+                Employee.setStart(startDate).ToString(),
 
-                Employee.setEnd(endDate)
+                Employee.setEnd(endDate).ToString()
 
                 );
 

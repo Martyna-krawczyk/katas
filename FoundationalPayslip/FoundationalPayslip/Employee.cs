@@ -23,11 +23,13 @@ namespace FoundationalPayslip
             _endDate = endDate;
         }
 
+
         public string Name 
         {
             get{ return _name;}
             set{ _name = value;}
         }
+
 
         public string Surname
         {
@@ -35,11 +37,13 @@ namespace FoundationalPayslip
             set { _surname = value; }
         }
 
+
         public int SalaryInt
         {
             get { return _salaryInt; }
             set { _salaryInt = value; }
         }
+
 
         public int SuperRateInt
         {
@@ -47,17 +51,20 @@ namespace FoundationalPayslip
             set { _superRateInt = value; }
         }
 
-        public string StartDate
+
+        public string startDate
         {
             get { return _startDate; }
             set { _startDate = value; }
         }
+
 
         public string EndDate
         {
             get { return _endDate; }
             set { _endDate = value; }
         }
+
 
         public static string capitaliseName(string name)
         {
@@ -75,7 +82,7 @@ namespace FoundationalPayslip
         {
             int salaryInt;
 
-            if (!int.TryParse(salary, out salaryInt))
+            while (!int.TryParse(salary, out salaryInt))
             {
                 Console.WriteLine("The salary tryparse has failed");
             }
@@ -90,27 +97,39 @@ namespace FoundationalPayslip
         {
             int superRateInt;
 
-            if (!int.TryParse(super, out superRateInt))
+            while (!int.TryParse(super, out superRateInt))
             {
                 Console.WriteLine("The super tryparse has failed");
-            }
+            } 
             return superRateInt;
-
-            
         }
 
 
-        public static string setStart(string startDate) //could this be set up as a DateTime field?
+        public static DateTime setStart(string startDate)
         {
-            return startDate;
+            DateTime payMonthStart;
+            while (!DateTime.TryParse(startDate, out payMonthStart))
+            {
+                Console.WriteLine("You must enter a valid date");
+
+            }
+            return payMonthStart.Date;
+         
+
         }
 
 
-        public static string setEnd(string endDate)
+        public static DateTime setEnd(string endDate)
         {
-            return endDate;
+            DateTime payMonthEnd;
+            while (!DateTime.TryParse(endDate, out payMonthEnd))
+            {
+                Console.WriteLine("You must enter a valid date");
+            }
+            return payMonthEnd.Date;
         }
 
+        
     }
 }
 

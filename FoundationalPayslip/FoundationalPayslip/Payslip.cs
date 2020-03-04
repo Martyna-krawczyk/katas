@@ -12,7 +12,7 @@ namespace FoundationalPayslip
 
             Console.WriteLine("\nYour payslip has been generated:\n");
             Console.WriteLine($"Name: {employee.Name} {employee.Surname}");
-            Console.WriteLine($"Pay Period: {employee.StartDate} - {employee.EndDate}");
+            Console.WriteLine($"Pay Period: {Employee.setStart(employee.startDate)} - {Employee.setEnd(employee.EndDate)} ");
             Console.WriteLine($"Gross Income: {grossIncome}");
             Console.WriteLine($"Income Tax: {Calculations.CalculateIncomeTax(employee.SalaryInt)}");
             Console.WriteLine($"Net Income: {Calculations.ReturnNetIncome()}");

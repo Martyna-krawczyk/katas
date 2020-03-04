@@ -38,7 +38,7 @@ namespace FoundationalPayslip
             {
                 incomeTax = 0;
             }
-            return Math.Round(incomeTax, 0, MidpointRounding.ToEven);
+            return Math.Round(incomeTax, 0, MidpointRounding.AwayFromZero);
         }
 
 
@@ -57,7 +57,7 @@ namespace FoundationalPayslip
 
             double superValue = (grossIncome * superRate) / 100;
 
-            roundedSuperValue = Math.Round(superValue, 0, MidpointRounding.ToEven);
+            roundedSuperValue = Math.Round(superValue, 0, MidpointRounding.AwayFromZero);
 
             return (int)roundedSuperValue;
         }
