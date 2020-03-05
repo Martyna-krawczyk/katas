@@ -5,7 +5,7 @@ namespace FoundationalPayslip
     {
         public static void ReturnPayslip(Employee employee)
         {
-            double grossIncome = Calculations.ReturnGrossIncome(employee.Salary);
+            //double grossIncome = Calculations.ReturnGrossIncome(employee.Salary);  //Is this the better convention instead of putting the methods directly into the Console.Writeline?
 
             Console.WriteLine(
                 "\nYour payslip has been generated:\n\n" +

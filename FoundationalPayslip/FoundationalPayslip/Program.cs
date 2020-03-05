@@ -8,37 +8,37 @@ namespace FoundationalPayslip
         static void Main(string[] args)
         {
             Console.WriteLine("Please input your name:");
-            string name = Console.ReadLine();
+            string nameInput = Console.ReadLine();
 
             Console.WriteLine("Please input your surname:");
-            string surname = Console.ReadLine();
+            string surnameInput = Console.ReadLine();
 
             Console.WriteLine("Please enter your annual salary:");
-            string salaryString = Console.ReadLine();
+            string salaryInput = Console.ReadLine();
 
             Console.WriteLine("Please enter your super rate:");
-            string superString = Console.ReadLine();
+            string superInput = Console.ReadLine();
 
             Console.WriteLine("Please enter your payment start date (DD/MM/YYYY):");
-            string startDate = Console.ReadLine();
+            string startDateInput = Console.ReadLine();
 
             Console.WriteLine("Please enter your payment end date (DD/MM/YYYY):");
-            string endDate = Console.ReadLine();
+            string endDateInput = Console.ReadLine();
 
             Employee emp1 = new Employee
                 (
 
-                OutputFormatter.FormatName(name),
+                OutputFormatter.FormatName(nameInput),
 
-                OutputFormatter.FormatSurname(surname),
+                OutputFormatter.FormatSurname(surnameInput),
 
-                Employee.setSalary(salaryString),
+                Employee.setSalary(salaryInput),
 
-                Employee.SetSuper(superString),
+                Employee.SetSuper(superInput),
 
-                Employee.setStart(startDate).ToString(),
+                Employee.setStart(startDateInput).ToString(),
 
-                Employee.setEnd(endDate).ToString()
+                Employee.setEnd(endDateInput).ToString()
 
                 );
 

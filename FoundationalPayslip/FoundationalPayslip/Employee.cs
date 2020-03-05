@@ -11,7 +11,6 @@ namespace FoundationalPayslip
         private double _superRate;
         private string _startDate;
         private string _endDate;
-        //private double _grossIncome;
 
 
         public Employee(string name, string surname, double salary, double superRate, string startDate, string endDate) 
@@ -66,12 +65,6 @@ namespace FoundationalPayslip
             set { _endDate = value; }
         }
 
-        //public double GrossIncome
-        //{
-        //    get { return _grossIncome; }
-        //    set { _grossIncome = value; }
-        //}
-
 
         public static double setSalary(string salaryString)
         {
@@ -107,8 +100,6 @@ namespace FoundationalPayslip
 
             }
             return payMonthStart;
-         
-
         }
 
 

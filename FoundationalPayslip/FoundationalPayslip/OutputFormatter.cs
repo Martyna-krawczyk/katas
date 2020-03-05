@@ -5,9 +5,9 @@ namespace FoundationalPayslip
     public class OutputFormatter
     {
 
-        public static string FormatName(string name)
+        public static string FormatName(string nameInput)
         {
-            return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1); //ToTitleCase() - check this out  whitespace??
+            return nameInput[0].ToString().ToUpper() + nameInput.Substring(1, nameInput.Length - 1); //ToTitleCase() - check this out  whitespace??
         }
 
 
@@ -39,6 +39,7 @@ namespace FoundationalPayslip
         {
             return Math.Round(Calculations.ReturnNetIncome(), 0, MidpointRounding.AwayFromZero);
         }
+
 
         public static double FormatSuperValue(Employee employee)
         {
