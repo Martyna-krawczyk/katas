@@ -7,18 +7,19 @@ namespace FoundationalPayslip
     {
         private string _name; 
         private string _surname;
-        private int _salaryInt;
-        private int _superRateInt;
+        private double _salary;
+        private double _superRate;
         private string _startDate;
         private string _endDate;
+        //private double _grossIncome;
 
 
-        public Employee(string name, string surname, int salaryInt, int superRateInt, string startDate, string endDate) 
+        public Employee(string name, string surname, double salary, double superRate, string startDate, string endDate) 
         {
             _name = name; 
             _surname = surname;
-            _salaryInt = salaryInt;
-            _superRateInt = superRateInt;
+            _salary = salary;
+            _superRate = superRate;
             _startDate = startDate;
             _endDate = endDate;
         }
@@ -38,21 +39,21 @@ namespace FoundationalPayslip
         }
 
 
-        public int SalaryInt
+        public double Salary
         {
-            get { return _salaryInt; }
-            set { _salaryInt = value; }
+            get { return _salary; }
+            set { _salary = value; }
         }
 
 
-        public int SuperRateInt
+        public double SuperRate
         {
-            get { return _superRateInt; }
-            set { _superRateInt = value; }
+            get { return _superRate; }
+            set { _superRate = value; }
         }
 
 
-        public string startDate
+        public string StartDate
         {
             get { return _startDate; }
             set { _startDate = value; }
@@ -65,41 +66,35 @@ namespace FoundationalPayslip
             set { _endDate = value; }
         }
 
+        //public double GrossIncome
+        //{
+        //    get { return _grossIncome; }
+        //    set { _grossIncome = value; }
+        //}
 
-        public static string capitaliseName(string name)
+
+        public static double setSalary(string salaryString)
         {
-            return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1); //ToTitleCase() - check this out  whitespace??
-        }
+            double salary;
 
-
-        public static string capitaliseSurname(string surname)
-        {
-            return surname[0].ToString().ToUpper() + surname.Substring(1, surname.Length - 1);
-        }
-
-
-        public static int setSalary(string salary)
-        {
-            int salaryInt;
-
-            while (!int.TryParse(salary, out salaryInt))
+            while (!double.TryParse(salaryString, out salary))
             {
                 Console.WriteLine("The salary tryparse has failed");
             }
-            return salaryInt;
+            return salary;
 
         }
 
 
-        public static int setSuper(string super)
+        public static double SetSuper(string superString)
         {
-            int superRateInt;
+            double superRate;
 
-            while (!int.TryParse(super, out superRateInt))
+            while (!double.TryParse(superString, out superRate))
             {
                 Console.WriteLine("The super tryparse has failed");
             } 
-            return superRateInt;
+            return superRate;
         }
 
 
@@ -111,7 +106,7 @@ namespace FoundationalPayslip
                 Console.WriteLine("You must enter a valid date");
 
             }
-            return payMonthStart.Date;
+            return payMonthStart;
          
 
         }
@@ -124,7 +119,7 @@ namespace FoundationalPayslip
             {
                 Console.WriteLine("You must enter a valid date");
             }
-            return payMonthEnd.Date;
+            return payMonthEnd;
         }
 
         

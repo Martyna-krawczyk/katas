@@ -14,10 +14,10 @@ namespace FoundationalPayslip
             string surname = Console.ReadLine();
 
             Console.WriteLine("Please enter your annual salary:");
-            string salary = Console.ReadLine();
+            string salaryString = Console.ReadLine();
 
             Console.WriteLine("Please enter your super rate:");
-            string super = Console.ReadLine();
+            string superString = Console.ReadLine();
 
             Console.WriteLine("Please enter your payment start date (DD/MM/YYYY):");
             string startDate = Console.ReadLine();
@@ -28,13 +28,13 @@ namespace FoundationalPayslip
             Employee emp1 = new Employee
                 (
 
-                Employee.capitaliseName(name),
+                OutputFormatter.FormatName(name),
 
-                Employee.capitaliseSurname(surname),
+                OutputFormatter.FormatSurname(surname),
 
-                Employee.setSalary(salary),
+                Employee.setSalary(salaryString),
 
-                Employee.setSuper(super),
+                Employee.SetSuper(superString),
 
                 Employee.setStart(startDate).ToString(),
 

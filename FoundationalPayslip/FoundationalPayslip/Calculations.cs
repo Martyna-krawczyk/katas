@@ -4,18 +4,24 @@ namespace FoundationalPayslip
 {
     public class Calculations
     {
-            public static  double incomeTax;
-            public static int grossIncome;
+        public static double incomeTax;
+        public static double grossIncome;
+
+        public static double ReturnNetIncome()
+        {
+            double netIncome = grossIncome - incomeTax;
+            return netIncome;
+        }
 
 
-        public static int returnGrossIncome(int salary)
+        public static double ReturnGrossIncome(double salary)
         {
             grossIncome = salary / 12;
             return grossIncome;
         }
 
 
-        public static double CalculateIncomeTax(int salary)
+        public static double CalculateIncomeTax(double salary)
         {
 
             if (salary >= 180001)
@@ -38,28 +44,15 @@ namespace FoundationalPayslip
             {
                 incomeTax = 0;
             }
-            return Math.Round(incomeTax, 0, MidpointRounding.AwayFromZero);
+            return incomeTax;
         }
 
 
-        public static int ReturnNetIncome()
+        public static double CalculateSuper(double grossIncome, double superRate)
         {
-            double v = grossIncome - incomeTax;
-            int netIncome = (int)v;
-
-            return netIncome;
-        }
-
-
-        public static int CalculateSuper(int grossIncome, int superRate)
-        {
-            double roundedSuperValue;
-
             double superValue = (grossIncome * superRate) / 100;
 
-            roundedSuperValue = Math.Round(superValue, 0, MidpointRounding.AwayFromZero);
-
-            return (int)roundedSuperValue;
+            return superValue;
         }
 
     }
