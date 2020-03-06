@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 
 namespace FoundationalPayslip
 {
@@ -11,15 +13,15 @@ namespace FoundationalPayslip
         }
 
 
-        public static string FormatSurname(string surname)
+        public static string FormatSurname(string surnameInput)
         {
-            return surname[0].ToString().ToUpper() + surname.Substring(1, surname.Length - 1);
+            return surnameInput[0].ToString().ToUpper() + surnameInput.Substring(1, surnameInput.Length - 1);
         }
 
 
-        public static string FormatPayPeriod(Employee employee) //can I create a variable to hold the object so that I don't have to repeat this?
+        public static string FormatPayPeriod(Payslip payslip) 
         {
-            return Employee.setStart(employee.StartDate).ToString("dd MMMM") + " - " + Employee.setEnd(employee.EndDate).ToString("dd MMMM");
+            return Payslip.setStart(payslip.StartDate).ToString("dd MMMM") + " - " + Payslip.setEnd(payslip.EndDate).ToString("dd MMMM");
         }
 
 

@@ -1,24 +1,25 @@
-using System;
+//using System;
 using Xunit;
 using FoundationalPayslip;
 
 namespace FoundationalPayslip.Tests
 {
-    public class UnitTest1
+    public class SomeBasicTests
     {
-        //private readonly Calculations _simpleFunctions;
+        private readonly OutputFormatter _simpleFunctions;
 
-        //public SomeBasicTests(Calculations)
-        //{
-        //    _simpleFunctions = new SomeBasicFunctions();
-        //}
+        public SomeBasicTests()
+        {
+            _simpleFunctions = new OutputFormatter();
+        }
 
-        //[Fact]
-        //public void IsNumEven()
-        //{
-        //    //int result = _simpleFunctions.GenerateEvenNumber();
+        [Fact]
+        public void IsNetIncomeRounded()
+        {
+            System.Console.WriteLine("The test is running");
+            //double result = _simpleFunctions.FormatNetIncome();
 
-        //    //Assert.True(result % 2 == 0, "Number was not even!");
-        //}
+            //Assert.True(result % 2 == 0, "The number has been rounded!");
+        }
     }
 }

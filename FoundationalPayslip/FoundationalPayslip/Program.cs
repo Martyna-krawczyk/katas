@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 
+//I would like to catch the errors without them running recursively - how can I structure the code to bring the user back to their input prompt?
 
 namespace FoundationalPayslip
 {
@@ -34,15 +37,19 @@ namespace FoundationalPayslip
 
                 Employee.setSalary(salaryInput),
 
-                Employee.SetSuper(superInput),
-
-                Employee.setStart(startDateInput).ToString(),
-
-                Employee.setEnd(endDateInput).ToString()
+                Employee.SetSuper(superInput)
 
                 );
 
-            Payslip.ReturnPayslip(emp1);
+            Payslip pay1 = new Payslip
+                (
+                Payslip.setStart(startDateInput).ToString(),
+
+                Payslip.setEnd(endDateInput).ToString()
+                );
+
+
+            Payslip.ReturnPayslip(emp1, pay1);
         }
     }
 }
