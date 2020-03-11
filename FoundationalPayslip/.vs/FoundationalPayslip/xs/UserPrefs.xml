@@ -1,20 +1,19 @@
 ﻿<Properties StartupConfiguration="{DDDD92CE-E81C-4B42-9F04-38365DA11CD3}|Default">
   <MonoDevelop.Ide.ItemProperties.FoundationalPayslip PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/Payslip.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FoundationalPayslip/OutputFormatter.cs">
     <Files>
-      <File FileName="FoundationalPayslip/Program.cs" Line="5" Column="145" />
-      <File FileName="FoundationalPayslip/Employee.cs" Line="12" Column="13" />
-      <File FileName="FoundationalPayslip/Calculations.cs" />
-      <File FileName="FoundationalPayslip/Payslip.cs" Line="8" Column="6" />
-      <File FileName="FoundationalPayslip/OutputFormatter.cs" />
-      <File FileName="Tests/UnitTest1.cs" />
+      <File FileName="FoundationalPayslip/Program.cs" Line="53" Column="10" />
+      <File FileName="FoundationalPayslip/Employee.cs" Line="17" Column="30" />
+      <File FileName="FoundationalPayslip/Payslip.cs" Line="21" Column="38" />
+      <File FileName="FoundationalPayslip/Calculations.cs" Line="3" Column="19" />
+      <File FileName="FoundationalPayslip/OutputFormatter.cs" Line="8" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="FoundationalPayslip" expanded="True">
             <Node name="FoundationalPayslip" expanded="True">
-              <Node name="Payslip.cs" selected="True" />
+              <Node name="OutputFormatter.cs" selected="True" />
             </Node>
             <Node name="FoundationalPayslip.Tests" expanded="True" />
           </Node>

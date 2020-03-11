@@ -10,6 +10,8 @@ namespace FoundationalPayslip
     {
         static void Main(string[] args)
         {
+            
+
             Console.WriteLine("Please input your name:");
             string nameInput = Console.ReadLine();
 

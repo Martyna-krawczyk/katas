@@ -9,7 +9,7 @@ namespace FoundationalPayslip
 
         public static string FormatName(string nameInput)
         {
-            return nameInput[0].ToString().ToUpper() + nameInput.Substring(1, nameInput.Length - 1); //ToTitleCase() - check this out  whitespace??
+            return nameInput[0].ToString().ToUpper() + nameInput.Substring(1, nameInput.Length - 1); //ToTitleCase() - check this out  whitespace?? Is it worth spending more time on formats?
         }
 
 

@@ -1,19 +1,6 @@
 ﻿using System;
 
 
-//Is this the cleaner way to write this code?
-//public Employee(string firstName, string lastName, double salary, double superRate)
-//{
-//    FirstName = firstName;
-//    LastName = lastName;
-//    Salary = salary;
-//    SuperRate = superRate;
-//}
-//public string FirstName { get; private set; }
-//public string LastName { get; private set; }
-//public double Salary { get; private set; }
-//public double SuperRate { get; private set; }
-
 namespace FoundationalPayslip
 {
     public class Employee
@@ -60,15 +47,33 @@ namespace FoundationalPayslip
         }
 
 
+        //public static double setSalary(string salaryInput)
+        //{
+        //    double salary;
+
+        //    while (!double.TryParse(salaryInput, out salary)) //tryparse returns a bool
+        //    {
+        //        Console.WriteLine("The salary tryparse has failed"); 
+        //    }
+        //    return salary;
+
+        //}
+
+
+        //This catches the error and sends the user to the end of the program, before it advises that the tryparse has failed
         public static double setSalary(string salaryInput)
         {
             double salary;
 
-            while (!double.TryParse(salaryInput, out salary))
+            while (true)
             {
-                Console.WriteLine("The salary tryparse has failed");
-            }
+                Console.WriteLine("Please enter your annual salary:");
+                if (!double.TryParse(Console.ReadLine(), out salary))
+                {
+                    Console.WriteLine("The salary tryparse has failed");
+                }
             return salary;
+            }
 
         }
 

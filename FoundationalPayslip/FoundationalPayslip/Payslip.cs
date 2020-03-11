@@ -5,7 +5,6 @@ namespace FoundationalPayslip
 {
     public class Payslip
     {
-        //private string _startDate;
         private string _endDate;
 
         public Payslip(string startDate, string endDate)
@@ -14,19 +13,13 @@ namespace FoundationalPayslip
             _endDate = endDate;
         }
 
-        //public string StartDate
-        //{
-        //    get { return _startDate; }
-        //    set { _startDate = value; }
-        //}
-
+        public string StartDate { get; private set; } //I have seen this method and am not sure if this is the accepted convention??
 
         public string EndDate
         {
             get { return _endDate; }
             set { _endDate = value; }
         }
-        public string StartDate { get; private set; }
 
         public static DateTime setStart(string startDateInput)
         {
