@@ -8,6 +8,7 @@ namespace FoundationalPayslip
     {
         public static double incomeTax;
         public static double grossIncome;
+        //public static List<> TaxBrackets;
 
         public static double ReturnNetIncome()
         {
