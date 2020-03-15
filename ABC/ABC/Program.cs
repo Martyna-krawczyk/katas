@@ -6,6 +6,8 @@ namespace ABC
     {
         public static void Main(string[] args)
         {
+            string enteredString = "BARK";
+
             string[] blocksArray = new string[20]
             {
                 "B O",
@@ -29,21 +31,21 @@ namespace ABC
                 "P C",
                 "Z M"
             };
-            Console.WriteLine(blocksArray[0]);
+            //Console.WriteLine(blocksArray[0]);
 
-
-
-
-            foreach(var block in blocksArray)
+            for (int i = 0; i < blocksArray.Length; i++)
                 {
-                Console.WriteLine(block.ToString());
+                if (blocksArray[i].Contains(enteredString)) {
+
+                    Console.WriteLine(enteredString);
+                }
             }
 
-            if ()
-            foreach (var block in blocksArray)
-            {
-                Console.WriteLine(block.ToString());
-            }
+            //if ()
+            //foreach (var block in blocksArray)
+            //{
+            //    Console.WriteLine(block.ToString());
+            //}
         }
     }
 }
