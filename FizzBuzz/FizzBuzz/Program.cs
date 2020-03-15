@@ -9,62 +9,43 @@ namespace FizzBuzz
 
             for (int i = 0; i <= 100; i++)
             {
-                //Why won't this print fizzbuzz, but the below one will??
-
-                //if (i % 3 == 0)
-                //{
-                //    Console.WriteLine("Fizz");
-                //}
-                //else if (i % 5 == 0)
-                //{
-                //    Console.WriteLine("Buzz");
-                //}
-                //else if (i % 3 == 0 && i % 5 == 0)
-                //{
-                //    Console.WriteLine("FizzBuzz");
-                //}
-                //else
-                //{
-                //    Console.WriteLine(i);
-                //}
-
-                //if (i % 3 == 0 && i % 5 == 0)
-                //{
-                //    Console.WriteLine("FizzBuzz");
-                //}
-                //else if (i % 5 == 0)
-                //{
-                //    Console.WriteLine("Buzz");
-                //}
-                //else if (i % 3 == 0)
-                //{
-                //    Console.WriteLine("Fizz");
-                //}
-                //else
-                //{
-                //    Console.WriteLine(i);
-                //}
-
-
-                /////
-                ///
-
-                if (i % 3 == 0 || i % 5 == 0)
+                if (i % 3 == 0 && i % 5 == 0)
                 {
-                    if (i % 3 == 0)
-                    {
-                        Console.Write("Fizz");
-                    }
-                    if (i % 5 == 0)
-                    {
-                        Console.Write("Buzz");
-                    }
-                    Console.WriteLine();
+                    Console.WriteLine("FizzBuzz");
+                }
+                else if (i % 5 == 0)
+                {
+                    Console.WriteLine("Buzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    Console.WriteLine("Fizz");
                 }
                 else
                 {
                     Console.WriteLine(i);
                 }
+
+
+                /////
+                /// interesting hack
+
+                //if (i % 3 == 0 || i % 5 == 0)
+                //{
+                //    if (i % 3 == 0)
+                //    {
+                //        Console.Write("Fizz");
+                //    }
+                //    if (i % 5 == 0)
+                //    {
+                //        Console.Write("Buzz");
+                //    }
+                //    Console.WriteLine();
+                //}
+                //else
+                //{
+                //    Console.WriteLine(i);
+                //}
             }
         }
     }

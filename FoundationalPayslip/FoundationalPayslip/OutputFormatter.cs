@@ -77,25 +77,25 @@ namespace FoundationalPayslip
 
         public static double FormatGrossIncome(Employee employee)
         {
-            return Math.Round(Calculations.ReturnGrossIncome(employee.Salary), 0, MidpointRounding.AwayFromZero);
+            return Math.Round(Calculator.ReturnGrossIncome(employee.Salary), 0, MidpointRounding.AwayFromZero);
         }
 
 
         public static double FormatIncomeTax(Employee employee)
         {
-            return Math.Round(Calculations.CalculateIncomeTax(employee.Salary), 0, MidpointRounding.AwayFromZero);
+            return Math.Round(Calculator.CalculateIncomeTax(employee.Salary), 0, MidpointRounding.AwayFromZero);
         }
 
 
         public static double FormatNetIncome()
         {
-            return Math.Round(Calculations.ReturnNetIncome(), 0, MidpointRounding.AwayFromZero);
+            return Math.Round(Calculator.ReturnNetIncome(), 0, MidpointRounding.AwayFromZero);
         }
 
 
         public static double FormatSuperValue(Employee employee)
         {
-            return Math.Round(Calculations.CalculateSuper(Calculations.ReturnGrossIncome(employee.Salary), employee.SuperRate), 0, MidpointRounding.AwayFromZero);
+            return Math.Round(Calculator.CalculateSuper(Calculator.ReturnGrossIncome(employee.Salary), employee.SuperRate), 0, MidpointRounding.AwayFromZero);
         }
 
 
