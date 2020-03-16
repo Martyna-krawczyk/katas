@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ABC
@@ -7,10 +8,10 @@ namespace ABC
     {
         public static void Main(string[] args)
         {
-            public string enteredString = "BARK";
-            public string matchedBlocks = "";
+            string enteredString = "BARK";
+            string matchedBlocks = "";
 
-            string[] blocksArray = new string[20]
+            List<string> blocksArray = new List<string>
             {
                 "B O",
                 "X K",
@@ -35,17 +36,20 @@ namespace ABC
             };
             //Console.WriteLine(blocksArray[0]);
 
-            for (int i = 0; i < blocksArray.Length; i++)
+            for (int i = 0; i < blocksArray.Count; i++)
             {
-                    if (blocksArray[i].Contains(enteredString))
+                if (blocksArray[i].Contains(enteredString))
+                {
+                    //Console.WriteLine(enteredString);
+                    matchedBlocks = blocksArray[i].Where(blocksArray =>
                     {
-
-                        //matchedBlocks = blocksArray[i];
-                        string matchedBlocks = blocksArray.Where(blocksArray => blocksArray.Contains(enteredString));
-                    }
-
-           
-             }
+                        return blocksArray.Contains(enteredString);
+                    });
+                    Console.WriteLine(matchedBlocks);
+                }
+            }
+        }
     }
-
 }
+
+
