@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ABC
 {
@@ -6,7 +7,8 @@ namespace ABC
     {
         public static void Main(string[] args)
         {
-            string enteredString = "BARK";
+            public string enteredString = "BARK";
+            public string matchedBlocks = "";
 
             string[] blocksArray = new string[20]
             {
@@ -34,18 +36,16 @@ namespace ABC
             //Console.WriteLine(blocksArray[0]);
 
             for (int i = 0; i < blocksArray.Length; i++)
-                {
-                if (blocksArray[i].Contains(enteredString)) {
+            {
+                    if (blocksArray[i].Contains(enteredString))
+                    {
 
-                    Console.WriteLine(enteredString);
-                }
-            }
+                        //matchedBlocks = blocksArray[i];
+                        string matchedBlocks = blocksArray.Where(blocksArray => blocksArray.Contains(enteredString));
+                    }
 
-            //if ()
-            //foreach (var block in blocksArray)
-            //{
-            //    Console.WriteLine(block.ToString());
-            //}
-        }
+           
+             }
     }
+
 }

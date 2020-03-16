@@ -9,34 +9,33 @@ namespace FoundationalPayslip
     {
         public static double incomeTax;
         public static double grossIncome;
-        //public static List<(int taxLimits, int additionalTaxable, double cents)> TaxBrackets = new List<(int taxLimits, int additionalTaxable, double cents)>
-        //{
-        //    (180000, 54232, 0.45),
-        //    (87000, 19822, 0.37),
-        //    (37000, 3572, 0.325),
-        //    (18200, 1234, 0.19)
-        //};
 
-
+        public static List<TaxBracket> TaxBrackets = new List<TaxBracket>()
+        {
+            new TaxBracket(180000, 54232, 0.45),
+            new TaxBracket(87000, 19822, 0.37),
+            new TaxBracket(37000, 3572, 0.325),
+            new TaxBracket(18200, 0, 0.19)
+        };
 
         public static double CalculateIncomeTax(double salary)
         {
 
-            if (salary > TaxBrackets.taxLimits)
+            if (salary > TaxBrackets[0].MaxLimit)
             {
-                incomeTax = (54232 + (salary - TaxBrackets[0]) * 0.45) / 12;
+                incomeTax = (TaxBrackets[0].MinimumTaxable + (salary - TaxBrackets[0].MaxLimit) * TaxBrackets[0].Rate) / 12;
             }
-            else if (salary > TaxBrackets[0] && salary <= TaxBrackets[1])
+            else if (salary > TaxBrackets[1].MaxLimit && salary <= TaxBrackets[0].MaxLimit)
             {
-                incomeTax = (19822 + (salary - TaxBrackets[1]) * 0.37) / 12;
+                incomeTax = (TaxBrackets[1].MinimumTaxable + (salary - TaxBrackets[1].MaxLimit) * TaxBrackets[1].Rate) / 12;
             }
-            else if (salary > TaxBrackets[1] && salary <= TaxBrackets[2])
+            else if (salary > TaxBrackets[2].MaxLimit && salary <= TaxBrackets[1].MaxLimit)
             {
-                incomeTax = (3572 + (salary - TaxBrackets[2]) * 0.325) / 12;
+                incomeTax = (TaxBrackets[2].MinimumTaxable + (salary - TaxBrackets[2].MaxLimit) * TaxBrackets[2].Rate) / 12;
             }
-            else if (salary > TaxBrackets[3] && salary <= TaxBrackets[2])
+            else if (salary > TaxBrackets[3].MaxLimit && salary <= TaxBrackets[2].MinimumTaxable)
             {
-                incomeTax = ((salary - TaxBrackets[2]) * 0.19) / 12;
+                incomeTax = (TaxBrackets[3].MinimumTaxable + (salary - TaxBrackets[3].MaxLimit) * TaxBrackets[3].Rate) / 12;
             }
             else
             {
@@ -51,15 +50,11 @@ namespace FoundationalPayslip
             return netIncome;
         }
 
-
         public static double ReturnGrossIncome(double salary)
         {
             grossIncome = salary / 12;
             return grossIncome;
         }
-
-
-
 
         public static double CalculateSuper(double grossIncome, double superRate)
         {

@@ -7,5 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="Payroll.cs" />
+    <Compile Remove="TaxCalculator.cs" />
   </ItemGroup>
 </Project>
