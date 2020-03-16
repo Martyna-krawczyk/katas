@@ -6,11 +6,9 @@ namespace FoundationalPayslip
     {
         static void Main(string[] args)
         {
-            //TaxCalculator.SetDefaultTaxBrackets();
-
-
             Console.WriteLine("Please input your first name:");
             string nameInput = Console.ReadLine();
+            
             Console.WriteLine("Please input your surname:");
             string surnameInput = Console.ReadLine();
 
@@ -18,7 +16,6 @@ namespace FoundationalPayslip
             double super = OutputFormatter.ReadSuper();
             DateTime startDate = OutputFormatter.ValidateStartDate();
             DateTime endDate = OutputFormatter.ValidateEndDate();
-
 
             Employee employee = new Employee(OutputFormatter.FormatName(nameInput), OutputFormatter.FormatSurname(surnameInput), salary, super);
 

@@ -1,38 +1,24 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 
 namespace FoundationalPayslip
 {
     public class OutputFormatter
     {
 
-        //public static string ReadName() //I would like to set up this validation on the name and surname, but feel I still need some more time to fully understand why this doesn't run.
-        //{
-        //    Console.WriteLine("Please input your name:");
-
-        //    string name = Console.ReadLine();
-
-        //    while (true)
-        //    {
-        //        if (string.IsNullOrWhiteSpace(name))
-        //        {
-        //            Console.WriteLine("Please enter a valid name");   
-        //        }
-        //        return name[0].ToString().ToUpper() + name.Substring(1, name.Length - 1);
-        //    }
-
-        //}
-
         public static string FormatName(string nameInput)
         {
-            return nameInput[0].ToString().ToUpper() + nameInput.Substring(1, nameInput.Length - 1); //ToTitleCase() - check this out  whitespace?? Is it worth spending more time on formats?
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            
+            return myTI.ToTitleCase(nameInput);
         }
 
 
         public static string FormatSurname(string surnameInput)
         {
-            return surnameInput[0].ToString().ToUpper() + surnameInput.Substring(1, surnameInput.Length - 1);
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+
+            return myTI.ToTitleCase(surnameInput);
         }
 
 
@@ -51,6 +37,7 @@ namespace FoundationalPayslip
             }
         }
 
+
         public static DateTime ValidateEndDate()
         {
             Console.WriteLine("Please enter your payment end date (DD/MM/YYYY):"); 
@@ -64,15 +51,6 @@ namespace FoundationalPayslip
                 Console.WriteLine("Please enter a valid end date");
             }
         }
-
-        //public static string FormatPayPeriod(Payslip payslip)
-        //{
-        //    //DateTime dT = DateTime.ParseExact(StartDate.ToString());
-        //    //string s = dT.ToString("dd MMMM", CultureInfo.InvariantCulture);
-
-        //    //return s;
-        //    return payslip.StartDate.ToString("dd MMMM") + " - " + payslip.EndDate.ToString("dd MMMM");
-        //}
 
 
         public static double FormatGrossIncome(Employee employee)
@@ -125,6 +103,7 @@ namespace FoundationalPayslip
                 Console.WriteLine("Please enter a valid super rate");
             }
         }
+
 
         public static void PrintPayslip(Employee employee, Payslip payslip)
         {
