@@ -9,7 +9,7 @@ namespace ABC
         public static void Main(string[] args)
         {
             string enteredString = "B";
-            //Perhaps the string being entered should have each letter separated into a new list?
+            // Perhaps the string being entered should have each letter separated into a new list?
 
             List<string> matchedBlocks = new List<string>();
 
