@@ -8,8 +8,10 @@ namespace ABC
     {
         public static void Main(string[] args)
         {
-            string enteredString = "BARK";
-            string matchedBlocks = "";
+            string enteredString = "B";
+            //Perhaps the string being entered should have each letter separated into a new list?
+
+            List<string> matchedBlocks = new List<string>();
 
             List<string> blocksArray = new List<string>
             {
@@ -34,18 +36,17 @@ namespace ABC
                 "P C",
                 "Z M"
             };
-            //Console.WriteLine(blocksArray[0]);
 
             for (int i = 0; i < blocksArray.Count; i++)
             {
                 if (blocksArray[i].Contains(enteredString))
                 {
-                    //Console.WriteLine(enteredString);
-                    matchedBlocks = blocksArray[i].Where(blocksArray =>
+                    matchedBlocks.Add(enteredString);
+                   
+                    for (int m = 0; m < matchedBlocks.Count; m++)
                     {
-                        return blocksArray.Contains(enteredString);
-                    });
-                    Console.WriteLine(matchedBlocks);
+                        Console.WriteLine(matchedBlocks[m], m);
+                    }
                 }
             }
         }
