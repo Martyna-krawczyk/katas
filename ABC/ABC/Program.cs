@@ -9,6 +9,7 @@ namespace ABC
         public static void Main(string[] args)
         {
             string enteredString = "B";
+            //Test changes for branch test
             //Perhaps the string being entered should have each letter separated into a new list?
 
             List<string> matchedBlocks = new List<string>();
@@ -45,7 +46,7 @@ namespace ABC
                    
                     for (int m = 0; m < matchedBlocks.Count; m++)
                     {
-                        Console.WriteLine(matchedBlocks[m], m);
+                        Console.WriteLine(matchedBlocks[m]);
                     }
                 }
             }

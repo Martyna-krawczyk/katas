@@ -5,19 +5,16 @@ namespace FoundationalPayslip
 {
     public class OutputFormatter
     {
+        public static TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
 
         public static string FormatName(string nameInput)
         {
-            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-            
             return myTI.ToTitleCase(nameInput);
         }
 
 
         public static string FormatSurname(string surnameInput)
         {
-            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-
             return myTI.ToTitleCase(surnameInput);
         }
 
@@ -45,7 +42,8 @@ namespace FoundationalPayslip
             {
                 if (DateTime.TryParse(Console.ReadLine(), out DateTime endDate))
                 {
-                  
+
+                    
                     return endDate;
                 }
                 Console.WriteLine("Please enter a valid end date");
@@ -107,10 +105,12 @@ namespace FoundationalPayslip
 
         public static void PrintPayslip(Employee employee, Payslip payslip)
         {
+            string startString = ValidateStartDate().ToString("dd MMMM");
+
             Console.WriteLine(
                 "\nYour payslip has been generated:\n\n" +
                 $"Name: {employee.Name} {employee.Surname}\n" +
-                $"Pay Period: {payslip.StartDate.ToString()} - {payslip.EndDate.ToString()}\n" +
+                $"Pay Period: {startString} - {payslip.EndDate.ToString()}\n" +
                 $"Gross Income: {FormatGrossIncome(employee)}\n" +
                 $"Income Tax: {FormatIncomeTax(employee)}\n" +
                 $"Net Income: {FormatNetIncome()}\n" +
