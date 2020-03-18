@@ -9,7 +9,7 @@ namespace FoundationalPayslip
 
         public static string FormatName(string nameInput)
         {
-            return myTI.ToTitleCase(nameInput);
+            return myTI.ToTitleCase(nameInput); 
         }
 
 
