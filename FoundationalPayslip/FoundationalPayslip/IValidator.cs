@@ -4,10 +4,6 @@ namespace FoundationalPayslip
 {
     public interface IValidator
     {
-        string ReadName();
-        
-        string ReadSurname();
-        
         DateTime ReadStartDate();
         
         DateTime ReadEndDate();

@@ -4,23 +4,25 @@ namespace FoundationalPayslip
 {
     public class PayslipRunner
     {
-        private readonly IValidator _inputValidator;
+        private readonly IValidator _validator;
         private readonly IFormatter _outputFormatter;
+        private readonly InputManager _inputManager;
         
-        public PayslipRunner(IValidator inputValidator, IFormatter outputFormatter)
+        public PayslipRunner(IValidator validator, IFormatter outputFormatter, InputManager inputManager)
         {
-            _inputValidator = inputValidator;
+            _validator = validator;
             _outputFormatter = outputFormatter;
+            _inputManager = inputManager;
         }
         
         public void Run()
         {
-            var name = _inputValidator.ReadName();
-            var surname = _inputValidator.ReadSurname();
-            double salary = _inputValidator.ReadSalary();
-            double super = _inputValidator.ReadSuper();
-            DateTime startDate = _inputValidator.ReadStartDate();
-            DateTime endDate = _inputValidator.ReadEndDate();
+            var name = _inputManager.AskName();
+            var surname = _inputManager.AskSurname();
+            double salary = _validator.ReadSalary();
+            double super = _validator.ReadSuper();
+            DateTime startDate = _validator.ReadStartDate();
+            DateTime endDate = _validator.ReadEndDate();
 
             Employee employee = new Employee(_outputFormatter.FormatName(name), _outputFormatter.FormatSurname(surname), salary, super);
 
