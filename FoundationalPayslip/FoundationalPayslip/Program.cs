@@ -6,10 +6,11 @@ namespace FoundationalPayslip
     {
         static void Main(string[] args)
         {
-            var inputValidator = new InputValidator();
+            var validator = new Validator();
             var outputFormatter = new OutputFormatter();
+            var inputManager = new InputManager();
             
-            var runner = new PayslipRunner(inputValidator, outputFormatter);
+            var runner = new PayslipRunner(validator, outputFormatter, inputManager);
             runner.Run();
         }
     }
