@@ -19,8 +19,8 @@ namespace FoundationalPayslip
         {
             var name = _inputManager.AskName();
             var surname = _inputManager.AskSurname();
-            double salary = _validator.ReadSalary();
-            double super = _validator.ReadSuper();
+            double salary = _inputManager.AskSalary();
+            double super = _inputManager.AskSuper();
             DateTime startDate = _inputManager.AskStartDate();
             DateTime endDate = _inputManager.AskEndDate();
 

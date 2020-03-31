@@ -4,11 +4,9 @@ namespace FoundationalPayslip
 {
     public interface IValidator
     {
-
-        
-        
-        double ReadSalary();
-        
-        double ReadSuper();
+        //bool IsValidName(string name);
+        //bool CanDateBeParsed(string date, string format);
+        //bool CanSalaryBeParsed(string salary);
+        //bool CanSuperBeParsed(string super);
     }
 }
