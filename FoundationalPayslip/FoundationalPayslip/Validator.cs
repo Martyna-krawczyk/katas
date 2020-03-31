@@ -17,30 +17,14 @@ namespace FoundationalPayslip
                 DateTimeStyles.None, out _);
         }
 
-        public double ReadSalary() 
+        public static bool CanSalaryBeParsed(string salary)  
         {
-            //Console.WriteLine("Please enter your annual salary:");
-            while (true)
-            {
-                if (double.TryParse(Console.ReadLine(), out double salary))
-                {
-                    return salary;
-                }
-                Console.WriteLine("Please enter a valid salary");
-            }
+            return double.TryParse(salary, out double _);
         }
 
-        public double ReadSuper()
+        public static bool CanSuperBeParsed(string super)  
         {
-            Console.WriteLine("Please enter your super rate:");
-            while (true)
-            {
-                if (double.TryParse(Console.ReadLine(), out double superRate))
-                {
-                    return superRate;
-                }
-                Console.WriteLine("Please enter a valid super rate");
-            }
+            return double.TryParse(super, out double _);
         }
     }
 }

@@ -7,15 +7,6 @@ namespace FoundationalPayslip
     public class OutputFormatter : IFormatter
     {
         private readonly TextInfo _textFormatter = new CultureInfo("en-US", false).TextInfo;
-        
-        //private readonly CultureInfo _dateFormatter = new CultureInfo("en-GB");
-       
-        //CultureInfo uk = new CultureInfo("en-GB");
-        //private string shortUKDateFormatString = uk.DateTimeFormat.ShortDatePattern;
-        //public DateTime FormatDate(DateTime startDate)
-        //{
-            //return _dateFormatter.Calendar.GetMonth(); //
-        //}
 
         public string FormatName(string name)
         {
@@ -27,7 +18,6 @@ namespace FoundationalPayslip
             return _textFormatter.ToTitleCase(surname);
         }
         
-    
         public double FormatGrossIncome(Employee employee)
         {
             return Math.Round(Calculator.ReturnGrossIncome(employee.Salary), 0, MidpointRounding.AwayFromZero);
@@ -58,7 +48,7 @@ namespace FoundationalPayslip
             Console.WriteLine(
                 "\nYour payslip has been generated:\n\n" +
                 $"Name: {employee.Name} {employee.Surname}\n" +
-                $"Pay Period: {payslip.StartDate.ToString("dd MMM")} - {payslip.EndDate.ToString("dd MMM")}\n" +
+                $"Pay Period: {payslip.StartDate:dd MMM} - {payslip.EndDate:dd MMM}\n" +
                 $"Gross Income: {grossIncome}\n" +
                 $"Income Tax: {incomeTax}\n" +
                 $"Net Income: {netIncome}\n" +

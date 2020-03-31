@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace FoundationalPayslip
 {
-    public class InputManager
+    public class InputManager 
     {
         public string AskName()
         {
@@ -42,13 +42,12 @@ namespace FoundationalPayslip
 
         public DateTime AskStartDate()
         {
-            string startDate;
             string format = "dd/MM";
             
             Console.WriteLine("Please enter your payment start date (dd/MM):");
             while (true)
             {
-                startDate = Console.ReadLine();
+                var startDate = Console.ReadLine();
                 
                 if (Validator.CanDateBeParsed(startDate, format))
                 {
@@ -60,19 +59,48 @@ namespace FoundationalPayslip
         
         public DateTime AskEndDate()
         {
-            string endDate;
             string format = "dd/MM";
             
             Console.WriteLine("Please enter your payment end date (DD/MM):"); 
             while (true)
             {
-                endDate = Console.ReadLine();
+                var endDate = Console.ReadLine();
                 
                 if (Validator.CanDateBeParsed(endDate, format))
                 {
                     return DateTime.ParseExact(endDate, format, null );
                 }
                 Console.WriteLine("Please enter a valid start date");
+            }
+        }
+        
+        public double AskSalary()
+        {
+            Console.WriteLine("Please enter your annual salary:");
+            while (true)
+            {
+                var salary = Console.ReadLine();
+                
+                if (Validator.CanSalaryBeParsed(salary))
+                {
+                    return Convert.ToDouble(salary);
+                }
+                Console.WriteLine("Please enter a valid salary");
+            }
+        }
+        
+        public double AskSuper()
+        {
+            Console.WriteLine("Please enter your super rate:");
+            while (true)
+            {
+                var super = Console.ReadLine();
+                
+                if (Validator.CanSuperBeParsed(super))
+                {
+                    return Convert.ToDouble(super);
+                }
+                Console.WriteLine("Please enter a valid super rate");
             }
         }
     }
