@@ -21,12 +21,12 @@ namespace FoundationalPayslip
             var surname = _inputManager.AskSurname();
             double salary = _validator.ReadSalary();
             double super = _validator.ReadSuper();
-            DateTime startDate = _validator.ReadStartDate();
-            DateTime endDate = _validator.ReadEndDate();
+            DateTime startDate = _inputManager.AskStartDate();
+            DateTime endDate = _inputManager.AskEndDate();
 
             Employee employee = new Employee(_outputFormatter.FormatName(name), _outputFormatter.FormatSurname(surname), salary, super);
 
-            Payslip payslip = new Payslip(startDate.ToString(), endDate.ToString());
+            Payslip payslip = new Payslip(startDate, endDate);
 
             _outputFormatter.PrintPayslip(employee, payslip);
         }
