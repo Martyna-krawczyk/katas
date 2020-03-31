@@ -4,9 +4,8 @@ namespace FoundationalPayslip
 {
     public interface IValidator
     {
-        DateTime ReadStartDate();
+
         
-        DateTime ReadEndDate();
         
         double ReadSalary();
         

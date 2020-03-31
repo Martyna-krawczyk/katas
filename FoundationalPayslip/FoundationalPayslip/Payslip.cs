@@ -5,14 +5,14 @@ namespace FoundationalPayslip
 {
     public class Payslip
     {
-        public Payslip(string startDate, string endDate)
+        public Payslip(DateTime startDate, DateTime endDate)
         {
             StartDate = startDate;
             EndDate = endDate;
         }
 
-        public string StartDate { get; private set; }
-        public string EndDate { get; private set; }
+        public DateTime StartDate { get; private set; }
+        public DateTime EndDate { get; private set; }
 
     } 
 }

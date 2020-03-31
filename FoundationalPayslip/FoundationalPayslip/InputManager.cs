@@ -1,5 +1,6 @@
 using System;
-    
+using System.Diagnostics;
+
 
 namespace FoundationalPayslip
 {
@@ -39,9 +40,40 @@ namespace FoundationalPayslip
             return surname;
         }
 
-        public void AskSalary()
+        public DateTime AskStartDate()
         {
-            Console.WriteLine("Please enter your annual salary:");
+            string startDate;
+            string format = "dd/MM";
+            
+            Console.WriteLine("Please enter your payment start date (dd/MM):");
+            while (true)
+            {
+                startDate = Console.ReadLine();
+                
+                if (Validator.CanDateBeParsed(startDate, format))
+                {
+                    return DateTime.ParseExact(startDate, format, null );
+                }
+                Console.WriteLine("Please enter a valid start date");
+            }
+        }
+        
+        public DateTime AskEndDate()
+        {
+            string endDate;
+            string format = "dd/MM";
+            
+            Console.WriteLine("Please enter your payment end date (DD/MM):"); 
+            while (true)
+            {
+                endDate = Console.ReadLine();
+                
+                if (Validator.CanDateBeParsed(endDate, format))
+                {
+                    return DateTime.ParseExact(endDate, format, null );
+                }
+                Console.WriteLine("Please enter a valid start date");
+            }
         }
     }
 }
