@@ -4,13 +4,13 @@ namespace FoundationalPayslip
 {
     public class PayslipRunner
     {
-        private readonly IValidator _validator;
+        
         private readonly IFormatter _outputFormatter;
         private readonly InputManager _inputManager;
         
-        public PayslipRunner(IValidator validator, IFormatter outputFormatter, InputManager inputManager)
+        public PayslipRunner(IFormatter outputFormatter, InputManager inputManager)
         {
-            _validator = validator;
+            
             _outputFormatter = outputFormatter;
             _inputManager = inputManager;
         }
