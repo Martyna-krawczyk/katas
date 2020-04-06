@@ -16,6 +16,9 @@ namespace ABC
 
         public string Side2 { get; set; }
 
-        
+        public bool Equals(Block thing)
+        {
+            return this.Side1 == thing.Side1 && this.Side2 == thing.Side2;
+        }
     }
 }

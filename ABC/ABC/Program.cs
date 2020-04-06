@@ -6,13 +6,14 @@ namespace ABC
 {
     class Program
     {
-        public static string word = "BARK";
+        public static string word = "BOOK";
         public static char[] wordArray = word.ToCharArray();
+
         public static void Main(string[] args)
         {
             SearchBlocks(word);
         }
-        
+
 
 
         public static List<Block> Blocks = new List<Block>()
@@ -39,31 +40,37 @@ namespace ABC
             new Block("Z", "M")
         };
 
-        public static void NewArrayFromString(string word)
-        {
-            
-        }
-        
         public static void SearchBlocks(string word)
         {
             for (int i = 0; i < Blocks.Count; i++)
             {
-                if (Blocks[i].Side1.Contains(word) || Blocks[i].Side2.Contains(word))
+                foreach (var letter in wordArray)
                 {
-                    foreach (var letter in wordArray)
+                    if (Blocks[i].Side1.Contains(letter))
                     {
-                        for (int j = 0; j < wordArray.Length; j++)
-                        {
-                            Blocks.RemoveAt(i);
-                        }
+                        //Blocks.RemoveAt(i);
+                        Console.WriteLine($"I found the letter: {letter} - it's position is {i} on Side 1");
                     }
-                    //Console.WriteLine($"Yes and the position is {i}");
+                    else if (Blocks[i].Side2.Contains(letter))
+                    {
+                        Console.WriteLine($"I found the letter: {letter} - it's position is {i} on Side 2");
+                    }
+
+                    while (Blocks[i].Side1.Contains(letter) && Blocks[i].Side2.Contains(letter)
+                    ) // this doesn't return anything!?
+                    {
+                        Console.WriteLine($"The letter {letter} appears on the same block");
+                    }
                 }
-                    
             }
         }
-        
-        
-        
+
+        public bool IsBlockFound(string word) //comparing blocks
+        {
+            Block block1 = new Block("P", "C");
+            Block block2 = new Block("Z", "M");
+            block1.Equals(block2);
+        }
     }
 }
+    
