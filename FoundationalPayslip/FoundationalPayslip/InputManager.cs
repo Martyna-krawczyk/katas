@@ -4,8 +4,15 @@ using System.Diagnostics;
 
 namespace FoundationalPayslip
 {
-    public class InputManager 
+    public class InputManager
     {
+        private IValidator _validator;
+
+        public InputManager(IValidator validator)
+        {
+            _validator = validator;
+        }
+
         public string AskName()
         {
             string name;
@@ -14,11 +21,11 @@ namespace FoundationalPayslip
                 Console.WriteLine("Please enter your name:");
                 name = Console.ReadLine();
 
-                if (Validator.IsValidName(name))
+                if (_validator.IsValidName(name))
                 {
                     Console.WriteLine("Oops: You have not entered your name, or what you've input is not valid");
                 }
-            } while (Validator.IsValidName(name));
+            } while (_validator.IsValidName(name));
             
             return name;
         }
@@ -31,11 +38,11 @@ namespace FoundationalPayslip
                 Console.WriteLine("Please enter your surname:");
                 surname = Console.ReadLine();
 
-                if (Validator.IsValidName(surname))
+                if (_validator.IsValidName(surname))
                 {
                     Console.WriteLine("Oops: You have not entered your surname, or what you've input is not valid");
                 }
-            } while (Validator.IsValidName(surname));
+            } while (_validator.IsValidName(surname));
 
             return surname;
         }
@@ -49,7 +56,7 @@ namespace FoundationalPayslip
             {
                 var startDate = Console.ReadLine();
                 
-                if (Validator.CanDateBeParsed(startDate, format))
+                if (_validator.CanDateBeParsed(startDate, format))
                 {
                     return DateTime.ParseExact(startDate, format, null );
                 }
@@ -66,7 +73,7 @@ namespace FoundationalPayslip
             {
                 var endDate = Console.ReadLine();
                 
-                if (Validator.CanDateBeParsed(endDate, format))
+                if (_validator.CanDateBeParsed(endDate, format))
                 {
                     return DateTime.ParseExact(endDate, format, null );
                 }
@@ -81,7 +88,7 @@ namespace FoundationalPayslip
             {
                 var salary = Console.ReadLine();
                 
-                if (Validator.CanSalaryBeParsed(salary))
+                if (_validator.CanSalaryBeParsed(salary))
                 {
                     return Convert.ToDouble(salary);
                 }
@@ -96,7 +103,7 @@ namespace FoundationalPayslip
             {
                 var super = Console.ReadLine();
                 
-                if (Validator.CanSuperBeParsed(super))
+                if (_validator.CanSuperBeParsed(super))
                 {
                     return Convert.ToDouble(super);
                 }

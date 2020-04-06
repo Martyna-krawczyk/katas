@@ -8,9 +8,9 @@ namespace FoundationalPayslip
         {
             var validator = new Validator();
             var outputFormatter = new OutputFormatter();
-            var inputManager = new InputManager();
+            var inputManager = new InputManager(validator);
             
-            var runner = new PayslipRunner(validator, outputFormatter, inputManager);
+            var runner = new PayslipRunner(outputFormatter, inputManager);
             runner.Run();
         }
     }
