@@ -6,19 +6,22 @@ namespace ABC
 {
     public class Block
     {
-        public Block(string side1, string side2)
+        public Block(char side1, char side2, bool isUsed = false) //this bool default is false
         {
             Side1 = side1;
             Side2 = side2;
+            IsUsed = isUsed;
         }
 
-        public string Side1 { get; set; }
+        public char Side1 { get; set; }
 
-        public string Side2 { get; set; }
+        public char Side2 { get; set; }
+        
+        public bool IsUsed { get; set; }
 
-        public bool Equals(Block thing)
+        public bool HasLetter(char letter)
         {
-            return this.Side1 == thing.Side1 && this.Side2 == thing.Side2;
+            return Side1 == letter || Side2 == letter;
         }
     }
 }
