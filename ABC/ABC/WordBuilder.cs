@@ -50,22 +50,22 @@ namespace ABC
                     }
                 }
 
-                //all letters have now been checked against every block
-                //count each used block to see if total matches the length of the word
-                foreach (var block in Blocks)
+            }
+            //all letters have now been checked against every block
+            //count each used block to see if total matches the length of the word
+            foreach (var block in Blocks)
+            {
+                if (block.IsUsed == true)
                 {
-                    if (block.IsUsed == true)
-                    {
-                        usedBlocksCount++;
-                        Console.WriteLine("Block: {0} , {1}", block.Side1, block.Side2);
-                    }
+                    usedBlocksCount++;
+                    //Console.WriteLine("Block: {0} , {1}", block.Side1, block.Side2);
                 }
-            } 
-            Console.WriteLine(usedBlocksCount); //It looks like I will have to try to just modify the first found
+            }
+            //Console.WriteLine(usedBlocksCount); 
             return usedBlocksCount == word.Length;
-        }
+        } 
 
-        //resets all blocks back to isUsed = false
+        //resets all blocks back to isUsed = false after each word has finished
         private void ResetBlocks()
         {
             foreach (var block in Blocks)
