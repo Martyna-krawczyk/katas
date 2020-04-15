@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 
 namespace ABC
 {
@@ -33,8 +34,13 @@ namespace ABC
         
         public bool CanBlocksMakeWord(string word)
         {
+            var usedBlocksCount = 0;
+
+            ResetBlocks();
+            
             foreach (var letter in word)
             {
+                
                 foreach (var block in Blocks)
                 {
                     if (!block.IsUsed && block.HasLetter(letter))
@@ -42,19 +48,30 @@ namespace ABC
                         block.IsUsed = true;
                         break; //move to the next letter in the word
                     }
+                }
 
-                    if (!block.IsUsed) //same as block.IsUsed == false
+                //all letters have now been checked against every block
+                //count each used block to see if total matches the length of the word
+                foreach (var block in Blocks)
+                {
+                    if (block.IsUsed == true)
                     {
-                        Blocks.Remove(block);
-                    } else
-                    {
-                        return false;
+                        usedBlocksCount++;
+                        Console.WriteLine("Block: {0} , {1}", block.Side1, block.Side2);
                     }
                 }
-            }
-            return true;
+            } 
+            Console.WriteLine(usedBlocksCount); //It looks like I will have to try to just modify the first found
+            return usedBlocksCount == word.Length;
         }
 
-        
+        //resets all blocks back to isUsed = false
+        private void ResetBlocks()
+        {
+            foreach (var block in Blocks)
+            {
+                block.IsUsed = false;
+            }
+        }
     }
 }
