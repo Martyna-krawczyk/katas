@@ -30,7 +30,6 @@ namespace ABC
             new Block('P', 'C'),
             new Block('Z', 'M')
         };
-
         
         public bool CanBlocksMakeWord(string word)
         {
@@ -49,13 +48,12 @@ namespace ABC
                         break; //move to the next letter in the word
                     }
                 }
-
             }
             //all letters have now been checked against every block
             //count each used block to see if total matches the length of the word
             foreach (var block in Blocks)
             {
-                if (block.IsUsed == true)
+                if (block.IsUsed) //same as writing block.IsUsed == true
                 {
                     usedBlocksCount++;
                     //Console.WriteLine("Block: {0} , {1}", block.Side1, block.Side2);

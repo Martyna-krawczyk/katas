@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 namespace ABC
 {
     public class AppRunner
     {
         public bool running = true;
+        public string selection;
         
         readonly WordBuilder wordBuilder = new WordBuilder();
-        readonly UserInputFromConsole userInputFromConsole = new UserInputFromConsole(); 
+        readonly UserInputFromConsole userInputFromConsole = new UserInputFromConsole();
         
-        private string[] DefaultWords = new[]
+        private string[] DefaultWords = 
         {
             "A",
             "BARK",
@@ -20,15 +22,15 @@ namespace ABC
             "SQUAD",
             "CONFUSE"
         };
-
-
+        
         public void Run()
         {
-            userInputFromConsole.Intro();
+            userInputFromConsole.Welcome();
+            userInputFromConsole.HandleUserInput();
 
             while (running)
             {
-                var selection = Console.ReadLine();
+                selection = Console.ReadLine();
 
                 switch (selection)
                 {
@@ -39,37 +41,47 @@ namespace ABC
                         RunCustomWord(userInputFromConsole.AskWord());
                         break;
                     case "3":
-                        GameOver();
+                        ExitApp();
                         break;
                 }
+            }
+        }
 
-               
+        public void ExitApp()
+        {
+            running = false;
+        }
 
-             void GameOver()
+         public void PlayAgain() 
+         {
+             userInputFromConsole.ContinuePlaying();
+             
+             string play = Console.ReadLine();
+            
+             if (play != "y")
+             {
+                 Console.WriteLine("Bye");
+                 ExitApp();     
+             }
+             userInputFromConsole.HandleUserInput();
+         }
+        void RunDefaultWords()
+        {
+            foreach (var word in DefaultWords)
             {
-                running = false;
+                Console.WriteLine("{0} - We {1} spell {2} with our blocks\n",
+                    wordBuilder.CanBlocksMakeWord(word) ? "True" : "False",
+                    wordBuilder.CanBlocksMakeWord(word) ? "can" : "can't", word);
             }
+            PlayAgain();
+        }
 
-                
-                void RunDefaultWords()
-                {
-                    foreach (var word in DefaultWords)
-                    {
-                        Console.WriteLine("{0} - We {1} spell {2} with our blocks\n",
-                            wordBuilder.CanBlocksMakeWord(word) ? "True" : "False",
-                            wordBuilder.CanBlocksMakeWord(word) ? "can" : "can't", word);
-                    }
-                    userInputFromConsole.PlayAgain();
-                }
-
-                void RunCustomWord(string customWord)
-                {
-                    Console.WriteLine("{0} - We {1} spell {2} with our blocks\n",
-                        wordBuilder.CanBlocksMakeWord(customWord) ? "True" : "False",
-                        wordBuilder.CanBlocksMakeWord(customWord) ? "can" : "can't", customWord);
-                    userInputFromConsole.PlayAgain();
-                }
-            }
+        void RunCustomWord(string customWord)
+        {
+            Console.WriteLine("{0} - We {1} spell {2} with our blocks\n",
+                wordBuilder.CanBlocksMakeWord(customWord) ? "True" : "False",
+                wordBuilder.CanBlocksMakeWord(customWord) ? "can" : "can't", customWord);
+            PlayAgain();
         }
     }
 }

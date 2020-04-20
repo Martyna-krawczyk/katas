@@ -7,10 +7,24 @@ namespace ABC
 {
     public class UserInputFromConsole
     {
-     
-        Validator validator = new Validator();
-        AppRunner appRunner = new AppRunner();
 
+        Validator validator = new Validator();
+        
+        public void Welcome()
+        {
+            Console.WriteLine("Welcome to the ABC Word Builder Kata!");
+            
+        }
+        
+        public void HandleUserInput()
+        {
+            Console.WriteLine(
+                "Would you like to run the default words or your own custom word?\n " +
+                "1: DEFAULT\n " +
+                "2: CUSTOM\n " +
+                "3: EXIT");
+        }
+        
         public string AskWord()
         {
             string customWord;
@@ -29,26 +43,9 @@ namespace ABC
             return customWord;
         }
 
-        public void PlayAgain()
+        public void ContinuePlaying()
         {
             Console.WriteLine("Would you like to play again? y/n?");
-            var play = Console.ReadLine();
-            
-            if (play != "y")
-            {
-                Console.WriteLine("Bye");
-            }
-            appRunner.Run();
-        }
-
-        public void Intro()
-        {
-            Console.WriteLine("Welcome to the ABC Word Builder Kata!");
-            Console.WriteLine(
-                "Would you like to run the default words or your own custom word?\n " +
-                "1: DEFAULT\n " +
-                "2: CUSTOM\n " +
-                "3: EXIT");
         }
     }
 }

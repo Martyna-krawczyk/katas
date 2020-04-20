@@ -11,7 +11,6 @@ namespace ABC
     {
         static void Main(string[] args)
         {
-            
             var runner = new AppRunner();
             runner.Run();
         }
