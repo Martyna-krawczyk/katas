@@ -1,42 +1,48 @@
 using System;
 using System.Collections.Generic;
+using ABC;
 using Xunit;
 
-namespace Tests
+namespace ABC.Tests
 {
-    public class UnitTest1
+    public class BlockShould
     {
-        public static List<Block> Blocks = new List<Block>()
+        [Theory]
+        [MemberData(nameof(Data))]
+        public void HaveLetterBOnAnySide_ReturnsTrue(char side1, char side2)
         {
-            new Block("B", "O"),
-            new Block("X", "K"),
-            new Block("D", "Q"),
-            new Block("C", "P"),
-            new Block("N", "A"),
-            new Block("G", "T"),
-            new Block("R", "E"),
-            new Block("T", "G"),
-            new Block("Q", "D"),
-            new Block("F", "S"),
-            new Block("J", "W"),
-            new Block("H", "U"),
-            new Block("V", "I"),
-            new Block("A", "N"),
-            new Block("O", "B"),
-            new Block("E", "R"),
-            new Block("F", "S"),
-            new Block("L", "Y"),
-            new Block("P", "C"),
-            new Block("Z", "M")
-        };
-        
-        [Theory, InlineData("BOOK")]
-        public void 
-        
+            Block block = new Block(side1, side2);
+            
+            var actual = block.HasLetter('B');
+            
+            Assert.True(actual);
+        }
+
+        public static IEnumerable<object[]> Data =>
+            new List<object[]>
+            {
+                new object[] {'B', 'C'},
+                new object[] {'C', 'B'},
+            };
+
+        [Fact]
+        public void HaveLetterBOnAnySide_ReturnsFalse()
+        {
+            Block block = new Block('C', 'E');
+            
+            var actual = block.HasLetter('B');
+            
+            Assert.False(actual);
+        }
         
         [Fact]
-        public void Test1()
+        public void HaveDefaultValueOfFalseForIsUsed()
         {
+            Block block = new Block('A', 'C');
+
+            var actual = block.IsUsed;
+            
+            Assert.False(actual);
         }
     }
 }
