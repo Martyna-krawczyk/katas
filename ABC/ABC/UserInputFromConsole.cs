@@ -5,20 +5,25 @@ using ABC;
 
 namespace ABC
 {
-    public class UserInputFromConsole
+    public class UserInputFromConsole : IUserInputFromConsole
     {
-
-        Validator validator = new Validator();
+        readonly Validator validator = new Validator();
         
+        private readonly IOutput _output;
+        public UserInputFromConsole(IOutput output)
+        {
+            _output = output;
+        }
+
         public void Welcome()
         {
-            Console.WriteLine("Welcome to the ABC Word Builder Kata!");
+            _output.OutputText("Welcome to the ABC Word Builder Kata!");
             
         }
         
         public void HandleUserInput()
         {
-            Console.WriteLine(
+            _output.OutputText(
                 "Would you like to run the default words or your own custom word?\n " +
                 "1: DEFAULT\n " +
                 "2: CUSTOM\n " +
@@ -30,13 +35,12 @@ namespace ABC
             string customWord;
             do
             {
-                Console.WriteLine("Please enter your custom word:");
+                _output.OutputText("Please enter your custom word:");
                 customWord = Console.ReadLine().ToUpper();
 
-                if (!validator.ValidWord(customWord)) //validator is the instance - using a capital would only be
-                                                      //useful on static classes and methods
+                if (!validator.ValidWord(customWord)) 
                 {
-                    Console.WriteLine("Sorry, you can only enter letters - please try again.");
+                    _output.OutputText("Sorry, you can only enter letters - please try again.");
                 }
             } while (!validator.ValidWord(customWord));
 
@@ -45,7 +49,7 @@ namespace ABC
 
         public void ContinuePlaying()
         {
-            Console.WriteLine("Would you like to play again? y/n?");
+            _output.OutputText("Would you like to play again? y/n?");
         }
     }
 }
