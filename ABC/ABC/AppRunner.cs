@@ -6,18 +6,19 @@ namespace ABC
 {
     public class AppRunner : IAppRunner
     {
+        readonly WordBuilder wordBuilder = new WordBuilder();
+        readonly Input input = new Input();
+        private readonly UserInputRunner _userInputRunner;
+        public bool running = true;
+        public string selection;
+        
         private readonly IOutput _output;
         public AppRunner(IOutput output)
         {
             _output = output;
+            _userInputRunner = new UserInputRunner(_output);
         }
 
-        public bool running = true;
-        public string selection;
-        
-        readonly WordBuilder wordBuilder = new WordBuilder();
-        readonly UserInputFromConsole userInputFromConsole = new UserInputFromConsole();
-        
         private readonly string[] DefaultWords = 
         {
             "A",
@@ -28,18 +29,15 @@ namespace ABC
             "SQUAD",
             "CONFUSE"
         };
-
         
-
-
         public void Run()
         {
-            userInputFromConsole.Welcome();
-            userInputFromConsole.HandleUserInput();
+            _userInputRunner.Welcome();
+            _userInputRunner.HandleUserInput();
 
             while (running)
             {
-                selection = Console.ReadLine();
+                selection = input.InputText();
 
                 switch (selection)
                 {
@@ -47,7 +45,7 @@ namespace ABC
                         RunDefaultWords();
                         break;
                     case "2":
-                        RunCustomWord(userInputFromConsole.AskWord());
+                        RunCustomWord(_userInputRunner.AskWord());
                         break;
                     case "3":
                         ExitApp();
@@ -63,16 +61,16 @@ namespace ABC
 
          public void PlayAgain() 
          {
-             userInputFromConsole.ContinuePlaying();
+             _userInputRunner.ContinuePlaying();
              
-             string play = Console.ReadLine();
+             string play = input.InputText();
             
              if (play != "y")
              {
                  _output.OutputText("Bye");
                  ExitApp();     
              }
-             userInputFromConsole.HandleUserInput();
+             _userInputRunner.HandleUserInput();
          }
         public void RunDefaultWords()
         {
