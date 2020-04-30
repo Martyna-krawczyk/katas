@@ -5,12 +5,12 @@ using ABC;
 
 namespace ABC
 {
-    public class UserInputFromConsole : IUserInputFromConsole
+    public class UserInputRunner : IUserInputRunner
     {
         readonly Validator validator = new Validator();
-        
+        readonly Input input = new Input();
         private readonly IOutput _output;
-        public UserInputFromConsole(IOutput output)
+        public UserInputRunner(IOutput output)
         {
             _output = output;
         }
@@ -36,7 +36,7 @@ namespace ABC
             do
             {
                 _output.OutputText("Please enter your custom word:");
-                customWord = Console.ReadLine().ToUpper();
+                customWord = input.InputText().ToUpper();
 
                 if (!validator.ValidWord(customWord)) 
                 {

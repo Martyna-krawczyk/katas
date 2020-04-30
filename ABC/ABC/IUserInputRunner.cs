@@ -1,6 +1,6 @@
 namespace ABC
 {
-    public interface IUserInputFromConsole
+    public interface IUserInputRunner
     {
         void Welcome();
         void HandleUserInput();
