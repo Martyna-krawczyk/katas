@@ -6,11 +6,11 @@ namespace ABC
 {
     public class AppRunner : IAppRunner
     {
-        readonly WordBuilder wordBuilder = new WordBuilder();
-        readonly Input input = new Input();
+        private readonly WordBuilder _wordBuilder = new WordBuilder();
+        private readonly Input _input = new Input();
         private readonly UserInputRunner _userInputRunner;
-        public bool running = true;
-        public string selection;
+        private bool _running = true;
+        private string _selection;
         
         private readonly IOutput _output;
         public AppRunner(IOutput output)
@@ -19,7 +19,7 @@ namespace ABC
             _userInputRunner = new UserInputRunner(_output);
         }
 
-        private readonly string[] DefaultWords = 
+        private readonly string[] _defaultWords = 
         {
             "A",
             "BARK",
@@ -35,11 +35,11 @@ namespace ABC
             _userInputRunner.Welcome();
             _userInputRunner.HandleUserInput();
 
-            while (running)
+            while (_running)
             {
-                selection = input.InputText();
+                _selection = _input.InputText();
 
-                switch (selection)
+                switch (_selection)
                 {
                     case "1":
                         RunDefaultWords();
@@ -54,16 +54,16 @@ namespace ABC
             }
         }
 
-        public void ExitApp()
+        private void ExitApp()
         {
-            running = false;
+            _running = false;
         }
 
-         public void PlayAgain() 
+        private void PlayAgain() 
          {
              _userInputRunner.ContinuePlaying();
              
-             string play = input.InputText();
+             string play = _input.InputText();
             
              if (play != "y")
              {
@@ -74,11 +74,11 @@ namespace ABC
          }
         public void RunDefaultWords()
         {
-            foreach (var word in DefaultWords)
+            foreach (var word in _defaultWords)
             {
                 _output.OutputText("{0} - We {1} spell {2} with our blocks\n",
-                    wordBuilder.CanBlocksMakeWord(word) ? "True" : "False",
-                    wordBuilder.CanBlocksMakeWord(word) ? "can" : "can't", word);
+                    _wordBuilder.CanBlocksMakeWord(word) ? "True" : "False",
+                    _wordBuilder.CanBlocksMakeWord(word) ? "can" : "can't", word);
             }
             PlayAgain();
         }
@@ -86,8 +86,8 @@ namespace ABC
         public void RunCustomWord(string customWord)
         {
             _output.OutputText("{0} - We {1} spell {2} with our blocks\n",
-                wordBuilder.CanBlocksMakeWord(customWord) ? "True" : "False",
-                wordBuilder.CanBlocksMakeWord(customWord) ? "can" : "can't", customWord);
+                _wordBuilder.CanBlocksMakeWord(customWord) ? "True" : "False",
+                _wordBuilder.CanBlocksMakeWord(customWord) ? "can" : "can't", customWord);
             PlayAgain();
         }
     }

@@ -4,7 +4,7 @@ namespace ABC
 {
     public class Validator
     {
-        public bool ValidWord(string customWord)
+        public static bool ValidWord(string customWord)
         {
             return Regex.IsMatch(customWord, @"^[a-zA-Z]+$");
         }

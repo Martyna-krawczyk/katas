@@ -38,11 +38,11 @@ namespace ABC
                 _output.OutputText("Please enter your custom word:");
                 customWord = input.InputText().ToUpper();
 
-                if (!validator.ValidWord(customWord)) 
+                if (!Validator.ValidWord(customWord)) 
                 {
                     _output.OutputText("Sorry, you can only enter letters - please try again.");
                 }
-            } while (!validator.ValidWord(customWord));
+            } while (!Validator.ValidWord(customWord));
 
             return customWord;
         }

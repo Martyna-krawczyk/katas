@@ -7,7 +7,7 @@ namespace ABC
 {
     public class WordBuilder
     {
-        public List<Block> Blocks = new List<Block>()
+        private readonly List<Block> _blocks = new List<Block>()
         {
             new Block('B', 'O'),
             new Block('X', 'K'),
@@ -33,40 +33,28 @@ namespace ABC
         
         public bool CanBlocksMakeWord(string word)
         {
-            var usedBlocksCount = 0;
-
             ResetBlocks();
             
             foreach (var letter in word)
             {
-                
-                foreach (var block in Blocks)
+                foreach (var block in _blocks.Where(block => !block.IsUsed && block.HasLetter(letter)))
                 {
-                    if (!block.IsUsed && block.HasLetter(letter))
-                    {
-                        block.IsUsed = true;
-                        break; //move to the next letter in the word
-                    }
+                    block.IsUsed = true;
+                    break; 
                 }
             }
+            
             //all letters have now been checked against every block
             //count each used block to see if total matches the length of the word
-            foreach (var block in Blocks)
-            {
-                if (block.IsUsed) //same as writing block.IsUsed == true
-                {
-                    usedBlocksCount++;
-                    //Console.WriteLine("Block: {0} , {1}", block.Side1, block.Side2);
-                }
-            }
-            //Console.WriteLine(usedBlocksCount); 
+            
+            var usedBlocksCount = _blocks.Count(block => block.IsUsed);
             return usedBlocksCount == word.Length;
         } 
 
         //resets all blocks back to isUsed = false after each word has finished
         private void ResetBlocks()
         {
-            foreach (var block in Blocks)
+            foreach (var block in _blocks)
             {
                 block.IsUsed = false;
             }
