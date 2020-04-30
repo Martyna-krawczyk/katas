@@ -13,9 +13,9 @@ namespace ABC
             IsUsed = isUsed;
         }
 
-        public char Side1 { get; set; }
+        private char Side1 { get; set; }
 
-        public char Side2 { get; set; }
+        private char Side2 { get; set; }
         
         public bool IsUsed { get; set; }
 
