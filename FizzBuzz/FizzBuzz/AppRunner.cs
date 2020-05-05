@@ -13,27 +13,27 @@ namespace FizzBuzz
         {
             for (var i = 0; i < 100; i++)
             {
-                CheckNumber(i);
+                _output.OutputText(CheckNumber(i));
             }
         }
 
-        public void CheckNumber(int i)
+        public string CheckNumber(int i)
         {
             if (i % 3 == 0 && i % 5 == 0)
             {
-                _output.OutputText("FizzBuzz");
+                return "FizzBuzz";
             }
             else if (i % 5 == 0)
             {
-                _output.OutputText("Buzz");
+                return "Buzz";
             }
             else if (i % 3 == 0)
             {
-                _output.OutputText("Fizz");
+                return "Fizz";
             }
             else
             {
-                _output.OutputText(i.ToString());
+                return i.ToString();
             }
         }
     }
