@@ -2,7 +2,7 @@ using System;
 
 namespace ABC
 {
-    public class Input : IInput
+    public class ConsoleInput : IConsoleInput
     {
         public string InputText()
         {
