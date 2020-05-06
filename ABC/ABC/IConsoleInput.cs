@@ -1,6 +1,6 @@
 namespace ABC
 {
-    public interface IInput
+    public interface IConsoleInput
     {
         string InputText();
     }
