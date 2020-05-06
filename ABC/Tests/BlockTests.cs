@@ -25,17 +25,5 @@ namespace ABC.Tests
                 new object[] {'C', 'B', true},
                 new object[] {'C', 'E', false}
             };
-
-        [Fact]
-        public void HaveDefaultValueOfFalseForIsUsed()
-        {
-            Block block = new Block('A', 'C');
-
-            var actual = block.IsUsed;
-            
-            Assert.False(actual);
-        }
-        
-        
     }
 }
