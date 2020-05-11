@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace ABC
 {
-    public class Validator
+    public static class Validator
     {
         public static bool ValidWord(string customWord)
         {

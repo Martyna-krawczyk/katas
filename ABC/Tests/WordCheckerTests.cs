@@ -11,7 +11,7 @@ namespace Tests
         [MemberData(nameof(Data))]
         public void BlockContainsLetter_ReturnsExpected(string word, bool expected)
         {
-            WordChecker wordChecker = new WordChecker();
+            var wordChecker = new WordChecker();
             
             var actual = wordChecker.CanBlocksMakeWord(word);
             
@@ -26,4 +26,5 @@ namespace Tests
                 new object[] {"SQUAD", true}
             };
     }
+    
 }

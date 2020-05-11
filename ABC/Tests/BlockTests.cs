@@ -11,7 +11,7 @@ namespace ABC.Tests
         [MemberData(nameof(Data))]
         public void HasLetter_ReturnsExpected(char side1, char side2, bool expected)
         {
-            Block block = new Block(side1, side2);
+            var block = new Block(side1, side2);
             
             var actual = block.HasLetter('B');
             

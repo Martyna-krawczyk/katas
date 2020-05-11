@@ -43,15 +43,13 @@ namespace ABC
                     break; 
                 }
             }
-            
             //all letters have now been checked against every block
-            //count each used block to see if total matches the length of the word
             
+            //count each used block to see if total matches the length of the word
             var usedBlocksCount = _blocks.Count(block => block.IsUsed);
             return usedBlocksCount == word.Length;
         } 
-
-        //resets all blocks back to isUsed = false after each word has finished
+        
         private void ResetBlocks()
         {
             foreach (var block in _blocks)

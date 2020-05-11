@@ -14,7 +14,6 @@ namespace ABC
         public AppRunner(IOutput output)
         {
             _output = output;
-            
         }
 
         private readonly string[] _defaultWords = 
@@ -52,7 +51,8 @@ namespace ABC
                 }
             }
         }
-
+        
+        
         private void Welcome()
         {
             _output.OutputText(Prompts.WelcomeMessage);
@@ -63,11 +63,7 @@ namespace ABC
             _output.OutputText(Prompts.MenuSelections);
         }
 
-        public void ContinuePlaying()
-        {
-            _output.OutputText(Prompts.ContinuePlaying);
-        }
-        public string AskWord() 
+        private string AskWord() 
         {
             string customWord;
             do
@@ -84,41 +80,54 @@ namespace ABC
             return customWord;
         }
         
-        private void ExitApp()
-        {
-            _running = false;
-        }
-
-        private void PlayAgain() 
-         {
-             ContinuePlaying();
-             
-             string play = _input.InputText();
-             
-             if (play != "y")
-             {
-                 _output.OutputText(Prompts.GoodBye);
-                 ExitApp();     
-             }
-             
-         }
         public void RunDefaultWords()
         {
             foreach (var word in _defaultWords)
             {
-                _output.OutputText("{0} - We {1} spell {2} with our blocks\n",
-                    _wordChecker.CanBlocksMakeWord(word) ? "True" : "False",
-                    _wordChecker.CanBlocksMakeWord(word) ? "can" : "can't", word);
+                PrintResultOfDefaultWords(word);
             }
             PlayAgain();
         }
 
+        private void PrintResultOfDefaultWords(string word)
+        {
+            _output.OutputText(_wordChecker.CanBlocksMakeWord(word)
+                ? $"True - We can spell {word} with our blocks"
+                : $"False - We can't spell {word} with our blocks");
+        }
+
         public void RunCustomWord(string customWord)
         {
-            _output.OutputText("{0} - We {1} spell {2} with our blocks\n",
-                _wordChecker.CanBlocksMakeWord(customWord) ? "True" : "False",
-                _wordChecker.CanBlocksMakeWord(customWord) ? "can" : "can't", customWord);
+            PrintResultOfCustomWord(customWord);
             PlayAgain();
+        }
+
+        private void PrintResultOfCustomWord(string customWord)
+        {
+            _output.OutputText(_wordChecker.CanBlocksMakeWord(customWord)
+                ? $"True - We can spell {customWord} with our blocks"
+                : $"False - We can't spell {customWord} with our blocks");
+        }
+
+        private void PlayAgain() 
+        {
+            ContinuePlaying();
+             
+            var play = _input.InputText();
+
+            if (play == "y") return;
+            _output.OutputText(Prompts.GoodBye);
+            ExitApp();
+        }
+        
+        private void ContinuePlaying()
+        {
+            _output.OutputText(Prompts.ContinuePlaying);
+        }
+        
+        private void ExitApp()
+        {
+            _running = false;
         }
     }
 }
