@@ -89,7 +89,7 @@ namespace ABC
             PlayAgain();
         }
 
-        private void PrintResultOfDefaultWords(string word)
+        public void PrintResultOfDefaultWords(string word)
         {
             _output.OutputText(_wordChecker.CanBlocksMakeWord(word)
                 ? $"True - We can spell {word} with our blocks"
