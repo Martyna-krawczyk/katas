@@ -80,5 +80,17 @@ namespace ABC {
                 return ResourceManager.GetString("GoodBye", resourceCulture);
             }
         }
+        
+        internal static string SuccessMessage {
+            get {
+                return ResourceManager.GetString("SuccessMessage", resourceCulture);
+            }
+        }
+        
+        internal static string FailureMessage {
+            get {
+                return ResourceManager.GetString("FailureMessage", resourceCulture);
+            }
+        }
     }
 }

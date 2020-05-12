@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ABC
 {
-    public class WordChecker
+    public class WordChecker : IWordChecker
     {
         private readonly List<Block> _blocks = new List<Block>()
         {

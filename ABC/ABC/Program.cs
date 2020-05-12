@@ -11,8 +11,10 @@ namespace ABC
     {
         static void Main(string[] args)
         {
+            var input = new ConsoleInput();
             var output = new ConsoleOutput();
-            var runner = new AppRunner(output);
+            var wordChecker = new WordChecker();
+            var runner = new AppRunner( output, wordChecker, input);
             runner.Run();
         }
     }

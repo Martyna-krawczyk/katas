@@ -43,5 +43,11 @@
     <data name="GoodBye" xml:space="preserve">
         <value>Okie - Bye!</value>
     </data>
+    <data name="SuccessMessage" xml:space="preserve">
+        <value>True - We can spell {0} with our blocks</value>
+    </data>
+    <data name="FailureMessage" xml:space="preserve">
+        <value>False - We can't spell {0} with our blocks</value>
+    </data>
 </root>
 
