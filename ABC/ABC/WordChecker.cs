@@ -37,19 +37,21 @@ namespace ABC
             
             foreach (var letter in word)
             {
-                foreach (var block in _blocks.Where(block => !block.IsUsed && block.HasLetter(letter)))
+                foreach (var block in _blocks.Where(block => UnusedBlocksContainingLetter(block, letter)))
                 {
                     block.IsUsed = true;
                     break; 
                 }
             }
-            //all letters have now been checked against every block
-            
-            //count each used block to see if total matches the length of the word
             var usedBlocksCount = _blocks.Count(block => block.IsUsed);
             return usedBlocksCount == word.Length;
-        } 
-        
+        }
+
+        private static bool UnusedBlocksContainingLetter(Block block, char letter)
+        {
+            return !block.IsUsed && block.HasLetter(letter);
+        }
+
         private void ResetBlocks()
         {
             foreach (var block in _blocks)
