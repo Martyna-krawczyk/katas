@@ -46,7 +46,7 @@ namespace ABC
                         PlayAgain();
                         break;
                     case "2":
-                        RunCustomWord(AskWord());
+                        RunWords(AskWord());
                         PlayAgain();
                         break;
                     case "3":
@@ -61,12 +61,11 @@ namespace ABC
         {
             foreach (var word in _defaultWords)
             {
-                var result = _wordChecker.CanBlocksMakeWord(word);
-                PrintResult( word, result);
+                RunWords(word);
             }
         }
         
-        private void RunCustomWord(string word)
+        private void RunWords(string word)
         {
             var result = _wordChecker.CanBlocksMakeWord(word);
             PrintResult(word, result);
