@@ -65,7 +65,7 @@ namespace ABC
             }
         }
         
-        private void RunWords(string word)
+        public void RunWords(string word)
         {
             var result = _wordChecker.CanBlocksMakeWord(word);
             PrintResult(word, result);
@@ -88,7 +88,7 @@ namespace ABC
             return word;
         }
 
-        private void PrintResult(string word, bool result)
+        public void PrintResult(string word, bool result)
         {
             _output.OutputText(string.Format( 
                 result ? Prompts.SuccessMessage : Prompts.FailureMessage, word));
