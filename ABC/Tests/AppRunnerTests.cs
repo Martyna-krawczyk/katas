@@ -59,16 +59,28 @@ namespace Tests
         public void ExitAppCalledOnNInput() 
         {
             var output = new TestOutput();
-            var input = new TestInput();
+            var input = new TestInput(new string[] { "1", "y", "n"});
             var wordChecker = new WordChecker();
             var appRunner = new AppRunner(output, wordChecker, input);
 
-            input.SelectionInputString = "1";
-            input.PlayAgainInputString = "n";
             appRunner.Run();
             
             Assert.False(appRunner.Running);
-            Assert.Equal(3,input.CalledCount);
+            Assert.Equal(3, input.CalledCount);
+        }
+
+        [Fact]
+        public void ExitAppCalledOnSecondInput() 
+        {
+            var output = new TestOutput();
+            var input = new TestInput(new string[] { "1", "n"});
+            var wordChecker = new WordChecker();
+            var appRunner = new AppRunner(output, wordChecker, input);
+
+            appRunner.Run();
+            
+            Assert.False(appRunner.Running);
+            Assert.Equal(2, input.CalledCount);
         }
         
         

@@ -6,35 +6,21 @@ namespace Tests
 {
     public class TestInput : IInput
     {
-        public string PlayAgainInputString { get; set; }
-        public string SelectionInputString { get; set;}
         public int CalledCount { get; set; }
+        private string[] _inputs;
+
+        public TestInput()
+        {
+        }
+
+        public TestInput(string[] inputs)
+        {
+            _inputs = inputs;
+        }
         
         public string InputText()
         {
-            CountIterations();
-            foreach (var VARIABLE in ReturnNextInput)
-            {
-                return VARIABLE;
-            }
-
-            return " ";
+            return _inputs[CalledCount++];
         }
-
-        private IEnumerable<string> ReturnNextInput
-        {
-            get { yield return "1";
-                yield return "y";
-                yield return "n";
-            }
-        }
-        
-
-            public void CountIterations()
-        {
-            CalledCount++;
-        }
-
-        
     }
 }
