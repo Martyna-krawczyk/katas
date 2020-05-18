@@ -4,20 +4,20 @@ namespace Tests
 {
     public class TestWordChecker : IWordChecker
     {
-        private bool Result { get; set; }
-        private string CalledText { get; set; }
+        public bool Result { get; set; }
         public int CalledCount { get; set; }
-        
-        public bool CanBlocksMakeWord(string word)
+
+        public bool CanBlocksMakeWord(string result)
         {
             CountIterations();
-            CalledText = word;
             return Result;
         }
 
-        private void CountIterations()
+
+        public void CountIterations()
         {
             CalledCount++;
         }
+
     }
 }

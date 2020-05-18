@@ -6,7 +6,7 @@ namespace ABC
 {
     public class AppRunner : IAppRunner
     {
-        private bool _running = true;
+        public bool Running { get; private set; } = true;
         private string _selection;
         
         private readonly IInput _input;
@@ -34,7 +34,7 @@ namespace ABC
         {
             _output.OutputText(Prompts.WelcomeMessage);
             
-            while (_running)
+            while (Running)
             {
                 _output.OutputText(Prompts.MenuSelections);
                 _selection = _input.InputText();
@@ -65,7 +65,7 @@ namespace ABC
             }
         }
         
-        public void RunWords(string word)
+        private void RunWords(string word)
         {
             var result = _wordChecker.CanBlocksMakeWord(word);
             PrintResult(word, result);
@@ -88,7 +88,7 @@ namespace ABC
             return word;
         }
 
-        public void PrintResult(string word, bool result)
+        private void PrintResult(string word, bool result)
         {
             _output.OutputText(string.Format( 
                 result ? Prompts.SuccessMessage : Prompts.FailureMessage, word));
@@ -107,7 +107,7 @@ namespace ABC
 
         private void ExitApp()
         {
-            _running = false;
+            Running = false;
         }
     }
 }

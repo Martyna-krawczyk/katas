@@ -24,8 +24,78 @@
     &lt;/TestAncestor&gt;
   &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=68be04e3_002D1429_002D4bcf_002Db85b_002D7e61742187e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="PlayAgainCalledWhenYInput" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;Or&gt;
+    &lt;Or&gt;
+      &lt;Or&gt;
+        &lt;Or&gt;
+          &lt;TestAncestor&gt;
+            &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.NumberOfTimesRunWordsCalled&lt;/TestId&gt;
+          &lt;/TestAncestor&gt;
+          &lt;TestAncestor&gt;
+            &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.OutputForRunWords_ReturnsExpectedResultAndString&lt;/TestId&gt;
+          &lt;/TestAncestor&gt;
+        &lt;/Or&gt;
+        &lt;TestAncestor&gt;
+          &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.PlayAgainCalledWhenYIsInput&lt;/TestId&gt;
+        &lt;/TestAncestor&gt;
+      &lt;/Or&gt;
+      &lt;TestAncestor&gt;
+        &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.PlayAgainCalledTwice&lt;/TestId&gt;
+      &lt;/TestAncestor&gt;
+    &lt;/Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.ExitAppCalledOnNInput&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=794ee865_002D23ba_002D4d7c_002D8258_002D2d25f7c1567e/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="ConsoleOutputforDefaultWords_ReturnsExpected" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.ConsoleOutputforDefaultWords_ReturnsExpected&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=930ae0f8_002D0d2a_002D4929_002D879f_002D3080e4988be0/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="NumberOfTimesRunWordsCalled" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.NumberOfTimesRunWordsCalled&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9cce6b38_002D642a_002D4bb2_002Dadc6_002D96177417b3b5/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="WordCheckerTests" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.WordCheckerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a1b2bb79_002D0aae_002D4431_002Da537_002Da07a04de491f/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="ConsoleOutputForDefaultWords_ReturnsExpected" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.ConsoleOutputForDefaultWords_ReturnsExpected&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c416bd1e_002D09c8_002D4a42_002D8c39_002Dd8d011dcb432/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="WordCheckerTests #2" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;Or&gt;
+    &lt;Or&gt;
+      &lt;Or&gt;
+        &lt;TestAncestor&gt;
+          &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.WordCheckerTests&lt;/TestId&gt;
+        &lt;/TestAncestor&gt;
+        &lt;TestAncestor&gt;
+          &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.NumberOfTimesRunWordsCalled&lt;/TestId&gt;
+        &lt;/TestAncestor&gt;
+      &lt;/Or&gt;
+      &lt;TestAncestor&gt;
+        &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.OutputForRunWords_ReturnsExpectedResultAndString&lt;/TestId&gt;
+      &lt;/TestAncestor&gt;
+    &lt;/Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests.PlayAgainCalledWhenYInput&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd1765e7_002D3306_002D4d78_002Dbbe3_002D5feaa3c4fe9e/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="AppRunnerTests #2" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.AppRunnerTests&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::6917519E-81C9-4C94-BCFD-3E1454B15AA4::.NETCoreApp,Version=v3.1::Tests.WordCheckerTests.BlockContainsLetter_ReturnsExpected&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -14,7 +14,7 @@ namespace ABC
             var input = new ConsoleInput();
             var output = new ConsoleOutput();
             var wordChecker = new WordChecker();
-            var runner = new AppRunner( output, wordChecker, input);
+            var runner = new AppRunner(output, wordChecker, input);
             runner.Run();
         }
     }

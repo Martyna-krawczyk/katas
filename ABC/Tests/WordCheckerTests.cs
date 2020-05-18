@@ -24,8 +24,19 @@ namespace Tests
             {
                 new object[] {"TREAT", true},
                 new object[] {"COMMON", false},
-                new object[] {"SQUAD", true}
+                new object[] {"SQUAD", true},
+                new object[] {"A", true},
+                new object[] {"BARK", true},
+                new object[] {"BOOK", false},
+                new object[] {"FRAME", true},
+                new object[] {"CONFUSE", true},
+                new object[] {"MARTYNA", false},
+                new object[] {"SARA", true},
+                new object[] {"PEOPLE", true},
+                new object[] {"YES", true},
+                new object[] {"HOUSE", false},
+                new object[] {"PARK", true},
+                new object[] {"PETER", false},
             };
     }
-    
 }
