@@ -9,64 +9,32 @@ namespace Tests
     {
         [Theory]
         [MemberData(nameof(Data))]
-        //[InlineData("TREAT")]
-        // [InlineData("COMMON")]
-        // [InlineData("SQUAD")]
         public void NumberOfTimesRunWordsCalled(bool result, string word, string expected)
         {
             var output = new TestOutput();
-            var input = new TestInput();
-            var wordChecker = new TestWordChecker(true);
+            var input = new TestInput(new string[] { "2", word, "n"});
+            var wordChecker = new TestWordChecker(result);
             var appRunner = new AppRunner(output, wordChecker, input);
             
-            //appRunner.RunWords(word);
-            
-            Assert.Equal(1, wordChecker.CalledCount);
-            
-        }
-        
-        // [Theory]
-        // [MemberData(nameof(Data))]
-        // public void OutputForRunWords_ReturnsExpectedResultAndString(bool result, string word, string expected)
-        // {
-        //     var output = new TestOutput();
-        //     var input = new TestInput();
-        //     var wordChecker = new WordChecker();
-        //     var appRunner = new AppRunner(output, wordChecker, input);
-        //     
-        //     appRunner.RunWords(word);
-        //     
-        //     Assert.Equal(result, wordChecker.CanBlocksMakeWord(word));
-        //     Assert.Equal(expected, output.CalledText);
-        // }
-        
-        [Theory]
-        [MemberData(nameof(Data))]
-        public void OutputForRunWords_ReturnsExpectedResultAndString(bool result, string word, string expected)
-        {
-            var output = new TestOutput();
-            var input = new TestInput();
-            var wordChecker = new TestWordChecker(true);
-            var appRunner = new AppRunner(output, wordChecker, input);
-
             appRunner.Run();
             
-            Assert.Equal(result, wordChecker.CanBlocksMakeWord(word));
+            Assert.Equal(1, wordChecker.CalledCount);
             Assert.Contains(expected, output.CalledText);
+            
         }
-        
+
         [Fact]
         public void ExitAppCalledOnNInput() 
         {
             var output = new TestOutput();
-            var input = new TestInput(new string[] { "1", "y", "n"});
+            var input = new TestInput(new string[] { "1", "y", "1", "n"});
             var wordChecker = new TestWordChecker(true);
             var appRunner = new AppRunner(output, wordChecker, input);
 
             appRunner.Run();
             
             Assert.False(appRunner.Running);
-            Assert.Equal(3, input.CalledCount);
+            Assert.Equal(4, input.CalledCount);
         }
 
         [Fact]
@@ -94,6 +62,19 @@ namespace Tests
             appRunner.Run();
             
             Assert.Contains("Sorry, you can only enter letters - please try again.", output.CalledText);
+        }
+        
+        [Fact]
+        public void ExitAppIsCalledForNPlayAgainInput() 
+        {
+            var output = new TestOutput();
+            var input = new TestInput(new string[] { "2", "book", "n"});
+            var wordChecker = new TestWordChecker(true);
+            var appRunner = new AppRunner(output, wordChecker, input);
+
+            appRunner.Run();
+            
+            Assert.Contains("Okie - Bye!", output.CalledText);
         }
         
         

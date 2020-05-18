@@ -9,10 +9,6 @@ namespace Tests
         public int CalledCount { get; set; }
         private string[] _inputs;
 
-        public TestInput()
-        {
-        }
-
         public TestInput(string[] inputs)
         {
             _inputs = inputs;
