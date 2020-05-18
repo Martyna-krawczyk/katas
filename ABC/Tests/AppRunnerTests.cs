@@ -16,7 +16,7 @@ namespace Tests
         {
             var output = new TestOutput();
             var input = new TestInput();
-            var wordChecker = new TestWordChecker();
+            var wordChecker = new TestWordChecker(true);
             var appRunner = new AppRunner(output, wordChecker, input);
             
             //appRunner.RunWords(word);
@@ -46,13 +46,13 @@ namespace Tests
         {
             var output = new TestOutput();
             var input = new TestInput();
-            var wordChecker = new WordChecker();
+            var wordChecker = new TestWordChecker(true);
             var appRunner = new AppRunner(output, wordChecker, input);
 
             appRunner.Run();
             
             Assert.Equal(result, wordChecker.CanBlocksMakeWord(word));
-            Assert.Equal(expected, output.CalledText);
+            Assert.Contains(expected, output.CalledText);
         }
         
         [Fact]
@@ -60,7 +60,7 @@ namespace Tests
         {
             var output = new TestOutput();
             var input = new TestInput(new string[] { "1", "y", "n"});
-            var wordChecker = new WordChecker();
+            var wordChecker = new TestWordChecker(true);
             var appRunner = new AppRunner(output, wordChecker, input);
 
             appRunner.Run();
@@ -74,13 +74,26 @@ namespace Tests
         {
             var output = new TestOutput();
             var input = new TestInput(new string[] { "1", "n"});
-            var wordChecker = new WordChecker();
+            var wordChecker = new TestWordChecker(false);
             var appRunner = new AppRunner(output, wordChecker, input);
 
             appRunner.Run();
             
             Assert.False(appRunner.Running);
             Assert.Equal(2, input.CalledCount);
+        }
+
+        [Fact]
+        public void UserIsNotifiedForWrongInput() 
+        {
+            var output = new TestOutput();
+            var input = new TestInput(new string[] { "2", "gh65", "book", "n"});
+            var wordChecker = new TestWordChecker(true);
+            var appRunner = new AppRunner(output, wordChecker, input);
+
+            appRunner.Run();
+            
+            Assert.Contains("Sorry, you can only enter letters - please try again.", output.CalledText);
         }
         
         

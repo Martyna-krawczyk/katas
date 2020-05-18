@@ -4,19 +4,18 @@ namespace Tests
 {
     public class TestWordChecker : IWordChecker
     {
-        public bool Result { get; set; }
+        private bool _result;
         public int CalledCount { get; set; }
 
-        public bool CanBlocksMakeWord(string result)
+        public TestWordChecker(bool result)
         {
-            CountIterations();
-            return Result;
+            _result = result;
         }
 
-
-        public void CountIterations()
+        public bool CanBlocksMakeWord(string word)
         {
             CalledCount++;
+            return _result;
         }
 
     }
