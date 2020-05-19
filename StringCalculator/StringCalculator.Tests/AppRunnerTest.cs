@@ -45,6 +45,7 @@ namespace StringCalculator.Tests
         [Theory]
         [InlineData("1,2\n3", 6)]
         [InlineData("3\n5\n3,9", 20)]
+        [InlineData("//;n1;2", 3)]
         public void InputStringWithMultipleDelimitersReturnsSumAsInt(string value, int expectedValue)
         {
             var runner = new AppRunner();

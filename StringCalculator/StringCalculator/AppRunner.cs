@@ -6,7 +6,7 @@ namespace StringCalculator
     public class AppRunner
     {
         private int _result;
-        readonly char[] delimiter = new char[] {',', '\n'};
+        readonly char[] delimiter = new char[] {',', '\n', '/', ';', 'n'};
         
         public int Add(string value)
         {
@@ -20,14 +20,13 @@ namespace StringCalculator
                 return _result;
             }
             
-            if (CommaSeparatedMultipleInput(value))
+            if (MultipleDelimitersMultipleInput(value))
             {
                 RemoveSeparator(value);
             }
             return _result;
         }
         
-
         private static bool IsEmptyString(string value)
         {
             return value == " ";
@@ -37,28 +36,30 @@ namespace StringCalculator
         {
             return int.TryParse(value, out result);
         }
-
+        
+        private bool MultipleDelimitersMultipleInput(string value)
+        {
+            return delimiter.Any(value.Contains);
+        }
+        
         private int RemoveSeparator(string value)
         {
             var stringArray = value.Split(delimiter);
-            foreach (var s in stringArray)
+            foreach (var stringNumber in stringArray)
             {
-                var number = ParseStringToNumber(s);
-                _result += number;
+                var intNumber = ParseStringToNumber(stringNumber);
+                _result += intNumber;
             }
             return _result;
         }
 
-        private static int ParseStringToNumber(string s)
+        private static int ParseStringToNumber(string stringNumber)
         {
-            Int32.TryParse(s, out var number);
-            return number;
+            Int32.TryParse(stringNumber, out var intNumber);
+            return intNumber;
         }
 
-        private bool CommaSeparatedMultipleInput(string value)
-        {
-            return value.Contains(delimiter[0]);
-        }
+       
     }
     
 }
