@@ -6,7 +6,7 @@ namespace StringCalculator
     public class AppRunner
     {
         private int _result;
-        readonly char delimiter = ',';
+        readonly char[] delimiter = new char[] {',', '\n'};
         
         public int Add(string value)
         {
@@ -26,9 +26,7 @@ namespace StringCalculator
             }
             return _result;
         }
-
-       
-
+        
 
         private static bool IsEmptyString(string value)
         {
@@ -59,7 +57,7 @@ namespace StringCalculator
 
         private bool CommaSeparatedMultipleInput(string value)
         {
-            return value.Contains(delimiter);
+            return value.Contains(delimiter[0]);
         }
     }
     

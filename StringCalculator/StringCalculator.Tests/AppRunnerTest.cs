@@ -31,7 +31,21 @@ namespace StringCalculator.Tests
         [Theory]
         [InlineData("1, 2", 3)]
         [InlineData("3, 5", 8)]
-        public void InputStringWithTwoNumbersReturnsSumAsInt(string value, int expectedValue)
+        [InlineData("1, 2, 3", 6)]
+        [InlineData("3, 5, 3, 9", 20)]
+        public void InputStringWithAnyAmountNumbersReturnsSumAsInt(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
+        
+        [Theory]
+        [InlineData("1,2\n3", 6)]
+        [InlineData("3\n5\n3,9", 20)]
+        public void InputStringWithMultipleDelimitersReturnsSumAsInt(string value, int expectedValue)
         {
             var runner = new AppRunner();
 
