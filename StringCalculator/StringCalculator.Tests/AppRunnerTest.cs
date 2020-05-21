@@ -56,7 +56,7 @@ namespace StringCalculator.Tests
         }
         
         [Fact]
-        public void InputNegativeStringReturnsException()
+        public void InputNegativeStringReturnsException() //rename this!!
         {
             var runner = new AppRunner();
             
@@ -64,5 +64,19 @@ namespace StringCalculator.Tests
  
             Assert.Equal("Negatives not allowed: -1, -3", exception.Message);
         }
+        
+        [Theory]
+        [InlineData("1000,1001,2", 2)]
+        [InlineData("1100,2001,5,5", 10)]
+        
+        public void InputStringWithNumbersOver1000Ignored(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
     }
+    
 }
