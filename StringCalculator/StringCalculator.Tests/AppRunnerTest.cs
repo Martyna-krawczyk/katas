@@ -55,6 +55,14 @@ namespace StringCalculator.Tests
             Assert.Equal(expectedValue, actual);
         }
         
-        
+        [Fact]
+        public void InputNegativeStringReturnsException()
+        {
+            var runner = new AppRunner();
+            
+            var exception = Assert.Throws<ArgumentException>(() => runner.Add("-1,2,-3"));
+ 
+            Assert.Equal("Negatives not allowed: -1, -3", exception.Message);
+        }
     }
 }

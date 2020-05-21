@@ -29,11 +29,26 @@ namespace StringCalculator
                 .Where(pair => pair.Success)
                 .Select(pair => pair.value);
             
-            _result = intNumbers.Sum();
+            var negativeNumbers = intNumbers.Where(numbers => numbers < 0);
+
+            if (ContainNegativeNumbers(intNumbers))
+                
+                ThrowException(intNumbers);
             
+            else
+                _result = intNumbers.Sum();
             return _result;
         }
-        
+        private static void ThrowException(IEnumerable<int> intNumbers)
+        {
+            var negativeNumbers = intNumbers.Where(number => number < 0);
+            throw new ArgumentException($"Negatives not allowed: {string.Join(", ", negativeNumbers)}");
+        }
+        private static bool ContainNegativeNumbers(IEnumerable<int> intNumbers)
+        {
+            return intNumbers.Any(numbers => numbers < 0 );
+        }
+
         private static bool IsEmptyString(string _value)
         {
             return _value == " ";
