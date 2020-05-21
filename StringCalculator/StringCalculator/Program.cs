@@ -6,7 +6,6 @@ namespace StringCalculator
     {
         static void Main(string[] args)
         {
-
         }
     }
 }

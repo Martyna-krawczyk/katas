@@ -6,62 +6,38 @@ namespace StringCalculator
 {
     public class AppRunner
     {
-        private int _result;
-        readonly char[] delimiter = new char[] {',', '\n', '/', ';', 'n'};
+        
+        private int _result { get; set; }
+        
+        readonly char[] delimiter = {',', '\n', '/', ';', 'n'};
 
+        public string InputString()
+        {
+            var value = Console.ReadLine();
+            return value;
+        }
         public int Add(string value)
         {
             if (IsEmptyString(value))
             {
                 return 0;
             }
-
-            if (SingleInput(value, out _result))
-            {
-                return _result;
-            }
             
-            if (MultipleDelimitersMultipleInput(value))
-            {
-                RemoveDelimiter(value);
-            }
+            var stringNumbers = value.Split(delimiter);
+            
+            var intNumbers = stringNumbers.Select(s => new { Success = int.TryParse(s, out var value), value })
+                .Where(pair => pair.Success)
+                .Select(pair => pair.value);
+            
+            _result = intNumbers.Sum();
+            
             return _result;
         }
         
-        private static bool IsEmptyString(string value)
+        private static bool IsEmptyString(string _value)
         {
-            return value == " ";
+            return _value == " ";
         }
-        
-        private static bool SingleInput(string value, out int result)
-        {
-            return int.TryParse(value, out result);
-        }
-        
-        private bool MultipleDelimitersMultipleInput(string value)
-        {
-            return delimiter.Any(value.Contains);
-        }
-
-        private int RemoveDelimiter(string value) //this works for positive numbers
-        {
-            var stringArray = value.Split(delimiter);
-            foreach (var stringNumber in stringArray)
-            {
-                var intNumber = ParseStringToNumber(stringNumber); 
-                _result += intNumber;
-            }
-        
-            return _result;
-        }
-
-        private static int ParseStringToNumber(string stringNumber)
-        {
-            Int32.TryParse(stringNumber, out var intNumber);
-            return intNumber;
-        }
-
-       
     }
     
 }
