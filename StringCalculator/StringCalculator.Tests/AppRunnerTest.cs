@@ -33,7 +33,7 @@ namespace StringCalculator.Tests
         [InlineData("3, 5", 8)]
         [InlineData("1, 2, 3", 6)]
         [InlineData("3, 5, 3, 9", 20)]
-        public void InputStringWithAnyAmountNumbersReturnsSumAsInt(string value, int expectedValue)
+        public void InputStringWithAnyAmountOfNumbersReturnsSumAsInt(string value, int expectedValue)
         {
             var runner = new AppRunner();
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StringCalculator
@@ -7,7 +8,7 @@ namespace StringCalculator
     {
         private int _result;
         readonly char[] delimiter = new char[] {',', '\n', '/', ';', 'n'};
-        
+
         public int Add(string value)
         {
             if (IsEmptyString(value))
@@ -22,7 +23,7 @@ namespace StringCalculator
             
             if (MultipleDelimitersMultipleInput(value))
             {
-                RemoveSeparator(value);
+                RemoveDelimiter(value);
             }
             return _result;
         }
@@ -41,15 +42,16 @@ namespace StringCalculator
         {
             return delimiter.Any(value.Contains);
         }
-        
-        private int RemoveSeparator(string value)
+
+        private int RemoveDelimiter(string value) //this works for positive numbers
         {
             var stringArray = value.Split(delimiter);
             foreach (var stringNumber in stringArray)
             {
-                var intNumber = ParseStringToNumber(stringNumber);
+                var intNumber = ParseStringToNumber(stringNumber); 
                 _result += intNumber;
             }
+        
             return _result;
         }
 
