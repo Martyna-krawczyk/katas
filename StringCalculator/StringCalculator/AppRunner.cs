@@ -9,7 +9,7 @@ namespace StringCalculator
         public string value;
         private int _result { get; set; }
         
-        readonly char[] delimiter = {',', '\n', '/', ';', 'n'};
+        readonly char[] delimiter = {',', '\n', '/', ';', 'n', '*', '[', ']', '%', '#'};
         
         public int Add(string value)
         {

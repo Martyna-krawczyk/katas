@@ -68,8 +68,51 @@ namespace StringCalculator.Tests
         [Theory]
         [InlineData("1000,1001,2", 2)]
         [InlineData("1100,2001,5,5", 10)]
-        
         public void InputStringWithNumbersOver1000Ignored(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
+        
+        [Theory]
+        [InlineData("//[***]\n1***2***3", 6)]
+        public void InputStringWithFormattedDelimiter(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
+        
+        [Theory]
+        [InlineData("//[*][%]\n1*2%3", 6)]
+        public void InputStringWithMultipleFormattedDelimiters(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
+        
+        [Theory]
+        [InlineData("//[***][#][%]\n1***2#3%4", 10)]
+        public void InputStringWithMultipleFormattedDelimitersLongerThanOneCharacter(string value, int expectedValue)
+        {
+            var runner = new AppRunner();
+
+            var actual = runner.Add(value);
+
+            Assert.Equal(expectedValue, actual);
+        }
+        
+        [Theory]
+        [InlineData("//[*1*][%]\n1*1*2%3", 6)]
+        public void InputStringWithMultipleFormattedDelimitersIgnoringNumberIfEdgeIsNotOnDelimiter(string value, int expectedValue)
         {
             var runner = new AppRunner();
 
