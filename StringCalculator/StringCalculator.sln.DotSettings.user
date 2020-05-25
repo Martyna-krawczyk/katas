@@ -1,7 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=08d00bd8_002D441a_002D411b_002D83e3_002Dcb7879cf213a/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="InputTwoStringsReturnsSumAsInt" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::0F60FE64-7BC0-437C-8C7B-8189F54E0C31::.NETCoreApp,Version=v3.1::StringCalculator.Tests.AppRunnerTest.InputTwoStringsReturnsSumAsInt&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::0F60FE64-7BC0-437C-8C7B-8189F54E0C31::.NETCoreApp,Version=v3.1::StringCalculator.Tests.AppRunnerTest.InputStringWithMultipleFormattedDelimitersIgnoringNumberIfEdgeIsNotOnDelimiter&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0f5cecf4_002D741b_002D4c15_002D99f5_002Db3d34ff172d9/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="All tests from AppRunnerTest.cs" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;

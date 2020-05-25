@@ -9,7 +9,7 @@ namespace StringCalculator
         public string value;
         private int _result { get; set; }
         
-        readonly char[] delimiter = {',', '\n', '/', ';', 'n', '*', '[', ']', '%', '#'};
+        readonly char[] delimiter = {',', '\n', '/', ';', 'n', '*', '[', ']', '%', '#'};  //dynamic ?? incl. alpha
         
         public int Add(string value)
         {
@@ -18,12 +18,8 @@ namespace StringCalculator
                 return 0;
             }
             
-            var stringNumbers = value.Split(delimiter);
-            
-            var intNumbers = stringNumbers.Select(s => new { Success = int.TryParse(s, out var value), value })
-                .Where(pair => pair.Success)
-                .Select(pair => pair.value);
-
+            var stringNumbers = RemoveDelimiters(value);
+            var intNumbers = ConvertToInt(stringNumbers);
 
             if (ContainNegativeNumbers(intNumbers))
             {
@@ -38,11 +34,23 @@ namespace StringCalculator
             return _result;
         }
 
-       
+        private static IEnumerable<int> ConvertToInt(string[] stringNumbers)
+        {
+            var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
+                .Where(pair => pair.Success)
+                .Select(pair => pair.value);
+            return intNumbers;
+        }
 
         private static bool IsEmptyString(string value)
         {
             return value == " ";
+        }
+        
+        private string[] RemoveDelimiters(string value)
+        {
+            var stringNumbers = value.Split(delimiter);
+            return stringNumbers;
         }
         
         private static bool ContainNegativeNumbers(IEnumerable<int> intNumbers)
