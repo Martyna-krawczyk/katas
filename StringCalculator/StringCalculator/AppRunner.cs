@@ -35,30 +35,30 @@ namespace StringCalculator
             {
                 var rx = new Regex(@"(\[.[0-9].])");
                 var splitStringNumbers = value.Split("\n");
-                var innerList = splitStringNumbers[0];
-                var outerList = splitStringNumbers[1];
-                if (rx.IsMatch(value))
+                var formattedDelimiterPrefix = splitStringNumbers[0];
+                var valuesToSum = splitStringNumbers[1];
+                
+                if (ContainsFormattedDelimiter(value, rx))
                 {
-                    var testValue = rx.Match(value).Groups[1].Value;
+                    var delimiterContainingInt = rx.Match(value).Groups[1].Value;
     
-                    if (innerList.Contains(testValue))
+                    if (formattedDelimiterPrefix.Contains(delimiterContainingInt))
                     {
-                        var matchedValue = testValue.Substring(1, testValue.Length - 2);
-                        if (outerList.Contains(matchedValue))
+                        var matchedValue = delimiterContainingInt.Substring(1, delimiterContainingInt.Length - 2);
+                        
+                        if (valuesToSum.Contains(matchedValue))
                         {
-                            var valueToSubtract = matchedValue.Substring(1, 1);
-                            intValueToSubtract = int.Parse(valueToSubtract);
+                            AccessMatchedValueInt(matchedValue);
                         }
                     }
-
-                    var numbersWithoutCustomDelimiters = Regex.Split(outerList, @"\D");
-                       _intNumbers = ConvertToInt(numbersWithoutCustomDelimiters);
-                       var sum = _intNumbers.Sum();
-                       _result = sum - intValueToSubtract;
+                    var numbersWithoutCustomDelimiters = Regex.Split(valuesToSum, @"\D");
+                    _intNumbers = ConvertToInt(numbersWithoutCustomDelimiters);
+                    var sum = _intNumbers.Sum();
+                    _result = sum - intValueToSubtract;
                 }
                 else
                 {
-                    var numbersWithoutCustomDelimiters = Regex.Split(outerList, @"\D");
+                    var numbersWithoutCustomDelimiters = Regex.Split(valuesToSum, @"\D");
                     _intNumbers = ConvertToInt(numbersWithoutCustomDelimiters);
                     _result = _intNumbers.Sum();
                 }
@@ -68,12 +68,18 @@ namespace StringCalculator
                 _result = _intNumbers.Sum();
             return _result;
         }
-
-        private static bool HasCustomDelimiter(string value)
+        
+        private static bool IsEmptyString(string value)
         {
-            return value.StartsWith("//");
+            return value == " ";
         }
-
+        
+        private string[] RemoveDefaultDelimiters(string value)
+        {
+            var _stringNumbers = value.Split(defaultDelimiter);
+            return _stringNumbers;
+        }
+        
         private static IEnumerable<int> ConvertToInt(string[] _stringNumbers)
         {
             var intNumbers = _stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
@@ -81,34 +87,6 @@ namespace StringCalculator
                 .Select(pair => pair.value);
             return intNumbers;
         }
-
-        private static bool IsEmptyString(string value)
-        {
-            return value == " ";
-        }
-       
-        private string[] RemoveDefaultDelimiters(string value)
-        {
-            var _stringNumbers = value.Split(defaultDelimiter);
-            //var _stringNumbers = Regex.Split(value, @"\D+"); 
-            return _stringNumbers;
-        }
-
-        // private bool ContainNumbersOnDelimiterBoundary(string value)
-        // {
-        //     string startPattern = "//[";
-        //     var endPattern = '\n';
-        //     value.StartsWith(startPattern) && value.EndsWith(endPattern);
-        //         return true;
-        // }
-        // private string[] RemoveDelimitersAndNumbersOnBoundary(string value)
-        // {
-        //     //var stringNumbers = value.Split(delimiter);
-        //     var _stringNumbers = Regex.Split(value, @"(^\/\/\[.+(?<=\\n))"); 
-        //     return _stringNumbers;
-        // }
-        //
-        
         
         private static bool ContainNegativeNumbers(IEnumerable<int> intNumbers)
         {
@@ -131,6 +109,40 @@ namespace StringCalculator
             var smallNumbers = intNumbers.Where(number => number < 1000);
             _result = smallNumbers.Sum();
         }
+        
+        private static bool HasCustomDelimiter(string value)
+        {
+            return value.StartsWith("//");
+        }
+        
+        private static bool ContainsFormattedDelimiter(string value, Regex rx)
+        {
+            return rx.IsMatch(value);
+        }
+        
+        private void AccessMatchedValueInt(string matchedValue)
+        {
+            var valueToSubtract = matchedValue.Substring(1, 1);
+            intValueToSubtract = int.Parse(valueToSubtract);
+        }
+
+        
+
+        
+
+       
+
+       
+       
+        
+        
+       
+        
+        
+        
+        
+        
+        
     }
     
 }

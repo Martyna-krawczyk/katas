@@ -112,6 +112,8 @@ namespace StringCalculator.Tests
         
         [Theory]
         [InlineData("//[*1*][%]\n1*1*2%3", 6)]
+        [InlineData("//[*3*][%]\n1*3*2%3", 6)]
+        [InlineData("//[&7&][%]\n3&7&2%3", 8)]
         public void InputStringWithMultipleFormattedDelimitersIgnoringNumberIfEdgeIsNotOnDelimiter(string value, int expectedValue)
         {
             var runner = new AppRunner();
