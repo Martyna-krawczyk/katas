@@ -6,6 +6,7 @@ namespace StringCalculator.Tests
 {
     public class AppRunnerTest
     {
+        //step 1
         [Fact]
         public void EmptyStringReturnsZero()
         {
@@ -15,38 +16,36 @@ namespace StringCalculator.Tests
 
             Assert.Equal(0, actual);
         }
-        
+
         [Theory]
+        //step 2
         [InlineData("1", 1)]
         [InlineData("2", 2)]
-        public void InputStringReturnsMatchingIntValue(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
+        //step 3
         [InlineData("1, 2", 3)]
         [InlineData("3, 5", 8)]
+        //step 4
         [InlineData("1, 2, 3", 6)]
         [InlineData("3, 5, 3, 9", 20)]
-        public void InputStringWithAnyAmountOfNumbersReturnsSumAsInt(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
+        //step 5
         [InlineData("1,2\n3", 6)]
         [InlineData("3\n5\n3,9", 20)]
+        //step 6
         [InlineData("//;\n1;2", 3)]
-        public void InputStringWithMultipleDelimitersReturnsSumAsInt(string value, int expectedValue)
+        //step 8
+        [InlineData("1000,1001,2", 2)]
+        [InlineData("1100,2001,5,5", 10)]
+        //step 9
+        [InlineData("//[***]\n1***2***3", 6)]
+        //step 10
+        [InlineData("//[*][%]\n1*2%3", 6)]
+        //step 11
+        [InlineData("//[***][#][%]\n1***2#3%4", 10)]
+        //step 12
+        [InlineData("//[*1*][%]\n1*1*2%3", 6)]
+        [InlineData("//[*3*][%]\n1*3*2%3", 6)]
+        [InlineData("//[&7&][%]\n3&7&2%3", 8)]
+        public void InputReturnsSumOfIntegers_SatisfyingKataStepRules(string value, int expectedValue)
         {
             var runner = new AppRunner();
 
@@ -54,74 +53,16 @@ namespace StringCalculator.Tests
 
             Assert.Equal(expectedValue, actual);
         }
-        
+
+        //step 7
         [Fact]
         public void InputNegativeNumbersAsStringReturnsException()
         {
             var runner = new AppRunner();
-            
+
             var exception = Assert.Throws<ArgumentException>(() => runner.Add("-1,2,-3"));
- 
+
             Assert.Equal("Negatives not allowed: -1, -3", exception.Message);
         }
-        
-        [Theory]
-        [InlineData("1000,1001,2", 2)]
-        [InlineData("1100,2001,5,5", 10)]
-        public void InputStringWithNumbersOver1000Ignored(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
-        [InlineData("//[***]\n1***2***3", 6)]
-        public void InputStringWithFormattedDelimiter(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
-        [InlineData("//[*][%]\n1*2%3", 6)]
-        public void InputStringWithMultipleFormattedDelimiters(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
-        [InlineData("//[***][#][%]\n1***2#3%4", 10)]
-        public void InputStringWithMultipleFormattedDelimitersLongerThanOneCharacter(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
-        
-        [Theory]
-        [InlineData("//[*1*][%]\n1*1*2%3", 6)]
-        [InlineData("//[*3*][%]\n1*3*2%3", 6)]
-        [InlineData("//[&7&][%]\n3&7&2%3", 8)]
-        public void InputStringWithMultipleFormattedDelimitersIgnoringNumberIfEdgeIsNotOnDelimiter(string value, int expectedValue)
-        {
-            var runner = new AppRunner();
-
-            var actual = runner.Add(value);
-
-            Assert.Equal(expectedValue, actual);
-        }
     }
-    
 }
