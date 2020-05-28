@@ -45,6 +45,7 @@ namespace StringCalculator.Tests
         [InlineData("//[*1*][%]\n1*1*2%3", 6)]
         [InlineData("//[*3*][%]\n1*3*2%3", 6)]
         [InlineData("//[&7&][%]\n3&7&2%3", 8)]
+        //[InlineData("//[&&7][%]\n3&&7&2%3", 15)]
         public void InputReturnsSumOfIntegers_SatisfyingKataStepRules(string value, int expectedValue)
         {
             var runner = new AppRunner();
