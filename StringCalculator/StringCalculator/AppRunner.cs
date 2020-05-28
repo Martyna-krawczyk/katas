@@ -19,8 +19,8 @@ namespace StringCalculator
                 return 0;
             }
             
-            string[] _stringNumbers = RemoveDefaultDelimiters(value);
-            _numbers = ConvertToInt(_stringNumbers);
+            var stringNumbers = RemoveDefaultDelimiters(value);
+            _numbers = ConvertToInt(stringNumbers);
 
             if (ContainNegativeNumbers())
             {
@@ -34,26 +34,26 @@ namespace StringCalculator
             {
                 if (value.Contains("["))
                 {
-                    var firstIndex = 2; 
-                    var lastIndex = value.LastIndexOf("]");
+                    const int firstIndex = 2; 
+                    var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
                     var delimiterSubstring = value.Substring(firstIndex + 1 , lastIndex - firstIndex - 1);
                     var delimiter = delimiterSubstring.Split("][");
                     var splitStringNumbers = value.Split("\n");
                     var valuesToSum = splitStringNumbers[1];
-                    _stringNumbers = valuesToSum.Split(delimiter, StringSplitOptions.None); 
-                    _numbers = ConvertToInt(_stringNumbers);
+                    stringNumbers = valuesToSum.Split(delimiter, StringSplitOptions.None); 
+                    _numbers = ConvertToInt(stringNumbers);
                     
                     //still need to complete the edge case delimiter [&&7] 
                 }
                 else
                 {
-                    var firstIndex = 2;
-                    var lastIndex = value.LastIndexOf("\n");
+                    const int firstIndex = 2;
+                    var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
                     var delimiter = value.Substring(firstIndex , lastIndex - firstIndex);
                     var splitStringNumbers = value.Split("\n");
                     var valuesToSum = splitStringNumbers[1];
-                    _stringNumbers = valuesToSum.Split(delimiter);
-                    _numbers = ConvertToInt(_stringNumbers);
+                    stringNumbers = valuesToSum.Split(delimiter);
+                    _numbers = ConvertToInt(stringNumbers);
                 }
             }
             return SumOfNumbers();
@@ -72,13 +72,13 @@ namespace StringCalculator
         
         private string[] RemoveDefaultDelimiters(string value)
         {
-            var _stringNumbers = value.Split(_defaultDelimiter);
-            return _stringNumbers;
+            var stringNumbers = value.Split(_defaultDelimiter);
+            return stringNumbers;
         }
         
-        private static IEnumerable<int> ConvertToInt(string[] _stringNumbers)
+        private static IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
         {
-            var intNumbers = _stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
+            var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
                 .Where(pair => pair.Success)
                 .Select(pair => pair.value);
             return intNumbers;
