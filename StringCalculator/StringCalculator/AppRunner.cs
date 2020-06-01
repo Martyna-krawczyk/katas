@@ -9,16 +9,14 @@ namespace StringCalculator
     {
         private static int _result { get; set; }
         private static IEnumerable<int> _numbers { get; set; }
-       
         private readonly char[] _defaultDelimiter = {',', '\n'};
-
         public int Add(string value)
         {
             if (IsEmptyString(value))
             {
                 return 0;
             }
-            
+
             var stringNumbers = RemoveDefaultDelimiters(value);
             _numbers = ConvertToInt(stringNumbers);
 
@@ -32,31 +30,47 @@ namespace StringCalculator
             }
             else if (HasCustomDelimiter(value))
             {
+
                 if (value.Contains("["))
                 {
-                    const int firstIndex = 2; 
+                    const int firstIndex = 2;
                     var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
-                    var delimiterSubstring = value.Substring(firstIndex + 1 , lastIndex - firstIndex - 1);
+                    var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
                     var delimiter = delimiterSubstring.Split("][");
+                    if (InvalidDelimiter(delimiter))
+                    {
+                        throw new ArgumentException("Invalid delimiter passed.");
+                    }
                     var splitStringNumbers = value.Split("\n");
                     var valuesToSum = splitStringNumbers[1];
-                    stringNumbers = valuesToSum.Split(delimiter, StringSplitOptions.None); 
+                    stringNumbers = valuesToSum.Split(delimiter, StringSplitOptions.None);
                     _numbers = ConvertToInt(stringNumbers);
-                    
-                    //still need to complete the edge case delimiter [&&7] 
                 }
                 else
                 {
                     const int firstIndex = 2;
                     var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
-                    var delimiter = value.Substring(firstIndex , lastIndex - firstIndex);
+                    var delimiter = value.Substring(firstIndex, lastIndex - firstIndex);
                     var splitStringNumbers = value.Split("\n");
                     var valuesToSum = splitStringNumbers[1];
                     stringNumbers = valuesToSum.Split(delimiter);
                     _numbers = ConvertToInt(stringNumbers);
                 }
             }
+
             return SumOfNumbers();
+            
+        }
+
+        private static bool InvalidDelimiter(string[] delimiter)
+        {
+            bool testResult = true;
+            foreach (var d in delimiter)
+            {
+                var rx = new Regex(@"(^\d)|(\d$)");
+                testResult = rx.IsMatch(d);
+            }
+            return testResult;
         }
 
         private static int SumOfNumbers()
