@@ -33,6 +33,7 @@ namespace StringCalculator
 
                 if (value.Contains("["))
                 {
+                    //access delimiter
                     const int firstIndex = 2;
                     var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
                     var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
@@ -64,11 +65,15 @@ namespace StringCalculator
 
         private static bool InvalidDelimiter(string[] delimiter)
         {
-            bool testResult = true;
+            var testResult = true;
             foreach (var d in delimiter)
             {
                 var rx = new Regex(@"(^\d)|(\d$)");
                 testResult = rx.IsMatch(d);
+                if (testResult)
+                {
+                    break;
+                }
             }
             return testResult;
         }
