@@ -19,11 +19,16 @@ namespace StringCalculator
             _input = input;
         }
         
-        public int Add(string value)
+        public int Add(string _input)
         {
-            return IsEmptyString(value) ? 0 : CalculateString(value);
+            return IsEmptyString(_input) ? 0 : CalculateString(_input);
         }
-
+        
+        private bool IsEmptyString(string value)
+        {
+            return value == " ";
+        }
+        
         private int CalculateString(string value)
         {
             ExtractNumbersToAddAsIntegers(value);
@@ -37,101 +42,6 @@ namespace StringCalculator
             return SumOfNumbers();
         }
 
-        private void ExtractNumbersToAddAsIntegers(string value)
-        {
-            var stringNumbers = RemoveDefaultDelimiters(value);
-            Numbers = ConvertToInt(stringNumbers);
-        }
-        
-        private void ExtractNumbersWhereCustomDelimitersPresent(string value)
-        {
-            const int firstIndex = 2;
-            if (IsFormattedDelimiter(value))
-                AccessDelimiterWhereCustomDelimiterIsFormatted(value, firstIndex);
-            else
-                AccessDelimiterWhereCustomDelimiterIsUnformatted(value, firstIndex);
-        }
-        
-        private void AccessDelimiterWhereCustomDelimiterIsUnformatted(string value, int firstIndex)
-        {
-            var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
-            var delimiter = value.Substring(firstIndex, lastIndex - firstIndex); 
-            CustomDelimiter = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
-            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
-
-        }
-        
-        private void AccessDelimiterWhereCustomDelimiterIsFormatted(string value, int firstIndex)
-        {
-            var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
-            var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
-            CustomDelimiter = delimiterSubstring.Split("][");
-            ThrowInvalidDelimiterException();
-            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
-        }
-
-        private void ThrowInvalidDelimiterException()
-        {
-            if (InvalidDelimiter(CustomDelimiter))
-            {
-                throw new ArgumentException("Invalid delimiter passed.");
-            }
-        }
-
-        private void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
-        {
-            var splitStringNumbers = value.Split("\n");
-            var valuesToSum = splitStringNumbers[1];
-            var stringNumbers = valuesToSum.Split(_delimiterArray, StringSplitOptions.None);
-            Numbers = ConvertToInt(stringNumbers);
-        }
-
-        private bool IsFormattedDelimiter(string value)
-        {
-            return value.Contains("[");
-        }
-        
-        private bool InvalidDelimiter(string[] delimiter)
-        {
-            var numberFoundOnEdge = false;
-            for (var index = 0; index < delimiter.Length; index++)
-            {
-                var d = delimiter[index];
-                var rx = new Regex(@"(^\d)|(\d$)");
-                numberFoundOnEdge = rx.IsMatch(d);
-                if (numberFoundOnEdge)
-                {
-                    break;
-                }
-            }
-            return numberFoundOnEdge;
-        }
-
-        private int SumOfNumbers()
-        {
-            Result = Numbers.Sum();
-            return Result;
-        }
-
-        private bool IsEmptyString(string value)
-        {
-            return value == " ";
-        }
-        
-        private string[] RemoveDefaultDelimiters(string value)
-        {
-            var stringNumbers = value.Split(_defaultDelimiter);
-            return stringNumbers;
-        }
-        
-        private IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
-        {
-            var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
-                .Where(pair => pair.Success)
-                .Select(pair => pair.value);
-            return intNumbers;
-        }
-        
         private bool ContainNegativeNumbers()
         {
             return Numbers.Any(numbers => numbers < 0 );
@@ -156,6 +66,95 @@ namespace StringCalculator
         private bool HasCustomDelimiter(string value)
         {
             return value.StartsWith("//");
+        }
+        
+        private void ExtractNumbersWhereCustomDelimitersPresent(string value)
+        {
+            const int firstIndex = 2;
+            if (IsFormattedDelimiter(value))
+                AccessDelimiterWhereCustomDelimiterIsFormatted(value, firstIndex);
+            else
+                AccessDelimiterWhereCustomDelimiterIsUnformatted(value, firstIndex);
+        }
+        
+        private bool IsFormattedDelimiter(string value)
+        {
+            return value.Contains("[");
+        }
+        
+        private void AccessDelimiterWhereCustomDelimiterIsFormatted(string value, int firstIndex)
+        {
+            var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
+            var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
+            CustomDelimiter = delimiterSubstring.Split("][");
+            ThrowInvalidDelimiterException();
+            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
+        }
+        
+        private void AccessDelimiterWhereCustomDelimiterIsUnformatted(string value, int firstIndex)
+        {
+            var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
+            var delimiter = value.Substring(firstIndex, lastIndex - firstIndex); 
+            CustomDelimiter = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
+            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
+        }
+        
+        private void ThrowInvalidDelimiterException()
+        {
+            if (InvalidDelimiter(CustomDelimiter))
+            {
+                throw new ArgumentException("Invalid delimiter passed.");
+            }
+        }
+        
+        private bool InvalidDelimiter(string[] delimiter)
+        {
+            var numberFoundOnEdge = false;
+            for (var index = 0; index < delimiter.Length; index++)
+            {
+                var d = delimiter[index];
+                var rx = new Regex(@"(^\d)|(\d$)");
+                numberFoundOnEdge = rx.IsMatch(d);
+                if (numberFoundOnEdge)
+                {
+                    break;
+                }
+            }
+            return numberFoundOnEdge;
+        }
+        
+        private void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
+        {
+            var splitStringNumbers = value.Split("\n");
+            var valuesToSum = splitStringNumbers[1];
+            var stringNumbers = valuesToSum.Split(_delimiterArray, StringSplitOptions.None);
+            Numbers = ConvertToInt(stringNumbers);
+        }
+        
+        private void ExtractNumbersToAddAsIntegers(string value)
+        {
+            var stringNumbers = RemoveDefaultDelimiters(value);
+            Numbers = ConvertToInt(stringNumbers);
+        }
+        
+        private string[] RemoveDefaultDelimiters(string value)
+        {
+            var stringNumbers = value.Split(_defaultDelimiter);
+            return stringNumbers;
+        }
+        
+        private IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
+        {
+            var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
+                .Where(pair => pair.Success)
+                .Select(pair => pair.value);
+            return intNumbers;
+        }
+
+        private int SumOfNumbers()
+        {
+            Result = Numbers.Sum();
+            return Result;
         }
     }
 }
