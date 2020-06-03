@@ -7,8 +7,8 @@ namespace StringCalculator
 {
     public class AppRunner
     {
-        private static int _result { get; set; }
-        private static IEnumerable<int> _numbers { get; set; }
+        private int _result { get; set; }
+        private IEnumerable<int> _numbers { get; set; }
         private readonly char[] _defaultDelimiter = {',', '\n'};
         private string[] _delimiterArray { get; set; }
         public int Add(string value)
@@ -69,7 +69,7 @@ namespace StringCalculator
             return _delimiterArray;
         }
 
-        private static void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
+        private void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
         {
             var splitStringNumbers = value.Split("\n");
             var valuesToSum = splitStringNumbers[1];
@@ -77,12 +77,12 @@ namespace StringCalculator
             _numbers = ConvertToInt(stringNumbers);
         }
 
-        private static bool IsFormattedDelimiter(string value)
+        private bool IsFormattedDelimiter(string value)
         {
             return value.Contains("[");
         }
         
-        private static bool InvalidDelimiter(string[] delimiter)
+        private bool InvalidDelimiter(string[] delimiter)
         {
             var testResult = false;
             foreach (var d in delimiter)
@@ -97,13 +97,13 @@ namespace StringCalculator
             return testResult;
         }
 
-        private static int SumOfNumbers()
+        private int SumOfNumbers()
         {
             _result = _numbers.Sum();
             return _result;
         }
 
-        private static bool IsEmptyString(string value)
+        private bool IsEmptyString(string value)
         {
             return value == " ";
         }
@@ -114,7 +114,7 @@ namespace StringCalculator
             return stringNumbers;
         }
         
-        private static IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
+        private IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
         {
             var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
                 .Where(pair => pair.Success)
@@ -122,29 +122,29 @@ namespace StringCalculator
             return intNumbers;
         }
         
-        private static bool ContainNegativeNumbers()
+        private bool ContainNegativeNumbers()
         {
             return _numbers.Any(numbers => numbers < 0 );
         }
         
-        private static void ThrowException()
+        private void ThrowException()
         {
             var negativeNumbers = _numbers.Where(number => number < 0);
             throw new ArgumentException($"Negatives not allowed: {string.Join(", ", negativeNumbers)}");
         }
         
-        private static bool ContainNumbersOverOneThousand()
+        private bool ContainNumbersOverOneThousand()
         {
             return _numbers.Any(number => number >= 1000);
         }
         
-        private static IEnumerable<int> ReturnNumbersUnderOneThousand()
+        private IEnumerable<int> ReturnNumbersUnderOneThousand()
         {
             _numbers = _numbers.Where(number => number < 1000);
             return _numbers;
         }
         
-        private static bool HasCustomDelimiter(string value)
+        private bool HasCustomDelimiter(string value)
         {
             return value.StartsWith("//");
         }
