@@ -15,59 +15,61 @@ namespace StringCalculator
         
         public int Add(string value)
         {
-            if (IsEmptyString(value))
-                return 0;
-            
-            ProcessString(value);
+            return IsEmptyString(value) ? 0 : CalculateString(value);
+        }
+
+        private int CalculateString(string value)
+        {
+            ExtractNumbersToAddAsIntegers(value);
 
             if (ContainNegativeNumbers())
                 ThrowNegativeNumberException();
             else if (ContainNumbersOverOneThousand())
                 ReturnNumbersUnderOneThousand();
             else if (HasCustomDelimiter(value))
-                ProcessStringWithCustomDelimiters(value);
+                ExtractNumbersWhereCustomDelimitersPresent(value);
             return SumOfNumbers();
         }
 
-        private void ProcessString(string value)
+        private void ExtractNumbersToAddAsIntegers(string value)
         {
             var stringNumbers = RemoveDefaultDelimiters(value);
             Numbers = ConvertToInt(stringNumbers);
         }
         
-        private void ProcessStringWithCustomDelimiters(string value)
+        private void ExtractNumbersWhereCustomDelimitersPresent(string value)
         {
             const int firstIndex = 2;
             if (IsFormattedDelimiter(value))
-            {
-                ProcessFormattedDelimiter(value, firstIndex);
-                SplitValuesToSumOnDelimiter(value, DelimiterArray);
-            }
+                AccessDelimiterWhereCustomDelimiterIsFormatted(value, firstIndex);
             else
-            {
-                ProcessUnformattedDelimiter(value, firstIndex);
-                SplitValuesToSumOnDelimiter(value, DelimiterArray);
-            }
+                AccessDelimiterWhereCustomDelimiterIsUnformatted(value, firstIndex);
         }
         
-        private string[] ProcessUnformattedDelimiter(string value, int firstIndex)
+        private void AccessDelimiterWhereCustomDelimiterIsUnformatted(string value, int firstIndex)
         {
             var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
             var delimiter = value.Substring(firstIndex, lastIndex - firstIndex); 
             DelimiterArray = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
-            return DelimiterArray;
+            SplitValuesToSumOnDelimiter(value, DelimiterArray);
+
         }
         
-        private string[] ProcessFormattedDelimiter(string value, int firstIndex)
+        private void AccessDelimiterWhereCustomDelimiterIsFormatted(string value, int firstIndex)
         {
             var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
             var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
             DelimiterArray = delimiterSubstring.Split("][");
+            ThrowInvalidDelimiterException();
+            SplitValuesToSumOnDelimiter(value, DelimiterArray);
+        }
+
+        private void ThrowInvalidDelimiterException()
+        {
             if (InvalidDelimiter(DelimiterArray))
             {
                 throw new ArgumentException("Invalid delimiter passed.");
             }
-            return DelimiterArray;
         }
 
         private void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
@@ -85,17 +87,18 @@ namespace StringCalculator
         
         private bool InvalidDelimiter(string[] delimiter)
         {
-            var testResult = false;
-            foreach (var d in delimiter)
+            var numberFoundOnEdge = false;
+            for (var index = 0; index < delimiter.Length; index++)
             {
+                var d = delimiter[index];
                 var rx = new Regex(@"(^\d)|(\d$)");
-                testResult = rx.IsMatch(d);
-                if (testResult)
+                numberFoundOnEdge = rx.IsMatch(d);
+                if (numberFoundOnEdge)
                 {
                     break;
                 }
             }
-            return testResult;
+            return numberFoundOnEdge;
         }
 
         private int SumOfNumbers()
@@ -139,10 +142,9 @@ namespace StringCalculator
             return Numbers.Any(number => number >= 1000);
         }
         
-        private IEnumerable<int> ReturnNumbersUnderOneThousand()
+        private void ReturnNumbersUnderOneThousand()
         {
             Numbers = Numbers.Where(number => number < 1000);
-            return Numbers;
         }
         
         private bool HasCustomDelimiter(string value)
