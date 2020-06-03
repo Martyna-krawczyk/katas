@@ -7,65 +7,104 @@ namespace StringCalculator
 {
     public class AppRunner
     {
-        private static int _result { get; set; }
-        private static IEnumerable<int> _numbers { get; set; }
-       
+        private int Result { get; set; }
+        private IEnumerable<int> Numbers { get; set; }
+        private string[] DelimiterArray { get; set; }
+        
         private readonly char[] _defaultDelimiter = {',', '\n'};
-
+        
         public int Add(string value)
         {
             if (IsEmptyString(value))
-            {
                 return 0;
-            }
             
-            var stringNumbers = RemoveDefaultDelimiters(value);
-            _numbers = ConvertToInt(stringNumbers);
+            ProcessString(value);
 
             if (ContainNegativeNumbers())
-            {
-                ThrowException();
-            }
+                ThrowNegativeNumberException();
             else if (ContainNumbersOverOneThousand())
-            {
                 ReturnNumbersUnderOneThousand();
-            }
             else if (HasCustomDelimiter(value))
-            {
-                if (value.Contains("["))
-                {
-                    const int firstIndex = 2; 
-                    var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
-                    var delimiterSubstring = value.Substring(firstIndex + 1 , lastIndex - firstIndex - 1);
-                    var delimiter = delimiterSubstring.Split("][");
-                    var splitStringNumbers = value.Split("\n");
-                    var valuesToSum = splitStringNumbers[1];
-                    stringNumbers = valuesToSum.Split(delimiter, StringSplitOptions.None); 
-                    _numbers = ConvertToInt(stringNumbers);
-                    
-                    //still need to complete the edge case delimiter [&&7] 
-                }
-                else
-                {
-                    const int firstIndex = 2;
-                    var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
-                    var delimiter = value.Substring(firstIndex , lastIndex - firstIndex);
-                    var splitStringNumbers = value.Split("\n");
-                    var valuesToSum = splitStringNumbers[1];
-                    stringNumbers = valuesToSum.Split(delimiter);
-                    _numbers = ConvertToInt(stringNumbers);
-                }
-            }
+                ProcessStringWithCustomDelimiters(value);
             return SumOfNumbers();
         }
 
-        private static int SumOfNumbers()
+        private void ProcessString(string value)
         {
-            _result = _numbers.Sum();
-            return _result;
+            var stringNumbers = RemoveDefaultDelimiters(value);
+            Numbers = ConvertToInt(stringNumbers);
+        }
+        
+        private void ProcessStringWithCustomDelimiters(string value)
+        {
+            const int firstIndex = 2;
+            if (IsFormattedDelimiter(value))
+            {
+                ProcessFormattedDelimiter(value, firstIndex);
+                SplitValuesToSumOnDelimiter(value, DelimiterArray);
+            }
+            else
+            {
+                ProcessUnformattedDelimiter(value, firstIndex);
+                SplitValuesToSumOnDelimiter(value, DelimiterArray);
+            }
+        }
+        
+        private string[] ProcessUnformattedDelimiter(string value, int firstIndex)
+        {
+            var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
+            var delimiter = value.Substring(firstIndex, lastIndex - firstIndex); 
+            DelimiterArray = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
+            return DelimiterArray;
+        }
+        
+        private string[] ProcessFormattedDelimiter(string value, int firstIndex)
+        {
+            var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
+            var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
+            DelimiterArray = delimiterSubstring.Split("][");
+            if (InvalidDelimiter(DelimiterArray))
+            {
+                throw new ArgumentException("Invalid delimiter passed.");
+            }
+            return DelimiterArray;
         }
 
-        private static bool IsEmptyString(string value)
+        private void SplitValuesToSumOnDelimiter(string value, string[] _delimiterArray)
+        {
+            var splitStringNumbers = value.Split("\n");
+            var valuesToSum = splitStringNumbers[1];
+            var stringNumbers = valuesToSum.Split(_delimiterArray, StringSplitOptions.None);
+            Numbers = ConvertToInt(stringNumbers);
+        }
+
+        private bool IsFormattedDelimiter(string value)
+        {
+            return value.Contains("[");
+        }
+        
+        private bool InvalidDelimiter(string[] delimiter)
+        {
+            var testResult = false;
+            foreach (var d in delimiter)
+            {
+                var rx = new Regex(@"(^\d)|(\d$)");
+                testResult = rx.IsMatch(d);
+                if (testResult)
+                {
+                    break;
+                }
+            }
+            return testResult;
+        }
+
+        private int SumOfNumbers()
+        {
+            Result = Numbers.Sum();
+            return Result;
+        }
+
+        private bool IsEmptyString(string value)
         {
             return value == " ";
         }
@@ -76,7 +115,7 @@ namespace StringCalculator
             return stringNumbers;
         }
         
-        private static IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
+        private IEnumerable<int> ConvertToInt(IEnumerable<string> stringNumbers)
         {
             var intNumbers = stringNumbers.Select(s => new {Success = int.TryParse(s, out var value), value})
                 .Where(pair => pair.Success)
@@ -84,29 +123,29 @@ namespace StringCalculator
             return intNumbers;
         }
         
-        private static bool ContainNegativeNumbers()
+        private bool ContainNegativeNumbers()
         {
-            return _numbers.Any(numbers => numbers < 0 );
+            return Numbers.Any(numbers => numbers < 0 );
         }
         
-        private static void ThrowException()
+        private void ThrowNegativeNumberException()
         {
-            var negativeNumbers = _numbers.Where(number => number < 0);
+            var negativeNumbers = Numbers.Where(number => number < 0);
             throw new ArgumentException($"Negatives not allowed: {string.Join(", ", negativeNumbers)}");
         }
         
-        private static bool ContainNumbersOverOneThousand()
+        private bool ContainNumbersOverOneThousand()
         {
-            return _numbers.Any(number => number >= 1000);
+            return Numbers.Any(number => number >= 1000);
         }
         
-        private static IEnumerable<int> ReturnNumbersUnderOneThousand()
+        private IEnumerable<int> ReturnNumbersUnderOneThousand()
         {
-            _numbers = _numbers.Where(number => number < 1000);
-            return _numbers;
+            Numbers = Numbers.Where(number => number < 1000);
+            return Numbers;
         }
         
-        private static bool HasCustomDelimiter(string value)
+        private bool HasCustomDelimiter(string value)
         {
             return value.StartsWith("//");
         }
