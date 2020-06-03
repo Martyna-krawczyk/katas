@@ -9,9 +9,15 @@ namespace StringCalculator
     {
         private int Result { get; set; }
         private IEnumerable<int> Numbers { get; set; }
-        private string[] DelimiterArray { get; set; }
+        private string[] CustomDelimiter { get; set; }
         
         private readonly char[] _defaultDelimiter = {',', '\n'};
+        
+        private readonly IInput _input;
+        public AppRunner(IInput input)
+        {
+            _input = input;
+        }
         
         public int Add(string value)
         {
@@ -50,8 +56,8 @@ namespace StringCalculator
         {
             var lastIndex = value.LastIndexOf("\n", StringComparison.Ordinal);
             var delimiter = value.Substring(firstIndex, lastIndex - firstIndex); 
-            DelimiterArray = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
-            SplitValuesToSumOnDelimiter(value, DelimiterArray);
+            CustomDelimiter = delimiter.ToCharArray().Select(c => c.ToString()).ToArray();
+            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
 
         }
         
@@ -59,14 +65,14 @@ namespace StringCalculator
         {
             var lastIndex = value.LastIndexOf("]", StringComparison.Ordinal);
             var delimiterSubstring = value.Substring(firstIndex + 1, lastIndex - firstIndex - 1);
-            DelimiterArray = delimiterSubstring.Split("][");
+            CustomDelimiter = delimiterSubstring.Split("][");
             ThrowInvalidDelimiterException();
-            SplitValuesToSumOnDelimiter(value, DelimiterArray);
+            SplitValuesToSumOnDelimiter(value, CustomDelimiter);
         }
 
         private void ThrowInvalidDelimiterException()
         {
-            if (InvalidDelimiter(DelimiterArray))
+            if (InvalidDelimiter(CustomDelimiter))
             {
                 throw new ArgumentException("Invalid delimiter passed.");
             }
