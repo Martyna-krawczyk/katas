@@ -6,19 +6,10 @@ namespace StringCalculator.Tests
 {
     public class AppRunnerTest
     {
-        //step 1
-        [Fact]
-        public void EmptyStringReturnsZero()
-        {
-            var input = new Input();
-            var runner = new AppRunner(input);
-
-            var actual = runner.Add(" ");
-
-            Assert.Equal(0, actual);
-        }
-
         [Theory]
+        //step 1
+        [InlineData(" ", 0)]
+        [InlineData(null, 0)]
         //step 2
         [InlineData("1", 1)]
         [InlineData("2", 2)]
@@ -33,6 +24,7 @@ namespace StringCalculator.Tests
         [InlineData("3\n5\n3,9", 20)]
         //step 6
         [InlineData("//;\n1;2", 3)]
+        [InlineData("//,\n1,2", 3)]
         //step 8
         [InlineData("1000,1001,2", 2)]
         [InlineData("1100,2001,5,5", 10)]
@@ -48,8 +40,7 @@ namespace StringCalculator.Tests
         [InlineData("//[&7&][%]\n3&7&2%3", 8)]
         public void InputReturnsSumOfIntegers_SatisfyingKataStepRules(string value, int expectedValue)
         {
-            var input = new Input();
-            var runner = new AppRunner(input);
+            var runner = new AppRunner();
 
             var actual = runner.Add(value);
 
@@ -60,8 +51,7 @@ namespace StringCalculator.Tests
         [Fact]
         public void InputNegativeNumbersAsStringReturnsException()
         {
-            var input = new Input();
-            var runner = new AppRunner(input);
+            var runner = new AppRunner();
 
             var exception = Assert.Throws<ArgumentException>(() => runner.Add("-1,2,-3"));
 
@@ -71,8 +61,7 @@ namespace StringCalculator.Tests
         [Fact]
         public void InvalidDelimiterReturnsException()
         {
-            var input = new Input();
-            var runner = new AppRunner(input);
+            var runner = new AppRunner();
 
             var exception = Assert.Throws<ArgumentException>(() => runner.Add("//[7&&][%]\n3&7&2%3"));
 
