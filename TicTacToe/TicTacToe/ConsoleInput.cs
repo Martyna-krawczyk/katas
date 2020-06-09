@@ -6,7 +6,7 @@ namespace TicTacToe
     {
         public string InputText()
         {
-            return Console.ReadLine();
+            return Console.ReadLine().Trim();
         }
     }
 }
