@@ -50,5 +50,17 @@ namespace TicTacToe {
                 return ResourceManager.GetString("WelcomeMessage", resourceCulture);
             }
         }
+        
+        internal static string BoardIntro {
+            get {
+                return ResourceManager.GetString("BoardIntro", resourceCulture);
+            }
+        }
+        
+        internal static string PrintBoard {
+            get {
+                return ResourceManager.GetString("PrintBoard", resourceCulture);
+            }
+        }
     }
 }
