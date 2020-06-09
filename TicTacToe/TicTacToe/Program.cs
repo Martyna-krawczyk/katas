@@ -7,8 +7,9 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             var input = new ConsoleInput();
-            var runner = new AppRunner(input);
-            
+            var output = new ConsoleOutput();
+            var runner = new AppRunner(input, output);
+            runner.Run();
         }
     }
 }
