@@ -62,5 +62,17 @@ namespace TicTacToe {
                 return ResourceManager.GetString("BoardCoordinates", resourceCulture);
             }
         }
+        
+        internal static string TakeTurn {
+            get {
+                return ResourceManager.GetString("TakeTurn", resourceCulture);
+            }
+        }
+        
+        internal static string MoveAccepted {
+            get {
+                return ResourceManager.GetString("MoveAccepted", resourceCulture);
+            }
+        }
     }
 }

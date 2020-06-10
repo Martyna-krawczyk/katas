@@ -7,14 +7,23 @@ namespace TicTacToe
     {
         const int Rows = 3;
         const int Columns = 3;
-        private static bool _isUsed = false;
+        private bool _isUsed = false;
+        readonly char[,] board = new char[Rows, Columns] { 
+            {'.', '.', '.'}, 
+            {'.', '.', '.'},
+            {'.', '.', '.'}
+        };
+        
         public bool Running { get; private set; } = true;
         
-        public int player = 2; 
-        string move = "0,0";
-        bool inputCorrect = true;
+        public int Player = 2; 
+        public string PlayerMove = "0,0";
+        
         static int turns = 0;
-        public static char playerToken = ' ';
+        private char playerToken = ' ';
+        int parsedXCoordinate;
+        int parsedYCoordinate;
+        private int boardCoordinates;
         
         private readonly IInput _input;
         private readonly IOutput _output;
@@ -24,11 +33,7 @@ namespace TicTacToe
             _output = output;
         }
 
-        readonly char[,] board = new char[Rows, Columns] { 
-            {'.', '.', '.'}, 
-            {'.', '.', '.'},
-            {'.', '.', '.'}
-        };
+        
         
         
         public void Run()
@@ -39,17 +44,16 @@ namespace TicTacToe
 
             do
             {
-                if (player == 2)
+                if (Player == 2)
                 {
-                    player = 1;
-                    Play(move);
-                } else if (player == 1)
+                    Player = 1;
+                    Play(PlayerMove);
+                } else if (Player == 1)
                 {
-                    player = 2;
-                    Play(move);
+                    Player = 2;
+                    Play(PlayerMove);
                 }
                 turns++;
-                PrintBoard(board);
                 //Check for wins
                 //check for draw
             } while (Running);
@@ -57,83 +61,79 @@ namespace TicTacToe
 
         private void Play(string move)
         {
-            Console.WriteLine("Player {0} enter a coord x,y to place your X or enter 'q' to give up:", player);
-            move =_input.InputText();
-            Console.WriteLine("Move accepted, here's the current board:");
+            _output.OutputText(string.Format(Prompts.TakeTurn, Player));
             
-
-            playerToken = player switch
+            PlayerMove =_input.InputText();
+            
+            playerToken = Player switch
             {
                 1 => 'X',
                 2 => 'O',
                 _ => playerToken
             };
 
-            switch (move)
+            switch (PlayerMove)
             {
                 case "q":
                     ExitApp();
                     break;
                 case "1,1":
-                    board[0,0] = playerToken;
+                    PlayMove();
                     break;
                 case "1,2":
-                    board[0,1] = playerToken;
+                    PlayMove();
                     break;
                 case "1,3":
-                    board[0,2] = playerToken;
+                    PlayMove();
                     break;
                 case "2,1":
-                    board[1,0] = playerToken;
+                    PlayMove();
                     break;
                 case "2,2":
-                    board[1,1] = playerToken;
+                    PlayMove();
                     break;
                 case "2,3":
-                    board[1,2] = playerToken;
+                    PlayMove();
                     break;
                 case "3,1":
-                    board[2,0] = playerToken;
+                    PlayMove();
                     break;
                 case "3,2":
-                    board[2,1] = playerToken;
+                    PlayMove();
                     break;
                 case "3,3":
-                    board[2,2] = playerToken;
+                    PlayMove();
                     break;
+                    default:
+                        throw new ArgumentException("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3:");
+                    
             }
-
-
-           
-            // if (ValidCoordinates(move))
-            // {
             
-            // }
-            // else
-            //     ThrowInvalidCoordinateException();
-            //ConvertMoveToCoordinates(move);
-            // }
         }
 
-        
-
-        private void IsUsed()
+        private void PlayMove()
         {
-            //if selected coordinate contains X or O
-            //return _isUsed = true;
+            AssignPlayerTokenToCoordinates(PlayerMove);
+            _isUsed = true;
+            _output.OutputText(Prompts.MoveAccepted);
+            PrintBoard(board);
         }
         
-        private static void ThrowInvalidCoordinateException() //need to fix something up here
-            //Unhandled exception. System.ArgumentException: Sorry - that format is incorrect. Enter x ,y coordinates between 1-3:
-
+        private void AssignPlayerTokenToCoordinates(string playerMove)
         {
-            throw new ArgumentException("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3:");
-        }
+            var xInput = playerMove[0].ToString();
+            var yInput = playerMove[2].ToString();
 
-        private static bool ValidCoordinates(string move)
-        {
-            var regex = new Regex(@"^[1-3],[1-3]$");
-            return regex.IsMatch(move);
+            if (short.TryParse(xInput, out var xCoordinate))
+            {
+                parsedXCoordinate =  xCoordinate - 1;
+            }
+            
+            if (short.TryParse(yInput, out var yCoordinate))
+            {
+                parsedYCoordinate =  yCoordinate - 1;
+            }
+            board[parsedXCoordinate, parsedYCoordinate] = playerToken;
         }
 
         private void ExitApp()
