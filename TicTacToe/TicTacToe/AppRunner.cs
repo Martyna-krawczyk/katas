@@ -5,21 +5,15 @@ namespace TicTacToe
 {
     public class AppRunner : IAppRunner
     {
+        
         public bool Running { get; private set; } = true;
-        
-        //Board Class
-        const int Rows = 3;
-        const int Columns = 3;
-        private bool _isUsed = false;
-        readonly char[,] _board = new char[Rows, Columns] { 
-            {'.', '.', '.'}, 
-            {'.', '.', '.'},
-            {'.', '.', '.'}
-        };
-        
+       
        //Player Class
         public int Player = 2; 
         private char playerToken = ' ';
+        
+        //Player Cell
+        public string Owner = " ";
         
         //Move Class
         public string PlayerMove = "0,0";
@@ -28,7 +22,15 @@ namespace TicTacToe
         int parsedYCoordinate;
         private int boardCoordinates;
         
-        
+        const int x = 3;
+        const int y = 3;
+        private bool _isUsed = false;
+        readonly char[,] _board = new char[x, y] { 
+            {'.', '.', '.'}, 
+            {'.', '.', '.'},
+            {'.', '.', '.'}
+        };
+
         private readonly IInput _input;
         private readonly IOutput _output;
         public AppRunner(IInput input, IOutput output)
@@ -45,19 +47,27 @@ namespace TicTacToe
 
             do
             {
-                if (Player == 2)
+                switch (Player)
                 {
-                    Player = 1;
-                    Play();
-                } else if (Player == 1)
-                {
-                    Player = 2;
-                    Play();
+                    case 2:
+                        Player = 1;
+                        Play();
+                        break;
+                    case 1:
+                        Player = 2;
+                        Play();
+                        break;
                 }
                 turns++;
+                CheckForHorizontalWin();
                 //Check for wins - horizontal, vertical, diagonal
                 //check for draw = turns == 10
             } while (Running);
+        }
+
+        private void CheckForHorizontalWin()
+        {
+            
         }
 
         private void Play()
@@ -77,21 +87,25 @@ namespace TicTacToe
             {
                 ExitApp();
             }
-            if (ValidCoordinates(PlayerMove))
+            if (ValidCoordinates(PlayerMove) ) // && cell.IsUsed == false
             {
                 PlayMove();
             }
-            else
-            {
-                throw new Exception( "Sorry - that format is incorrect. Enter x ,y coordinates between 1-3:");
-            }
-                
+            // else
+            //         //Not sure why this returns Unhandled Exception Unhandled exception. System.ArgumentException: Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:
+            //         //at TicTacToe.AppRunner.Play() in /Users/martyna/RiderProjects/katas/TicTacToe/TicTacToe/AppRunner.cs:line 90
+            //         //at TicTacToe.AppRunner.Run() in /Users/martyna/RiderProjects/katas/TicTacToe/TicTacToe/AppRunner.cs:line 52
+            //         //at TicTacToe.Program.Main(String[] args) in /Users/martyna/RiderProjects/katas/TicTacToe/TicTacToe/Program.cs:line 12
+            // {
+            //     throw new ArgumentException("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
+            // }
         }
 
         private void PlayMove()
         {
             AssignPlayerTokenToCoordinates(PlayerMove);
             _isUsed = true;
+            Owner = playerToken.ToString();
             _output.OutputText(Prompts.MoveAccepted);
             PrintBoard(_board);
         }
@@ -124,11 +138,13 @@ namespace TicTacToe
             Running = false;
         }
 
-        private void PrintBoard(char[,] board)
+        private void PrintBoard(char[,] _board)
         {
-            Console.WriteLine(Prompts.BoardCoordinates,board[0,0], board[0,1], board[0,2]);
-            Console.WriteLine(Prompts.BoardCoordinates,board[1,0], board[1,1], board[1,2]);
-            Console.WriteLine(Prompts.BoardCoordinates,board[2,0], board[2,1], board[2,2]);
+            Console.WriteLine(Prompts.BoardCoordinates,_board[0,0], _board[0,1], _board[0,2]);
+            Console.WriteLine(Prompts.BoardCoordinates,_board[1,0], _board[1,1], _board[1,2]);
+            Console.WriteLine(Prompts.BoardCoordinates,_board[2,0], _board[2,1], _board[2,2]);
         }
+        
+        
     }
 }
