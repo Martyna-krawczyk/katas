@@ -28,4 +28,10 @@
     <data name="BoardCoordinates" xml:space="preserve">
         <value>{0} {1} {2}</value>
     </data>
+    <data name="TakeTurn" xml:space="preserve">
+        <value>Player {0} enter a coord x,y to place your X or enter 'q' to give up:</value>
+    </data>
+    <data name="MoveAccepted" xml:space="preserve">
+        <value>Move accepted, here's the current board:</value>
+    </data>
 </root>
