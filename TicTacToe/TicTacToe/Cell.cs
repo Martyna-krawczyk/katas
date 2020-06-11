@@ -7,13 +7,13 @@ namespace TicTacToe
             
         }
         //enum for Cell properties
-        public Cell(char placeholder, bool isUsed = false)
+        public Cell(string placeholder, bool isUsed = false)
         {
             Placeholder = placeholder;
             IsUsed = isUsed;
         }
 
-        public char Placeholder { get; set; }
+        public string Placeholder { get; set; }
 
         public bool IsUsed { get; set; }
     }
