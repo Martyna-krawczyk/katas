@@ -4,7 +4,6 @@ namespace TicTacToe
 {
     public class Board
     {
-        //private char[,] _cell;
         private Cell[,] _cell;
         
         public Board()
@@ -27,7 +26,7 @@ namespace TicTacToe
  
         public void PrintBoard()
         {
-            Console.WriteLine(Prompts.BoardCoordinates,_cell[0,0].Placeholder, _cell[0,1].Placeholder, _cell[0,2].Placeholder); //getValue??
+            Console.WriteLine(Prompts.BoardCoordinates,_cell[0,0].Placeholder, _cell[0,1].Placeholder, _cell[0,2].Placeholder);
             Console.WriteLine(Prompts.BoardCoordinates,_cell[1,0].Placeholder, _cell[1,1].Placeholder, _cell[1,2].Placeholder);
             Console.WriteLine(Prompts.BoardCoordinates,_cell[2,0].Placeholder, _cell[2,1].Placeholder, _cell[2,2].Placeholder);
         }
