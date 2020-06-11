@@ -102,7 +102,7 @@ namespace TicTacToe
         {
             var board = new Board();
             EstablishTokenCoordinates(PlayerMove);
-            AssignPlayerTokenToCoordinates();
+            //AssignPlayerTokenToCoordinates();
             //update the state of the cell
             //_cell.IsUsed = true;
             //Owner = playerToken.ToString();
@@ -110,7 +110,7 @@ namespace TicTacToe
             board.PrintBoard();
         }
         
-        private string EstablishTokenCoordinates(string playerMove)
+        private void EstablishTokenCoordinates(string playerMove)
         {
             var xInput = playerMove[0].ToString();
             var yInput = playerMove[2].ToString();
@@ -125,16 +125,23 @@ namespace TicTacToe
                 parsedYCoordinate =  yCoordinate - 1;
             }
 
-            var playerSelection = "_cell" + "[" + parsedXCoordinate + "," + parsedYCoordinate + "]";
-            return playerSelection.Substring(1,9);
+            _cell[parsedXCoordinate, parsedYCoordinate].Placeholder = _playerToken;
             
+            //_cell.SetValue(_playerToken, parsedXCoordinate, parsedYCoordinate);
+
+            // var playerSelection = "_cell" + "[" + parsedXCoordinate + "," + parsedYCoordinate + "]";
+            // Object playerSelectionSubstring = playerSelection.Substring(1,9);
+            // return playerSelectionSubstring;
         }
 
-        private void AssignPlayerTokenToCoordinates()
-        {
-            playerSelection = _playerToken;
-            
-        }
+        // private void AssignPlayerTokenToCoordinates(object selectedCell)
+        // {
+        //     //selectedCell = playerSelection
+        //         playerSelection = _playerToken;
+        //     //update placeholder
+        // }
+        
+        
 
         private static bool ValidCoordinates(string PlayerMove)
         {
