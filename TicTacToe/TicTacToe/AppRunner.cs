@@ -1,19 +1,21 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe
 {
     public class AppRunner : IAppRunner
     {
-        
+        private Cell[,] _cell;
         public bool Running { get; private set; } = true;
        
        //Player Class
         public int Player = 2; 
-        private char playerToken = ' ';
+        private string _playerToken = "";
         
-        //Player Cell
-        public string Owner = " ";
+        //Cell Class
+        //public string Owner = "empty";
+        //private bool _isUsed = false;
         
         //Move Class
         public string PlayerMove = "0,0";
@@ -21,15 +23,9 @@ namespace TicTacToe
         int parsedXCoordinate;
         int parsedYCoordinate;
         private int boardCoordinates;
-        
-        const int x = 3;
-        const int y = 3;
-        private bool _isUsed = false;
-        readonly char[,] _board = new char[x, y] { 
-            {'.', '.', '.'}, 
-            {'.', '.', '.'},
-            {'.', '.', '.'}
-        };
+
+        private string playerSelection;
+        //PlayMove();
 
         private readonly IInput _input;
         private readonly IOutput _output;
@@ -41,9 +37,10 @@ namespace TicTacToe
         
         public void Run()
         {
+            var board = new Board();
             _output.OutputText(Prompts.WelcomeMessage);
             _output.OutputText(Prompts.BoardIntro);
-            PrintBoard(_board);
+            board.PrintBoard();
 
             do
             {
@@ -76,18 +73,18 @@ namespace TicTacToe
             
             PlayerMove =_input.InputText();
             
-            playerToken = Player switch
+            _playerToken = Player switch
             {
-                1 => 'X',
-                2 => 'O',
-                _ => playerToken
+                1 => "X",
+                2 => "O",
+                _ => _playerToken
             };
             
             if (PlayerMove == "q")
             {
                 ExitApp();
             }
-            if (ValidCoordinates(PlayerMove) ) // && cell.IsUsed == false
+            if (ValidCoordinates(PlayerMove) ) // && board.IsUsed == false
             {
                 PlayMove();
             }
@@ -103,14 +100,17 @@ namespace TicTacToe
 
         private void PlayMove()
         {
-            AssignPlayerTokenToCoordinates(PlayerMove);
-            _isUsed = true;
-            Owner = playerToken.ToString();
+            var board = new Board();
+            EstablishTokenCoordinates(PlayerMove);
+            AssignPlayerTokenToCoordinates();
+            //update the state of the cell
+            //_cell.IsUsed = true;
+            //Owner = playerToken.ToString();
             _output.OutputText(Prompts.MoveAccepted);
-            PrintBoard(_board);
+            board.PrintBoard();
         }
         
-        private void AssignPlayerTokenToCoordinates(string playerMove)
+        private string EstablishTokenCoordinates(string playerMove)
         {
             var xInput = playerMove[0].ToString();
             var yInput = playerMove[2].ToString();
@@ -124,7 +124,16 @@ namespace TicTacToe
             {
                 parsedYCoordinate =  yCoordinate - 1;
             }
-            _board[parsedXCoordinate, parsedYCoordinate] = playerToken;
+
+            var playerSelection = "_cell" + "[" + parsedXCoordinate + "," + parsedYCoordinate + "]";
+            return playerSelection.Substring(1,9);
+            
+        }
+
+        private void AssignPlayerTokenToCoordinates()
+        {
+            playerSelection = _playerToken;
+            
         }
 
         private static bool ValidCoordinates(string PlayerMove)
@@ -138,13 +147,5 @@ namespace TicTacToe
             Running = false;
         }
 
-        private void PrintBoard(char[,] _board)
-        {
-            Console.WriteLine(Prompts.BoardCoordinates,_board[0,0], _board[0,1], _board[0,2]);
-            Console.WriteLine(Prompts.BoardCoordinates,_board[1,0], _board[1,1], _board[1,2]);
-            Console.WriteLine(Prompts.BoardCoordinates,_board[2,0], _board[2,1], _board[2,2]);
-        }
-        
-        
     }
 }
