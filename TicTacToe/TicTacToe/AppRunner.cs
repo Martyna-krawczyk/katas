@@ -12,11 +12,7 @@ namespace TicTacToe
        //Player Class
         public int Player = 2; 
         private string _playerToken = "";
-        
-        //Cell Class
-        //public string Owner = "empty";
-        //private bool _isUsed = false;
-        
+
         //Move Class
         public string PlayerMove = "0,0";
         static int turns = 0;
