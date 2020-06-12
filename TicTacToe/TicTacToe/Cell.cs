@@ -2,14 +2,12 @@ namespace TicTacToe
 {
     public class Cell
     {
-        public Cell(string placeholder, bool isUsed = false)
+        public Cell(string value)
         {
-            Placeholder = placeholder;
-            IsUsed = isUsed;
+            Value = value;
         }
-
-        public string Placeholder { get; set; }
-
-        public bool IsUsed { get; set; }
+        
+        public string Value { get; set; }
+        
     }
 }
