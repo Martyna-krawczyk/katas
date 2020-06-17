@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TicTacToe
 {
@@ -8,7 +9,14 @@ namespace TicTacToe
         {
             var input = new ConsoleInput();
             var output = new ConsoleOutput();
-            var runner = new AppRunner(input, output);
+            var players = new List<Player>()
+            {
+                new Player("Player 1", "X"),
+                new Player("Player 2", "O")
+            };
+            
+            var runner = new AppRunner(input, output, players);
+            
             runner.Run();
         }
     }

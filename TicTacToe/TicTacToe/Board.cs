@@ -4,13 +4,11 @@ namespace TicTacToe
 {
     public class Board
     {
-        //private readonly IOutput _output;
         private Cell[,] _cell;
         
         public Board()
         {
             CreateBoard();
-            
         }
         
         private void CreateBoard()
