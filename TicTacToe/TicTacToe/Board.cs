@@ -5,9 +5,10 @@ namespace TicTacToe
     public class Board
     {
         private Cell[,] _cell;
-        
-        public Board()
+        private readonly IOutput _output;
+        public Board(IOutput output)
         {
+            _output = output;
             CreateBoard();
         }
         
@@ -30,9 +31,9 @@ namespace TicTacToe
         
         public void PrintBoard()
         {
-            Console.WriteLine(Prompts.BoardCoordinates,_cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value);
-            Console.WriteLine(Prompts.BoardCoordinates,_cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value);
-            Console.WriteLine(Prompts.BoardCoordinates,_cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value);
+            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value));
+            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value));
+            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
         }
     }
 }

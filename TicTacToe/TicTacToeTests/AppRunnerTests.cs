@@ -25,7 +25,7 @@ namespace TicTacToeTests
         [Fact]
         public void ExitAppCalledOnQInput() 
         {
-            var input = new TestInput(new string[] { "q"});
+            var input = new TestInput(new string[] {"q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var runner = new AppRunner(input, output, players);
