@@ -17,7 +17,7 @@ namespace TicTacToe
             _input = input;
             _output = output;
             _players = players;
-            _board = new Board();
+            _board = new Board(_output);
         }
         
         public void Run()
@@ -29,7 +29,6 @@ namespace TicTacToe
 
             do
             {
-                
                 var player = _players[turns % _players.Count];
                 RunPlay(player);
                 turns++;
