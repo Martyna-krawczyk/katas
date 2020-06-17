@@ -7,93 +7,71 @@ namespace TicTacToe
     public class AppRunner : IAppRunner
     {
         private readonly Board _board;
-        private bool Running { get; set; } = true;
-       
-       //Player Class
-       private int _player = 2; 
-       private string _playerToken = "";
+        public bool Running { get; set; } = true;
 
-        //Move Class
-        private string _playerMove = "0,0";
-
+        private readonly List<Player> _players;
         private readonly IInput _input;
         private readonly IOutput _output;
-        public AppRunner(IInput input, IOutput output)
+        public AppRunner(IInput input, IOutput output, List<Player> players)
         {
             _input = input;
-            _output = output; 
+            _output = output;
+            _players = players;
             _board = new Board();
         }
         
         public void Run()
         {
+            var turns = 0;
             _output.OutputText(Prompts.WelcomeMessage);
             _output.OutputText(Prompts.BoardIntro);
             _board.PrintBoard();
 
             do
             {
-                switch (_player)
-                {
-                    case 2:
-                        _player = 1;
-                        Play();
-                        break;
-                    case 1:
-                        _player = 2;
-                        Play();
-                        break;
-                }
-                CheckForHorizontalWin();
+                
+                var player = _players[turns % _players.Count];
+                RunPlay(player);
+                turns++;
                 //Check for wins - horizontal, vertical, diagonal
                 //check for draw = turns == 10
             } while (Running);
         }
 
-        private void CheckForHorizontalWin()
-        {
-            
-        }
 
-        private void Play()
+        private void RunPlay(Player player)
         {
-            _output.OutputText(string.Format(Prompts.TakeTurn, _player));
-      
-            _playerToken = _player switch
-            {
-                1 => "X",
-                2 => "O",
-                _ => _playerToken
-            };
+            _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
+            string playerMove;
             do
             {
-                _playerMove =_input.InputText();
+                playerMove =_input.InputText();
                 
-                if (_playerMove == "q")
+                if (playerMove == "q")
                 {
                     ExitApp();
                     break;
                 }
-                if (ValidCoordinates(_playerMove) ) // && board.IsUsed == false
+                if (ValidCoordinates(playerMove) ) // && board.IsUsed == false
                 {
-                    PlayMove();
+                    PlayMove(playerMove, player.Token);
                 }
                 else
                 {
                     _output.OutputText("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
                 }
-            } while (!ValidCoordinates(_playerMove));
+            } while (!ValidCoordinates(playerMove));
             
         }
 
-        private void PlayMove()
+        private void PlayMove(string playerMove, string playerToken)
         {
-            EstablishTokenCoordinates(_playerMove);
+            EstablishTokenCoordinates(playerMove, playerToken);
             _output.OutputText(Prompts.MoveAccepted);
             _board.PrintBoard();
         }
         
-        private void EstablishTokenCoordinates(string playerMove)
+        private void EstablishTokenCoordinates(string playerMove, string playerToken)
         {
             int parsedXCoordinate = 0;
             int parsedYCoordinate = 0;
@@ -109,7 +87,7 @@ namespace TicTacToe
             {
                 parsedYCoordinate =  yCoordinate - 1;
             }
-            _board.GetCellByCoordinates(parsedXCoordinate, parsedYCoordinate).Value = _playerToken;
+            _board.GetCellByCoordinates(parsedXCoordinate, parsedYCoordinate).Value = playerToken;
         }
         
         private static bool ValidCoordinates(string PlayerMove)

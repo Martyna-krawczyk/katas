@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TicTacToe;
 using Xunit;
 
@@ -11,7 +12,8 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new string[] {"4,5", "q"});
             var output = new TestOutput();
-            var runner = new AppRunner(input, output);
+            var players = new List<Player>() {new Player("Player 1", "X")};
+            var runner = new AppRunner(input, output, players);
 
             runner.Run();
             
@@ -25,11 +27,12 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new string[] { "q"});
             var output = new TestOutput();
-            var appRunner = new AppRunner(input, output);
+            var players = new List<Player>() {new Player("Player 1", "X")};
+            var runner = new AppRunner(input, output, players);
 
-            appRunner.Run();
+            runner.Run();
             
-            Assert.False(appRunner.Running);
+            Assert.False(runner.Running);
             Assert.Equal(1, input.CalledCount);
         }
     }
