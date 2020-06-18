@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace TicTacToe
 {
@@ -6,15 +7,22 @@ namespace TicTacToe
     {
         private Cell[,] _cell;
         private readonly IOutput _output;
-        public Board(IOutput output)
+        private int _boardSize;
+        private Coordinate _coordinate;
+        private readonly List<Player> _players;
+        public Board(IOutput output, int boardSize, Coordinate coordinate, List<Player> players)
         {
             _output = output;
+            _boardSize = boardSize;
+            _coordinate = coordinate;
+            _players = players;
             CreateBoard();
         }
         
         private void CreateBoard()
         {
-            _cell = new Cell[3, 3];
+            _boardSize = 3;
+            _cell = new Cell[_boardSize, _boardSize];
             for (var x = 0; x < 3; x++)
             {
                 for (var y = 0; y < 3; y++)
@@ -24,9 +32,14 @@ namespace TicTacToe
             }
         }
 
-        public Cell GetCellByCoordinates(int x, int y)
+        public Cell GetCellByCoordinates(Coordinate coordinate)
         {
-            return _cell[x, y];
+            return _cell[coordinate.X, coordinate.Y];
+        }
+        
+        private void AssignTokenToCell(Player player, Coordinate coordinate)
+        {
+            _cell[_coordinate.X, _coordinate.Y].Value = player.Token;
         }
         
         public void PrintBoard()

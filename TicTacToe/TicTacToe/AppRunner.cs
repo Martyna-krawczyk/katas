@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TicTacToe
@@ -7,6 +8,9 @@ namespace TicTacToe
     public class AppRunner : IAppRunner
     {
         private readonly Board _board;
+        private int _boardSize;
+        private Cell _cell;
+        private Coordinate _coordinate;
         public bool Running { get; set; } = true;
 
         private readonly List<Player> _players;
@@ -17,7 +21,8 @@ namespace TicTacToe
             _input = input;
             _output = output;
             _players = players;
-            _board = new Board(_output);
+            _board = new Board(_output, _boardSize, _coordinate, _players);
+            
         }
         
         public void Run()
@@ -65,30 +70,33 @@ namespace TicTacToe
 
         private void PlayMove(string playerMove, string playerToken)
         {
-            EstablishTokenCoordinates(playerMove, playerToken);
+            //EstablishTokenCoordinates(playerMove, playerToken);
+            CoordinateParser(playerMove, playerToken);
             _output.OutputText(Prompts.MoveAccepted);
             _board.PrintBoard();
         }
-        
-        private void EstablishTokenCoordinates(string playerMove, string playerToken)
-        {
-            int parsedXCoordinate = 0;
-            int parsedYCoordinate = 0;
-            var xInput = playerMove[0].ToString();
-            var yInput = playerMove[2].ToString();
 
-            if (short.TryParse(xInput, out var xCoordinate))
+        private void CoordinateParser(string playerMove, string playerToken)
+        {
+            var stringCoordinates = playerMove.Split(",");
+
+            var parsedXCoordinate = Convert.ToInt32(stringCoordinates[0]);
+            var parsedYCoordinate = Convert.ToInt32(stringCoordinates[1]);
+            var finalXCoordinate = parsedXCoordinate - 1;
+            var finalYCoordinate = parsedYCoordinate - 1;
+            //check coordinates are within the bounds of the board
+            if (finalXCoordinate <= _boardSize && finalXCoordinate > 0 
+                || finalYCoordinate <= _boardSize && finalYCoordinate > 0)
             {
-                parsedXCoordinate =  xCoordinate - 1;
+                var coordinate  = new Coordinate(finalXCoordinate,finalYCoordinate);
+                
             }
             
-            if (short.TryParse(yInput, out var yCoordinate))
-            {
-                parsedYCoordinate =  yCoordinate - 1;
-            }
-            _board.GetCellByCoordinates(parsedXCoordinate, parsedYCoordinate).Value = playerToken;
+            //_board.GetCellByCoordinates(finalXCoordinate, finalYCoordinate).Value = playerToken;
+            
+            //validate that the parsed x and y coordinates are within the bounds of the board
         }
-        
+
         private static bool ValidCoordinates(string PlayerMove)
         {
             var regex = new Regex(@"^[1-3],[1-3]$");

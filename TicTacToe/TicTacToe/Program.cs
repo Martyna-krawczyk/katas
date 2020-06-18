@@ -14,7 +14,7 @@ namespace TicTacToe
                 new Player("Player 1", "X"),
                 new Player("Player 2", "O")
             };
-            
+
             var runner = new AppRunner(input, output, players);
             
             runner.Run();
