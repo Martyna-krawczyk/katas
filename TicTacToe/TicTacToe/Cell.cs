@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TicTacToe
 {
     public class Cell
@@ -8,6 +10,5 @@ namespace TicTacToe
         }
         
         public string Value { get; set; }
-        
     }
 }
