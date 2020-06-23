@@ -8,7 +8,7 @@ namespace TicTacToe
         private Cell[,] _cell;
         private readonly IOutput _output;
         private int _boardSize;
-        private Coordinate _coordinate;
+        private readonly Coordinate _coordinate;
         private readonly List<Player> _players;
         public Board(IOutput output, int boardSize, Coordinate coordinate, List<Player> players)
         {
@@ -23,9 +23,9 @@ namespace TicTacToe
         {
             _boardSize = 3;
             _cell = new Cell[_boardSize, _boardSize];
-            for (var x = 0; x < 3; x++)
+            for (var x = 0; x < _boardSize; x++)
             {
-                for (var y = 0; y < 3; y++)
+                for (var y = 0; y < _boardSize; y++)
                 {
                     _cell[x, y] = new Cell(".");
                 }
@@ -44,9 +44,9 @@ namespace TicTacToe
         
         public void PrintBoard()
         {
-            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value));
-            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value));
-            _output.OutputText(String.Format(Prompts.BoardCoordinates,_cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
+            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value));
+            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value));
+            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
         }
     }
 }

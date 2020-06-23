@@ -70,7 +70,6 @@ namespace TicTacToe
 
         private void PlayMove(string playerMove, string playerToken)
         {
-            //EstablishTokenCoordinates(playerMove, playerToken);
             CoordinateParser(playerMove, playerToken);
             _output.OutputText(Prompts.MoveAccepted);
             _board.PrintBoard();
@@ -86,7 +85,7 @@ namespace TicTacToe
             var finalYCoordinate = parsedYCoordinate - 1;
             //check coordinates are within the bounds of the board
             if (finalXCoordinate <= _boardSize && finalXCoordinate > 0 
-                || finalYCoordinate <= _boardSize && finalYCoordinate > 0)
+                && finalYCoordinate <= _boardSize && finalYCoordinate > 0)
             {
                 var coordinate  = new Coordinate(finalXCoordinate,finalYCoordinate);
                 
