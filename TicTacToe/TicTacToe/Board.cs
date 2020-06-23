@@ -7,7 +7,7 @@ namespace TicTacToe
     {
         private Cell[,] _cell;
         private readonly IOutput _output;
-        private int _boardSize;
+        public int _boardSize;
         private readonly Coordinate _coordinate;
         private readonly List<Player> _players;
         public Board(IOutput output, int boardSize, Coordinate coordinate, List<Player> players)
@@ -37,9 +37,9 @@ namespace TicTacToe
             return _cell[coordinate.X, coordinate.Y];
         }
         
-        private void AssignTokenToCell(Player player, Coordinate coordinate)
+        public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
-            _cell[_coordinate.X, _coordinate.Y].Value = player.Token;
+            _cell[coordinate.X, coordinate.Y].Value = player.Token;
         }
         
         public void PrintBoard()

@@ -8,7 +8,7 @@ namespace TicTacToe
     public class AppRunner : IAppRunner
     {
         private readonly Board _board;
-        private int _boardSize;
+        public int _boardSize;
         private Cell _cell;
         private Coordinate _coordinate;
         public bool Running { get; set; } = true;
@@ -16,13 +16,13 @@ namespace TicTacToe
         private readonly List<Player> _players;
         private readonly IInput _input;
         private readonly IOutput _output;
+
         public AppRunner(IInput input, IOutput output, List<Player> players)
         {
             _input = input;
             _output = output;
             _players = players;
             _board = new Board(_output, _boardSize, _coordinate, _players);
-            
         }
         
         public void Run()
@@ -58,7 +58,7 @@ namespace TicTacToe
                 }
                 if (ValidCoordinates(playerMove) ) // && board.IsUsed == false
                 {
-                    PlayMove(playerMove, player.Token);
+                    PlayMove(playerMove, player, _coordinate);
                 }
                 else
                 {
@@ -68,34 +68,37 @@ namespace TicTacToe
             
         }
 
-        private void PlayMove(string playerMove, string playerToken)
+        private void PlayMove(string playerMove, Player player, Coordinate coordinate)
         {
-            CoordinateParser(playerMove, playerToken);
+            CoordinateParser(playerMove, player, coordinate);
+            // _board.GetCellByCoordinates(_coordinate);
+            // _board.AssignTokenToCell(player, _coordinate);
             _output.OutputText(Prompts.MoveAccepted);
             _board.PrintBoard();
         }
 
-        private void CoordinateParser(string playerMove, string playerToken)
+        private void CoordinateParser(string playerMove, Player player, Coordinate coordinate)
         {
+            
             var stringCoordinates = playerMove.Split(",");
-
             var parsedXCoordinate = Convert.ToInt32(stringCoordinates[0]);
             var parsedYCoordinate = Convert.ToInt32(stringCoordinates[1]);
             var finalXCoordinate = parsedXCoordinate - 1;
             var finalYCoordinate = parsedYCoordinate - 1;
             //check coordinates are within the bounds of the board
-            if (finalXCoordinate <= _boardSize && finalXCoordinate > 0 
-                && finalYCoordinate <= _boardSize && finalYCoordinate > 0)
+            Coordinate data = new Coordinate(finalXCoordinate,finalYCoordinate);
+            if (finalXCoordinate <= _board._boardSize && finalXCoordinate > 0 
+                                                      && finalYCoordinate <= _board._boardSize && finalYCoordinate > 0)
             {
-                var coordinate  = new Coordinate(finalXCoordinate,finalYCoordinate);
+               data  = new Coordinate(finalXCoordinate,finalYCoordinate);
                 
             }
             
-            //_board.GetCellByCoordinates(finalXCoordinate, finalYCoordinate).Value = playerToken;
-            
+            _board.GetCellByCoordinates(data).Value = player.Token;
+            //_board.AssignTokenToCell(_player);
             //validate that the parsed x and y coordinates are within the bounds of the board
         }
-
+        
         private static bool ValidCoordinates(string PlayerMove)
         {
             var regex = new Regex(@"^[1-3],[1-3]$");
