@@ -13,7 +13,8 @@ namespace TicTacToeTests
             var input = new TestInput(new string[] {"4,5", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var runner = new AppRunner(input, output, players);
+            var board = new Board(output);
+            var runner = new AppRunner(input, output, players, board);
 
             runner.Run();
             
@@ -28,7 +29,8 @@ namespace TicTacToeTests
             var input = new TestInput(new string[] {"q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var runner = new AppRunner(input, output, players);
+            var board = new Board(output);
+            var runner = new AppRunner(input, output, players, board);
 
             runner.Run();
             

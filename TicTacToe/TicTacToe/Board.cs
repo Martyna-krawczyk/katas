@@ -6,28 +6,27 @@ namespace TicTacToe
     public class Board
     {
         private Cell[,] _cell;
+        private List<Cell> _cellList = new List<Cell>();
         private readonly IOutput _output;
-        public int _boardSize;
-        private readonly Coordinate _coordinate;
-        private readonly List<Player> _players;
-        public Board(IOutput output, int boardSize, Coordinate coordinate, List<Player> players)
+        public int BoardSize;
+        
+        public Board(IOutput output )
         {
             _output = output;
-            _boardSize = boardSize;
-            _coordinate = coordinate;
-            _players = players;
+            
             CreateBoard();
         }
         
         private void CreateBoard()
         {
-            _boardSize = 3;
-            _cell = new Cell[_boardSize, _boardSize];
-            for (var x = 0; x < _boardSize; x++)
+            BoardSize = 3;
+            _cell = new Cell[BoardSize, BoardSize];
+            for (var x = 0; x < BoardSize; x++)
             {
-                for (var y = 0; y < _boardSize; y++)
+                for (var y = 0; y < BoardSize; y++)
                 {
                     _cell[x, y] = new Cell(".");
+                    _cellList.Add(_cell[x,y]); //this list might aid in winning logic
                 }
             }
         }
@@ -39,8 +38,14 @@ namespace TicTacToe
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
-            _cell[coordinate.X, coordinate.Y].Value = player.Token;
+            GetCellByCoordinates(coordinate).Value = player.Token;
         }
+        
+        // private bool IsValidCoordinate(_coordinates)
+        // {
+        //     return finalXCoordinate <= BoardSize && finalXCoordinate > 0 
+        //                                                 && finalYCoordinate <= BoardSize && finalYCoordinate > 0;
+        // }
         
         public void PrintBoard()
         {
