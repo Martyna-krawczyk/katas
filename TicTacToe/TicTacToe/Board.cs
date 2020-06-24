@@ -41,11 +41,10 @@ namespace TicTacToe
             GetCellByCoordinates(coordinate).Value = player.Token;
         }
         
-        // private bool IsValidCoordinate(_coordinates)
-        // {
-        //     return finalXCoordinate <= BoardSize && finalXCoordinate > 0 
-        //                                                 && finalYCoordinate <= BoardSize && finalYCoordinate > 0;
-        // }
+        public bool IsValidCoordinate(Coordinate coordinate)
+        {
+            return coordinate.X <= BoardSize && coordinate.X >= 0 && coordinate.Y <= BoardSize && coordinate.Y >= 0;
+        }
         
         public void PrintBoard()
         {

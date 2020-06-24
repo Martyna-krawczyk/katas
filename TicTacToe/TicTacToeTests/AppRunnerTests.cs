@@ -18,7 +18,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.Contains("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
+            Assert.Contains("Sorry - that coordinate is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
             Assert.Equal(2, input.CalledCount);
         }
         

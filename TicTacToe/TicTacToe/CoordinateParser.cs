@@ -13,6 +13,5 @@ namespace TicTacToe
              var finalYCoordinate = parsedYCoordinate - 1;
              return new Coordinate(finalXCoordinate,finalYCoordinate);
          }
-        
     }
 }

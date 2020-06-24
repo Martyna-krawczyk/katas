@@ -8,7 +8,7 @@ namespace TicTacToe
     public class AppRunner : IAppRunner
     {
         public bool Running { get; set; } = true;
-
+        private Coordinate _coordinate;
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
@@ -43,11 +43,11 @@ namespace TicTacToe
 
         private void RunPlay(Player player)
         {
+            var playerMove = "";
             _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
-            string playerMove;
             do
             {
-                playerMove =_input.InputText();
+                playerMove = _input.InputText();
                 
                 if (playerMove == "q")
                 {
@@ -55,18 +55,17 @@ namespace TicTacToe
                     break;
                 }
 
-                var coordinate = _coordinateParser.GetCoordinates(playerMove);
-                PlayMove(player, coordinate);
-                //
-                // if (ValidCoordinates(playerMove) ) // && board.IsUsed == false
-                // {
-                //     PlayMove(playerMove, player, _coordinate);
-                // }
-                // else
-                // {
-                //     _output.OutputText("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
-                // }
-            } while (!ValidCoordinates(playerMove));
+                _coordinate = _coordinateParser.GetCoordinates(playerMove);
+
+                if (_board.IsValidCoordinate(_coordinate)) // && board.IsUsed == false
+                {
+                    PlayMove(player, _coordinate);
+                }
+                else
+                {
+                    _output.OutputText("Sorry - that coordinate is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                }
+            } while (!_board.IsValidCoordinate(_coordinate));
             
         }
 
@@ -77,10 +76,10 @@ namespace TicTacToe
             _board.PrintBoard();
         }
 
-        private static bool ValidCoordinates(string PlayerMove)
+        private static bool IsValidFormat(string playerMove)
         {
-            var regex = new Regex(@"^[1-3],[1-3]$");
-            return regex.IsMatch(PlayerMove);
+            var regex = new Regex(@"^\d,\d$");
+            return regex.IsMatch(playerMove);
         }
 
         private void ExitApp()
