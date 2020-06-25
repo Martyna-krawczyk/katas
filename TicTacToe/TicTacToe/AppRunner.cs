@@ -12,9 +12,9 @@ namespace TicTacToe
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
-        private readonly Board _board;
+        private readonly IBoard _board;
         private readonly CoordinateParser _coordinateParser;
-        public AppRunner(IInput input, IOutput output, List<Player> players, Board board)
+        public AppRunner(IInput input, IOutput output, List<Player> players, IBoard board)
         {
             _input = input;
             _output = output;
@@ -43,11 +43,10 @@ namespace TicTacToe
 
         private void RunPlay(Player player)
         {
-            var playerMove = "";
             _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
             do
             {
-                playerMove = _input.InputText();
+                var playerMove = _input.InputText();
                 
                 if (playerMove == "q")
                 {
