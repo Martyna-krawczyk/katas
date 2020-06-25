@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TicTacToe
 {
-    public class Board
+    public class Board : IBoard
     {
         private Cell[,] _cell;
         private List<Cell> _cellList = new List<Cell>();
@@ -31,7 +31,7 @@ namespace TicTacToe
             }
         }
 
-        public Cell GetCellByCoordinates(Coordinate coordinate)
+        private Cell GetCellByCoordinates(Coordinate coordinate)
         {
             return _cell[coordinate.X, coordinate.Y];
         }
@@ -39,11 +39,13 @@ namespace TicTacToe
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCellByCoordinates(coordinate).Value = player.Token;
+            //record player move
         }
         
         public bool IsValidCoordinate(Coordinate coordinate)
         {
             return coordinate.X <= BoardSize && coordinate.X >= 0 && coordinate.Y <= BoardSize && coordinate.Y >= 0;
+            //currently there is no exception handling for wrong format input
         }
         
         public void PrintBoard()
