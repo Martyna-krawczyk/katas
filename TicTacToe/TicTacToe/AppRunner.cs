@@ -54,17 +54,25 @@ namespace TicTacToe
                     break;
                 }
 
-                _coordinate = _coordinateParser.GetCoordinates(playerMove);
-
-                if (_board.IsValidCoordinate(_coordinate)) // && board.IsUsed == false
+                if (IsValidFormat(playerMove))
                 {
-                    PlayMove(player, _coordinate);
+                    _coordinate = _coordinateParser.GetCoordinates(playerMove);
                 }
                 else
                 {
-                    _output.OutputText("Sorry - that coordinate is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                    _output.OutputText("Sorry - that format is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:");
                 }
-            } while (!_board.IsValidCoordinate(_coordinate));
+                
+                if (_board.IsValidCoordinate(_coordinate) && _board.CellIsAvailable(_coordinate))
+                {
+                    PlayMove(player, _coordinate);
+                    break;
+                }
+                else
+                {
+                    _output.OutputText("Sorry - that cell is not available, or the coordinates are outside the bounds. Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                }
+            } while (true);
             
         }
 

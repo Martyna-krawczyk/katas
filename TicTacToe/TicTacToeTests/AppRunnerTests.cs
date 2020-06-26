@@ -8,17 +8,32 @@ namespace TicTacToeTests
     public class AppRunnerTests
     {
         [Fact]
-        public void InvalidInputReturnsNotification()
+        public void CellOutsideOfBoardBounds_ReturnsNotification()
         {
             var input = new TestInput(new string[] {"4,5", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new TestBoard(output);
+            var board = new TestBoard(new bool[] {false}, new bool[]{});
             var runner = new AppRunner(input, output, players, board);
 
             runner.Run();
             
-            Assert.Contains("Sorry - that coordinate is incorrect. Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
+            Assert.Contains("Sorry - that cell is not available, or the coordinates are outside the bounds. Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
+            Assert.Equal(2, input.CalledCount);
+        }
+        
+        [Fact]
+        public void CellAlreadyUsed_ReturnsNotification()
+        {
+            var input = new TestInput(new string[] {"1,3", "q"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X")};
+            var board = new TestBoard(new bool[] {true}, new bool[]{false});
+            var runner = new AppRunner(input, output, players, board);
+
+            runner.Run();
+            
+            Assert.Contains("Sorry - that cell is not available, or the coordinates are outside the bounds. Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
             Assert.Equal(2, input.CalledCount);
         }
         
@@ -37,5 +52,20 @@ namespace TicTacToeTests
             Assert.False(runner.Running);
             Assert.Equal(1, input.CalledCount);
         }
+        
+        // [Fact]
+        // public void PlayMoveCalledWithValidCoordinateInput() 
+        // {
+        //     var input = new TestInput(new string[] {"1,1", "q"});
+        //     var output = new TestOutput();
+        //     var players = new List<Player>() {new Player("Player 1", "X")};
+        //     var board = new TestBoard(new bool[] {true}, new bool[]{true});
+        //     var runner = new AppRunner(input, output, players, board);
+        //
+        //     runner.Run();
+        //     
+        //     Assert.Equal();
+        //     Assert.Equal(1, input.CalledCount);
+        // }
     }
 }

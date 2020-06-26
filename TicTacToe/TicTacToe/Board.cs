@@ -39,6 +39,7 @@ namespace TicTacToe
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCellByCoordinates(coordinate).Value = player.Token;
+            MarkCellAsUsed(coordinate);
             //record player move
         }
         
@@ -46,6 +47,16 @@ namespace TicTacToe
         {
             return coordinate.X <= BoardSize && coordinate.X >= 0 && coordinate.Y <= BoardSize && coordinate.Y >= 0;
             //currently there is no exception handling for wrong format input
+        }
+
+        private void MarkCellAsUsed(Coordinate coordinate)
+        {
+            GetCellByCoordinates(coordinate).IsUsed = true;
+        }
+        
+        public bool CellIsAvailable(Coordinate coordinate)
+        {
+            return !GetCellByCoordinates(coordinate).IsUsed;
         }
         
         public void PrintBoard()
