@@ -56,7 +56,7 @@ namespace TicTacToe
         
         public bool CellIsAvailable(Coordinate coordinate)
         {
-            return !GetCellByCoordinates(coordinate).IsAvailable;
+            return GetCellByCoordinates(coordinate).IsAvailable;
         }
         
         public void PrintBoard()
