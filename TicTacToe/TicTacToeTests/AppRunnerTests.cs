@@ -68,8 +68,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.DoesNotContain("Sorry - that format is incorrect. " +
-                                  "Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
+            Assert.DoesNotContain("Sorry - that format is incorrect! Try again...", output.CalledText);
         }
         
         [Fact]
@@ -83,8 +82,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.Contains("Sorry - that format is incorrect. " +
-                                  "Enter x ,y coordinates between 1-3 or 'q' to quit:", output.CalledText);
+            Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
             Assert.Equal(-1, board.CalledCount);
         }
     }

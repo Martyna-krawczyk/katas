@@ -74,5 +74,11 @@ namespace TicTacToe {
                 return ResourceManager.GetString("MoveAccepted", resourceCulture);
             }
         }
+        
+        internal static string IncorrectFormat {
+            get {
+                return ResourceManager.GetString("IncorrectFormat", resourceCulture);
+            }
+        }
     }
 }

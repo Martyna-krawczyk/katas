@@ -60,8 +60,8 @@ namespace TicTacToe
                 }
                 else
                 {
-                    _output.OutputText("Sorry - that format is incorrect. " +
-                                       "Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                    _output.OutputText(Prompts.IncorrectFormat);
+                    _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
                     continue;
                 }
                 
@@ -70,7 +70,7 @@ namespace TicTacToe
                 {
                     PlayMove(player, _coordinate);
                     break;
-                }
+                }//Oh no, a piece is already at this place! Try again...
                 _output.OutputText("Sorry - that cell is not available, or the coordinates are outside the bounds. " +
                                    "Enter x ,y coordinates between 1-3 or 'q' to quit:");
             } while (true);

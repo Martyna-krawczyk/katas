@@ -34,4 +34,7 @@
     <data name="MoveAccepted" xml:space="preserve">
         <value>Move accepted, here's the current board:</value>
     </data>
+    <data name="IncorrectFormat" xml:space="preserve">
+        <value>Sorry - that format is incorrect! Try again...</value>
+    </data>
 </root>
