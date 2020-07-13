@@ -80,5 +80,17 @@ namespace TicTacToe {
                 return ResourceManager.GetString("IncorrectFormat", resourceCulture);
             }
         }
+        
+        internal static string CellUnavailable {
+            get {
+                return ResourceManager.GetString("CellUnavailable", resourceCulture);
+            }
+        }
+        
+        internal static string OutsideOfBounds {
+            get {
+                return ResourceManager.GetString("OutsideOfBounds", resourceCulture);
+            }
+        }
     }
 }

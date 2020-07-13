@@ -37,4 +37,10 @@
     <data name="IncorrectFormat" xml:space="preserve">
         <value>Sorry - that format is incorrect! Try again...</value>
     </data>
+    <data name="CellUnavailable" xml:space="preserve">
+        <value>Oh no, a piece is already at this place! Try again...</value>
+    </data>
+    <data name="OutsideOfBounds" xml:space="preserve">
+        <value>Oh no, those coordinates are outside the bounds of this board. Try again...</value>
+    </data>
 </root>

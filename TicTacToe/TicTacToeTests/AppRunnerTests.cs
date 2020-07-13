@@ -18,9 +18,7 @@ namespace TicTacToeTests
 
             runner.Run();
 
-            Assert.Contains(
-                "Sorry - that cell is not available, or the coordinates are outside the bounds. Enter x ,y coordinates between 1-3 or 'q' to quit:",
-                output.CalledText);
+            Assert.Contains("Oh no, those coordinates are outside the bounds of this board. Try again...", output.CalledText);
             Assert.Equal(2, input.CalledCount);
         }
 
@@ -36,8 +34,7 @@ namespace TicTacToeTests
             runner.Run();
 
             Assert.Contains(
-                "Sorry - that cell is not available, or the coordinates are outside the bounds. Enter x ,y coordinates between 1-3 or 'q' to quit:",
-                output.CalledText);
+                "Oh no, a piece is already at this place! Try again...", output.CalledText);
             Assert.Equal(2, input.CalledCount);
         }
 
@@ -69,6 +66,7 @@ namespace TicTacToeTests
             runner.Run();
             
             Assert.DoesNotContain("Sorry - that format is incorrect! Try again...", output.CalledText);
+            Assert.Equal(0, board.CalledCount);
         }
         
         [Fact]

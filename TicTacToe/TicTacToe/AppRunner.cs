@@ -65,14 +65,20 @@ namespace TicTacToe
                     continue;
                 }
                 
-                
-                if (_board.IsValidCoordinate(_coordinate) && _board.CellIsAvailable(_coordinate))
+                if (_board.IsValidCoordinate(_coordinate))
                 {
-                    PlayMove(player, _coordinate);
-                    break;
-                }//Oh no, a piece is already at this place! Try again...
-                _output.OutputText("Sorry - that cell is not available, or the coordinates are outside the bounds. " +
-                                   "Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                    if (_board.CellIsAvailable(_coordinate))
+                    {
+                        PlayMove(player, _coordinate);
+                        break;
+                    }
+                    _output.OutputText(string.Format(Prompts.CellUnavailable)); 
+                }
+                else
+                {
+                    _output.OutputText(string.Format(Prompts.OutsideOfBounds));
+                }
+                _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
             } while (true);
         }
 
