@@ -2,7 +2,7 @@ using System;
 
 namespace TicTacToe
 {
-    public class CoordinateParser
+    public class CoordinateParser : ICoordinateParser
     {
         public Coordinate GetCoordinates(string playerMove)
          {
