@@ -4,13 +4,13 @@ namespace TicTacToe
 {
     public class Cell
     {
-        public Cell(string value, bool isUsed = false) // add IsUsed = false property
+        public Cell(string value, bool isAvailable = true) 
         {
             Value = value;
-            IsUsed = isUsed;
+            IsAvailable = isAvailable;
         }
 
-        public bool IsUsed { get; set; }
+        public bool IsAvailable { get; set; }
 
         public string Value { get; set; }
     }

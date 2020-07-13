@@ -45,18 +45,18 @@ namespace TicTacToe
         
         public bool IsValidCoordinate(Coordinate coordinate)
         {
-            return coordinate.X <= BoardSize && coordinate.X >= 0 && coordinate.Y <= BoardSize && coordinate.Y >= 0;
+            return coordinate.X < BoardSize && coordinate.X >= 0 && coordinate.Y < BoardSize && coordinate.Y >= 0;
             //currently there is no exception handling for wrong format input
         }
 
         private void MarkCellAsUsed(Coordinate coordinate)
         {
-            GetCellByCoordinates(coordinate).IsUsed = true;
+            GetCellByCoordinates(coordinate).IsAvailable = false;
         }
         
         public bool CellIsAvailable(Coordinate coordinate)
         {
-            return !GetCellByCoordinates(coordinate).IsUsed;
+            return !GetCellByCoordinates(coordinate).IsAvailable;
         }
         
         public void PrintBoard()
