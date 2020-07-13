@@ -62,7 +62,9 @@ namespace TicTacToe
                 {
                     _output.OutputText("Sorry - that format is incorrect. " +
                                        "Enter x ,y coordinates between 1-3 or 'q' to quit:");
+                    continue;
                 }
+                
                 
                 if (_board.IsValidCoordinate(_coordinate) && _board.CellIsAvailable(_coordinate))
                 {
