@@ -7,7 +7,7 @@ namespace TicTacToeTests
     {
         private readonly bool[] _validCoordinateResults;
         private readonly bool[] _cellAvailableResults;
-        private int CalledCount { get; set; } = -1;
+        public int CalledCount { get; set; } = -1;
         public TestBoard(bool[] validCoordinateResults, bool[] cellAvailableResults)
         {
             _validCoordinateResults = validCoordinateResults;
