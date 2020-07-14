@@ -7,9 +7,8 @@ namespace TicTacToe
     public class Board : IBoard
     {
         private Cell[,] _cell;
-        private readonly List<Cell> _cellList = new List<Cell>();
         private readonly IOutput _output;
-        public int BoardSize;
+        private int _boardSize;
         
         public Board(IOutput output )
         {
@@ -20,14 +19,13 @@ namespace TicTacToe
         
         private void CreateBoard()
         {
-            BoardSize = 3;
-            _cell = new Cell[BoardSize, BoardSize];
-            for (var x = 0; x < BoardSize; x++)
+            _boardSize = 3;
+            _cell = new Cell[_boardSize, _boardSize];
+            for (var x = 0; x < _boardSize; x++)
             {
-                for (var y = 0; y < BoardSize; y++)
+                for (var y = 0; y < _boardSize; y++)
                 {
                     _cell[x, y] = new Cell(".");
-                    _cellList.Add(_cell[x,y]); //this list might aid in winning logic
                 }
             }
         }
@@ -36,12 +34,11 @@ namespace TicTacToe
         {
             GetCellByCoordinates(coordinate).Value = player.Token;
             MarkCellAsUsed(coordinate);
-            //record player move
         }
         
         public bool IsValidCoordinate(Coordinate coordinate)
         {
-            return coordinate.X < BoardSize && coordinate.X >= 0 && coordinate.Y < BoardSize && coordinate.Y >= 0;
+            return coordinate.X < _boardSize && coordinate.X >= 0 && coordinate.Y < _boardSize && coordinate.Y >= 0;
         }
 
         private void MarkCellAsUsed(Coordinate coordinate)
