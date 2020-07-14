@@ -9,6 +9,7 @@ namespace TicTacToe
     {
         public bool Running { get; set; } = true;
         private Coordinate _coordinate;
+        private Cell _cell;
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
@@ -54,7 +55,7 @@ namespace TicTacToe
                     break;
                 }
 
-                if (IsValidFormat(playerMove))
+                if (CoordinateParser.IsValidFormat(playerMove))
                 {
                     _coordinate = _coordinateParser.GetCoordinates(playerMove);
                 }
@@ -89,11 +90,7 @@ namespace TicTacToe
             _board.PrintBoard();
         }
 
-        private static bool IsValidFormat(string playerMove)
-        {
-            var regex = new Regex(@"^\d,\d$");
-            return regex.IsMatch(playerMove);
-        }
+       
 
         private void ExitApp()
         {

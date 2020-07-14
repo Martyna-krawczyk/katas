@@ -83,5 +83,19 @@ namespace TicTacToeTests
             Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
             Assert.Equal(-1, board.CalledCount);
         }
+        
+        [Fact]
+        public void BoardPrintsWithCorrectCoordinates()
+        {
+            var input = new TestInput(new string[] {"1,1", "q"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X")};
+            var board = new Board(output);
+            var runner = new AppRunner(input, output, players, board);
+
+            runner.Run();
+            
+            Assert.Contains("X . .\n. . .\n. . .", output.CalledText);
+        }
     }
 }
