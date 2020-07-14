@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TicTacToe
 {
     public class Board : IBoard
     {
         private Cell[,] _cell;
-        private List<Cell> _cellList = new List<Cell>();
+        private readonly List<Cell> _cellList = new List<Cell>();
         private readonly IOutput _output;
         public int BoardSize;
         
@@ -30,11 +31,6 @@ namespace TicTacToe
                 }
             }
         }
-
-        private Cell GetCellByCoordinates(Coordinate coordinate)
-        {
-            return _cell[coordinate.X, coordinate.Y];
-        }
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
@@ -46,7 +42,6 @@ namespace TicTacToe
         public bool IsValidCoordinate(Coordinate coordinate)
         {
             return coordinate.X < BoardSize && coordinate.X >= 0 && coordinate.Y < BoardSize && coordinate.Y >= 0;
-            //currently there is no exception handling for wrong format input
         }
 
         private void MarkCellAsUsed(Coordinate coordinate)
@@ -59,11 +54,19 @@ namespace TicTacToe
             return GetCellByCoordinates(coordinate).IsAvailable;
         }
         
+        private Cell GetCellByCoordinates(Coordinate coordinate)
+        {
+            return _cell[coordinate.X, coordinate.Y];
+        }
+        
         public void PrintBoard()
         {
-            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value));
-            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value));
-            _output.OutputText(string.Format(Prompts.BoardCoordinates,_cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
+            _output.OutputText(
+                string.Format(Prompts.BoardCoordinates, _cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value) 
+                + Environment.NewLine 
+                + string.Format(Prompts.BoardCoordinates, _cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value) 
+                + Environment.NewLine 
+                + string.Format(Prompts.BoardCoordinates, _cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
         }
     }
 }

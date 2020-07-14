@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace TicTacToe
 {
@@ -14,6 +15,11 @@ namespace TicTacToe
              return new Coordinate(finalXCoordinate,finalYCoordinate);
          }
         
+        public static bool IsValidFormat(string playerMove)
+        {
+            var regex = new Regex(@"^\d,\d$");
+            return regex.IsMatch(playerMove);
+        }
         
     }
 }

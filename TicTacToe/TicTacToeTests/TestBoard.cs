@@ -16,7 +16,7 @@ namespace TicTacToeTests
 
         public void PrintBoard()
         {
-            
+           
         }
 
         public bool IsValidCoordinate(Coordinate coordinate)
