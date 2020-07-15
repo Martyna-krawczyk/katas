@@ -43,4 +43,7 @@
     <data name="OutsideOfBounds" xml:space="preserve">
         <value>Oh no, those coordinates are outside the bounds of this board. Try again...</value>
     </data>
+    <data name="Draw" xml:space="preserve">
+        <value>It's a draw!</value>
+    </data>
 </root>
