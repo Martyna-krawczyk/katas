@@ -97,5 +97,21 @@ namespace TicTacToeTests
             
             Assert.Contains("X . .\n. . .\n. . .", output.CalledText);
         }
+        
+        [Fact]
+        public void DrawRegisteredAfterNineTurnsWithoutWin()
+        {
+            var input = new TestInput(new string[] {"1,1", "1,2", "1,3", "2,1", "2,2", "2,3", "3,1", "3,2", "3,3"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var board = new Board(output);
+            var runner = new AppRunner(input, output, players, board);
+
+            runner.Run();
+            
+            Assert.Contains("It's a draw!", output.CalledText);
+            Assert.Equal(9, input.CalledCount);
+        }
+        
     }
 }
