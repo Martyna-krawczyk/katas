@@ -92,5 +92,11 @@ namespace TicTacToe {
                 return ResourceManager.GetString("OutsideOfBounds", resourceCulture);
             }
         }
+        
+        internal static string Draw {
+            get {
+                return ResourceManager.GetString("Draw", resourceCulture);
+            }
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace TicTacToe
                 RunPlay(player);
                 turns++;
                 //Check for wins - horizontal, vertical, diagonal
+                //
                 if (IsDraw(turns)) break;
             } while (Running);
         }
@@ -45,7 +46,7 @@ namespace TicTacToe
         {
             if (turns == 9) //And no win
             {
-                _output.OutputText("It's a draw!");
+                _output.OutputText(Prompts.Draw);
                 ExitApp();
                 return true;
             }
