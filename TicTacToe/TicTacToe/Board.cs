@@ -8,26 +8,40 @@ namespace TicTacToe
     {
         private Cell[,] _cell;
         private readonly IOutput _output;
-        private int _boardSize;
+        public int Size { get; set; }
+        private List<string> cellList;
+       
         
-        public Board(IOutput output )
+        public Board(IOutput output, int size)
         {
             _output = output;
-            
+            Size = size;
             CreateBoard();
         }
         
         private void CreateBoard()
         {
-            _boardSize = 3;
-            _cell = new Cell[_boardSize, _boardSize];
-            for (var x = 0; x < _boardSize; x++)
+            _cell = new Cell[Size, Size];
+            for (var x = 0; x < Size; x++)
             {
-                for (var y = 0; y < _boardSize; y++)
+                for (var y = 0; y < Size; y++)
                 {
                     _cell[x, y] = new Cell(".");
                 }
             }
+        }
+        
+        public string GetBoardCellValues(Coordinate coordinate)
+        {
+            var value = "";
+            for (var x = 0; x < Size; x++)
+            {
+                for (var y = 0; y < Size; y++)
+                {
+                    cellList.Add(GetCellByCoordinates(coordinate).Value);
+                }
+            }
+            return value;
         }
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
@@ -38,7 +52,7 @@ namespace TicTacToe
         
         public bool IsValidCoordinate(Coordinate coordinate)
         {
-            return coordinate.X < _boardSize && coordinate.X >= 0 && coordinate.Y < _boardSize && coordinate.Y >= 0;
+            return coordinate.X < Size && coordinate.X >= 0 && coordinate.Y < Size && coordinate.Y >= 0;
         }
 
         private void MarkCellAsUsed(Coordinate coordinate)
@@ -51,10 +65,15 @@ namespace TicTacToe
             return GetCellByCoordinates(coordinate).IsAvailable;
         }
         
-        private Cell GetCellByCoordinates(Coordinate coordinate)
+        public Cell GetCellByCoordinates(Coordinate coordinate)
         {
             return _cell[coordinate.X, coordinate.Y];
         }
+
+        // public string GetCellValueByCoordinate(Coordinate coordinate)
+        // {
+        //     return GetCellByCoordinates(coordinate).Value; //Could this be a better way to print Board?!!
+        // }
         
         public void PrintBoard()
         {

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace TicTacToeTests
 {
-    public class AppRunnerTests
+    public class GameTests
     {
         [Fact]
         public void CellOutsideOfBoardBounds_ReturnsNotification()
@@ -14,7 +14,8 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {false}, new bool[] { });
-            var runner = new AppRunner(input, output, players, board);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
 
@@ -29,7 +30,8 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {true}, new bool[] {false});
-            var runner = new AppRunner(input, output, players, board);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
 
@@ -45,8 +47,9 @@ namespace TicTacToeTests
             var input = new TestInput(new string[] {"q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new Board(output);
-            var runner = new AppRunner(input, output, players, board);
+            var board = new Board(output, 3);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
 
@@ -61,7 +64,8 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {true}, new bool[] {false});
-            var runner = new AppRunner(input, output, players, board);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
             
@@ -76,7 +80,8 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {false}, new bool[] {false});
-            var runner = new AppRunner(input, output, players, board);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
             
@@ -90,8 +95,9 @@ namespace TicTacToeTests
             var input = new TestInput(new string[] {"1,1", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new Board(output);
-            var runner = new AppRunner(input, output, players, board);
+            var board = new Board(output, 3);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
             
@@ -104,8 +110,9 @@ namespace TicTacToeTests
             var input = new TestInput(new string[] {"1,1", "1,2", "1,3", "2,1", "2,2", "2,3", "3,1", "3,2", "3,3"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
-            var board = new Board(output);
-            var runner = new AppRunner(input, output, players, board);
+            var board = new Board(output, 3);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
 
             runner.Run();
             
@@ -113,5 +120,37 @@ namespace TicTacToeTests
             Assert.Equal(9, input.CalledCount);
         }
         
+        [Fact]
+        public void HorizontalWinCallsExitApp()
+        {
+            var input = new TestInput(new string[] {"1,1", "2,2", "1,2", "3,1", "1,3"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var board = new Board(output, 3);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
+
+            runner.Run();
+            
+            Assert.False(runner.Running);
+            Assert.Equal(5, input.CalledCount);
+        } 
+        
+        // [Fact]
+        //  public void HorizontalWinReturnsTrue()
+        //  {
+        //      //List<string> boardValues = new List<string>();
+        //      var output = new TestOutput();
+        //      var board = new Board(output, 3);
+        //      var player = new Player("Player 1", "X");
+        //      board.AssignTokenToCell(player, new Coordinate(0,0));
+        //      board.AssignTokenToCell(player, new Coordinate(1,0));
+        //      board.AssignTokenToCell(player, new Coordinate(2,0));
+        //      var winMonitor = new WinConditionRuleChecker(board, new List<string>);
+        //
+        //      var result = winMonitor.HasWin(player, new Coordinate(0,0));
+        //      
+        //      Assert.True(result);
+        //  }
     }
 }

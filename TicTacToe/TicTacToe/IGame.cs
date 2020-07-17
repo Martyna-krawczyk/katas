@@ -1,6 +1,6 @@
 namespace TicTacToe
 {
-    public interface IAppRunner
+    public interface IGame
     {
         
     }
