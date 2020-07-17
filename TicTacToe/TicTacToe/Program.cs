@@ -14,8 +14,9 @@ namespace TicTacToe
                 new Player("Player 1", "X"),
                 new Player("Player 2", "O")
             };
-            var board = new Board(output);
-            var runner = new AppRunner(input, output, players, board);
+            var board = new Board(output, 3);
+            List<string> cellList = new List<string>();
+            var runner = new Game(input, output, players, board, cellList);
             
             runner.Run();
         }
