@@ -4,18 +4,17 @@ namespace TicTacToeTests
 {
     public class TestInput : IInput
     {
-        public int CalledCount { get; set; }
-        private string[] _inputs { get; set; }
+        public int CalledCount { get; private set; }
+        public string[] Inputs { get; set; }
         
         public TestInput(string[] inputs)
         {
-            _inputs = inputs;
+            Inputs = inputs;
         }
         
         public string InputText()
         {
-            return _inputs[CalledCount++];
+            return Inputs[CalledCount++];
         }
-        
     }
 }

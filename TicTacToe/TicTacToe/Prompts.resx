@@ -46,4 +46,7 @@
     <data name="Draw" xml:space="preserve">
         <value>It's a draw!</value>
     </data>
+    <data name="YouHaveWon" xml:space="preserve">
+        <value>Congratulations {0}! You have won!</value>
+    </data>
 </root>

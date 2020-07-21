@@ -11,7 +11,5 @@ namespace TicTacToeTests
         {
             CalledText.Add(text);
         }
-        
-        
     }
 }

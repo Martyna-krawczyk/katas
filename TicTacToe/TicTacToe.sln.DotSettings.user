@@ -25,7 +25,7 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d081fbf6_002De109_002D49f5_002Da430_002Da545cb22ac60/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="InvalidInputReturnsNotification" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.AppRunnerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.GameTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

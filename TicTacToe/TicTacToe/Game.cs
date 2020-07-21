@@ -7,30 +7,28 @@ namespace TicTacToe
 {
     public class Game : IGame
     {
-        public bool Running { get; set; } = true;
+        public bool Running { get; private set; } = true;
         private Coordinate _coordinate;
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly CoordinateParser _coordinateParser;
-        private List<string> _cellList;
+        private readonly WinChecker _winChecker;
 
 
-        public Game(IInput input, IOutput output, List<Player> players, IBoard board, List<string> cellList)
+        public Game(IInput input, IOutput output, List<Player> players, IBoard board)
         {
             _input = input;
             _output = output;
             _players = players;
             _board = board;
             _coordinateParser = new CoordinateParser();
-            _cellList = cellList;
+            _winChecker = new WinChecker();
         }
         
-        //public void Run(List<string> cellList)
         public void Run()
         {
-            var winConditionRuleChecker = new WinRuleChecker(_board, _cellList);
             var turns = 0;
             _output.OutputText(Prompts.WelcomeMessage);
             _output.OutputText(Prompts.BoardIntro);
@@ -41,8 +39,18 @@ namespace TicTacToe
                 var player = _players[turns % _players.Count];
                 RunPlay(player);
                 turns++;
-                if (HasDraw(turns) || winConditionRuleChecker.HasWin(player)) break;
-                //if (HasDraw(turns)) break;
+
+                if (HasDraw(turns))
+                {
+                    _output.OutputText(Prompts.Draw);
+                    ExitApp();
+                }
+                else
+                {
+                    if (!_winChecker.HasWin(player, _board.GetCellArray(), _board)) continue;
+                    _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
+                    ExitApp();
+                }
             } while (Running);
         }
 
@@ -50,10 +58,7 @@ namespace TicTacToe
 
         private bool HasDraw(int turns)
         {
-            if (turns != 9) return false;
-            _output.OutputText(Prompts.Draw);
-            ExitApp();
-            return true;
+            return turns == 9;
         }
 
 
