@@ -103,7 +103,7 @@ namespace TicTacToe
         private void PlayMove( Player player, Coordinate coordinate)
         {
             _board.AssignTokenToCell(player, coordinate);
-            Console.Clear();
+            _output.ClearConsole();
             _output.OutputText(Prompts.MoveAccepted);
             _board.PrintBoard();
         }
