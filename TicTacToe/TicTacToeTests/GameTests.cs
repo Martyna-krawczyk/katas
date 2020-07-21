@@ -14,8 +14,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {false}, new bool[] { });
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
 
@@ -30,8 +29,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {true}, new bool[] {false});
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
 
@@ -48,8 +46,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new Board(output, 3);
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
 
@@ -64,8 +61,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {true}, new bool[] {false});
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
             
@@ -80,8 +76,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new bool[] {false}, new bool[] {false});
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
             
@@ -96,8 +91,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new Board(output, 3);
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
             
@@ -105,19 +99,33 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void DrawRegisteredAfterNineTurnsWithoutWin()
+        public void NineTurnsWithoutWinReturnsMessage()
         {
-            var input = new TestInput(new string[] {"1,1", "1,2", "1,3", "2,1", "2,2", "2,3", "3,1", "3,2", "3,3"});
+            var input = new TestInput(new string[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
             var board = new Board(output, 3);
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(9, input.CalledCount);
+        }
+        
+        [Fact]
+        public void WinReturnsMessage()
+        {
+            var input = new TestInput(new string[] {"1,1", "1,2", "2,2", "2,3", "3,3"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var board = new Board(output, 3);
+            var runner = new Game(input, output, players, board);
+
+            runner.Run();
+            
+            Assert.Contains("Congratulations Player 1! You have won!", output.CalledText);
+            Assert.Equal(5, input.CalledCount);
         }
         
         [Fact]
@@ -127,8 +135,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
             var board = new Board(output, 3);
-            List<string> cellList = new List<string>();
-            var runner = new Game(input, output, players, board, cellList);
+            var runner = new Game(input, output, players, board);
 
             runner.Run();
             
@@ -136,21 +143,68 @@ namespace TicTacToeTests
             Assert.Equal(5, input.CalledCount);
         } 
         
-        // [Fact]
-        //  public void HorizontalWinReturnsTrue()
-        //  {
-        //      //List<string> boardValues = new List<string>();
-        //      var output = new TestOutput();
-        //      var board = new Board(output, 3);
-        //      var player = new Player("Player 1", "X");
-        //      board.AssignTokenToCell(player, new Coordinate(0,0));
-        //      board.AssignTokenToCell(player, new Coordinate(1,0));
-        //      board.AssignTokenToCell(player, new Coordinate(2,0));
-        //      var winMonitor = new WinConditionRuleChecker(board, new List<string>);
-        //
-        //      var result = winMonitor.HasWin(player, new Coordinate(0,0));
-        //      
-        //      Assert.True(result);
-        //  }
+        
+        //do some more negative tests for game
+        
+        [Fact]
+          public void HorizontalWinReturnsTrue() //should be relocated to WinRuleChecker
+          {
+              var output = new TestOutput();
+              var board = new Board(output, 3);
+              var player = new Player("Player 1", "X");
+              board.AssignTokenToCell(player, new Coordinate(0,0));
+              board.AssignTokenToCell(player, new Coordinate(0,1));
+              board.AssignTokenToCell(player, new Coordinate(0,2));
+              var winChecker = new WinChecker();
+         
+              var result = winChecker.HasWin(player, board.GetCellArray(),board );
+              
+              Assert.True(result);
+          } 
+          [Fact]
+          public void VerticalWinReturnsTrue() //should be relocated to WinRuleChecker
+          {
+              var output = new TestOutput();
+              var board = new Board(output, 3);
+              var player = new Player("Player 1", "X");
+              board.AssignTokenToCell(player, new Coordinate(0,0));
+              board.AssignTokenToCell(player, new Coordinate(1,0));
+              board.AssignTokenToCell(player, new Coordinate(2,0));
+              var winMonitor = new WinChecker();
+         
+              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+              
+              Assert.True(result);
+          }
+          [Fact]
+          public void LTRDiagonalWinReturnsTrue() //should be relocated to WinRuleChecker
+          {
+              var output = new TestOutput();
+              var board = new Board(output, 3);
+              var player = new Player("Player 1", "X");
+              board.AssignTokenToCell(player, new Coordinate(0,0));
+              board.AssignTokenToCell(player, new Coordinate(1,1));
+              board.AssignTokenToCell(player, new Coordinate(2,2));
+              var winMonitor = new WinChecker();
+         
+              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+              
+              Assert.True(result);
+          }
+          [Fact]
+          public void RTLDiagonalWinReturnsTrue() //should be relocated to WinRuleChecker
+          {
+              var output = new TestOutput();
+              var board = new Board(output, 3);
+              var player = new Player("Player 1", "X");
+              board.AssignTokenToCell(player, new Coordinate(0,2));
+              board.AssignTokenToCell(player, new Coordinate(1,1));
+              board.AssignTokenToCell(player, new Coordinate(2,0));
+              var winMonitor = new WinChecker();
+         
+              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+              
+              Assert.True(result);
+          }
     }
 }

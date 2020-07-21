@@ -7,9 +7,8 @@ namespace TicTacToeTests
     {
         private readonly bool[] _validCoordinateResults;
         private readonly bool[] _cellAvailableResults;
-        private Cell _cell;
-        public int Size { get; }
-        public int CalledCount { get; set; } = -1;
+        public int CalledCount { get; private set; } = -1; //need to clarify why we need to start at -1
+        
         public TestBoard(bool[] validCoordinateResults, bool[] cellAvailableResults)
         {
             _validCoordinateResults = validCoordinateResults;
@@ -36,15 +35,10 @@ namespace TicTacToeTests
         {
             return _cellAvailableResults[CalledCount];
         }
-
-        public string GetBoardCellValues(Coordinate coordinate)
+        
+        public Cell[,] GetCellArray()
         {
-            return "boardCell";
-        }
-
-        public Cell GetCellByCoordinates(Coordinate coordinate)
-        {
-            return _cell;
+            return new Cell[0,0];
         }
     }
 }
