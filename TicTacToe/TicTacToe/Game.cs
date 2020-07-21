@@ -53,15 +53,7 @@ namespace TicTacToe
                 }
             } while (Running);
         }
-
         
-
-        private bool HasDraw(int turns)
-        {
-            return turns == 9;
-        }
-
-
         private void RunPlay(Player player)
         {
             _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
@@ -102,7 +94,12 @@ namespace TicTacToe
                 _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
             } while (true);
         }
-
+        
+        private static bool HasDraw(int turns)
+        {
+            return turns == 9;
+        }
+        
         private void PlayMove( Player player, Coordinate coordinate)
         {
             _board.AssignTokenToCell(player, coordinate);
