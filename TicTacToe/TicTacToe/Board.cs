@@ -9,8 +9,6 @@ namespace TicTacToe
         private Cell[,] _cell;
         private readonly IOutput _output;
         public int Size { get; set; }
-        private List<string> cellList;
-       
         
         public Board(IOutput output, int size)
         {
@@ -29,19 +27,6 @@ namespace TicTacToe
                     _cell[x, y] = new Cell(".");
                 }
             }
-        }
-        
-        public string GetBoardCellValues(Coordinate coordinate)
-        {
-            var value = "";
-            for (var x = 0; x < Size; x++)
-            {
-                for (var y = 0; y < Size; y++)
-                {
-                    cellList.Add(GetCellByCoordinates(coordinate).Value);
-                }
-            }
-            return value;
         }
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
@@ -64,17 +49,16 @@ namespace TicTacToe
         {
             return GetCellByCoordinates(coordinate).IsAvailable;
         }
-        
-        public Cell GetCellByCoordinates(Coordinate coordinate)
+
+        private Cell GetCellByCoordinates(Coordinate coordinate)
         {
             return _cell[coordinate.X, coordinate.Y];
         }
-
-        // public string GetCellValueByCoordinate(Coordinate coordinate)
-        // {
-        //     return GetCellByCoordinates(coordinate).Value; //Could this be a better way to print Board?!!
-        // }
-        
+        public Cell[,] GetCellArray() //the .Clone creates a shallow copy
+        {
+            Cell[,] copy = _cell.Clone() as Cell[,];
+            return copy;
+        }
         public void PrintBoard()
         {
             _output.OutputText(
