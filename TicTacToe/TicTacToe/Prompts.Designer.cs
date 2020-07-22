@@ -57,9 +57,9 @@ namespace TicTacToe {
             }
         }
         
-        internal static string BoardCoordinates {
+        internal static string BoardCoordinate {
             get {
-                return ResourceManager.GetString("BoardCoordinates", resourceCulture);
+                return ResourceManager.GetString("BoardCoordinate", resourceCulture);
             }
         }
         

@@ -25,8 +25,8 @@
     <data name="BoardIntro" xml:space="preserve">
         <value>Here's the current board:</value>
     </data>
-    <data name="BoardCoordinates" xml:space="preserve">
-        <value>{0} {1} {2}</value>
+    <data name="BoardCoordinate" xml:space="preserve">
+        <value>{0} </value>
     </data>
     <data name="TakeTurn" xml:space="preserve">
         <value>{0} enter a coord x,y to place your X or enter 'q' to give up:</value>
