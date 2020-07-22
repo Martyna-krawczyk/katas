@@ -7,7 +7,7 @@ namespace TicTacToe
 {
     public class WinChecker
     {
-        public bool HasWin(Player player, Cell[,] cell)
+        public static bool HasWin(Player player, Cell[,] cell)
         {
             //store these in an inner class??
             var horizontalList = new List<Tuple<int, bool>>(); 

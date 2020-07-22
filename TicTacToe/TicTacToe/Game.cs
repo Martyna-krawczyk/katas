@@ -14,7 +14,6 @@ namespace TicTacToe
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly CoordinateParser _coordinateParser;
-        private readonly WinChecker _winChecker;
 
 
         public Game(IInput input, IOutput output, List<Player> players, IBoard board)
@@ -24,7 +23,6 @@ namespace TicTacToe
             _players = players;
             _board = board;
             _coordinateParser = new CoordinateParser();
-            _winChecker = new WinChecker();
         }
         
         public void Run()
@@ -47,7 +45,7 @@ namespace TicTacToe
                 }
                 else
                 {
-                    if (!_winChecker.HasWin(player, _board.GetCellArray())) continue;
+                    if (!WinChecker.HasWin(player, _board.GetCellArray())) continue;
                     _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
                     ExitApp();
                 }
