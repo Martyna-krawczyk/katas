@@ -14,9 +14,8 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(0,1));
               board.AssignTokenToCell(player, new Coordinate(0,2));
-              var winChecker = new WinChecker();
-         
-              var result = winChecker.HasWin(player, board.GetCellArray(),board );
+
+              var result = WinChecker.HasWin(player, board.GetCellArray() );
               
               Assert.True(result);
           } 
@@ -29,9 +28,8 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(1,0));
               board.AssignTokenToCell(player, new Coordinate(2,0));
-              var winMonitor = new WinChecker();
-         
-              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+
+              var result = WinChecker.HasWin(player, board.GetCellArray());
               
               Assert.True(result);
           }
@@ -44,9 +42,8 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,2));
-              var winMonitor = new WinChecker();
-         
-              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+
+              var result = WinChecker.HasWin(player, board.GetCellArray());
               
               Assert.True(result);
           }
@@ -59,9 +56,8 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(0,2));
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,0));
-              var winMonitor = new WinChecker();
-         
-              var result = winMonitor.HasWin(player, board.GetCellArray(),board );
+
+              var result = WinChecker.HasWin(player, board.GetCellArray());
               
               Assert.True(result);
           }
