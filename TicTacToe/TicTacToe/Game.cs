@@ -47,7 +47,7 @@ namespace TicTacToe
                 }
                 else
                 {
-                    if (!_winChecker.HasWin(player, _board.GetCellArray(), _board)) continue;
+                    if (!_winChecker.HasWin(player, _board.GetCellArray())) continue;
                     _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
                     ExitApp();
                 }

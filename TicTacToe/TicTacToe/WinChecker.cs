@@ -7,7 +7,7 @@ namespace TicTacToe
 {
     public class WinChecker
     {
-        public bool HasWin(Player player, Cell[,] cell, IBoard board)
+        public bool HasWin(Player player, Cell[,] cell)
         {
             //store these in an inner class??
             var horizontalList = new List<Tuple<int, bool>>(); 
@@ -15,7 +15,7 @@ namespace TicTacToe
             var rtlDiagonalList = new List<bool>(); //tuple list not required for diagonal as rows / columns are fixed for each check
             var ltrDiagonalList = new List<bool>();
             
-            var reverseIndex = cell.GetLength(0) -1; //this is used for the diagonal rtl where the index is reducing by one.
+            var reverseIndex = cell.GetLength(0) -1; //this is used for the diagonal rtl where the index is reducing by row -1.
             
             for (var row = 0; row < cell.GetLength(0); row++) //dimension is the row index of cell array
             {
@@ -30,8 +30,8 @@ namespace TicTacToe
                 reverseIndex--;
             }
 
-            return rtlDiagonalList.All(f => f) ||
-                   ltrDiagonalList.All(f => f) ||
+            return rtlDiagonalList.All(result => result) ||
+                   ltrDiagonalList.All(result => result) ||
                    horizontalList.GroupBy(f => f.Item1)
                        .Any(f => f.All(g => g.Item2)) ||
                    verticalList.GroupBy(f => f.Item1)
