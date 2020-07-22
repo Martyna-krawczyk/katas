@@ -33,8 +33,7 @@ namespace TicTacToeTests
 
             runner.Run();
 
-            Assert.Contains(
-                "Oh no, a piece is already at this place! Try again...", output.CalledText);
+            Assert.Contains("Oh no, a piece is already at this place! Try again...", output.CalledText);
             Assert.Equal(2, input.CalledCount);
         }
 
@@ -111,6 +110,7 @@ namespace TicTacToeTests
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(9, input.CalledCount);
+            Assert.Contains("X O X\nO O X\nX X O", output.CalledText);
         }
         
         [Fact]
@@ -141,9 +141,6 @@ namespace TicTacToeTests
             
             Assert.False(runner.Running);
             Assert.Equal(5, input.CalledCount);
-        } 
-        
-        
-        //do some more negative tests for game
+        }
     }
 }

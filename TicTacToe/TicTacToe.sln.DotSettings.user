@@ -9,6 +9,11 @@
     &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.AppRunnerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=60a8f1c6_002Dc4e7_002D4ac9_002Db6c1_002D24451c6eb69a/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="GetCoordinateReturnsCoordinate" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.CoordinteParserTests.GetCoordinateReturnsCoordinate&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=62386db3_002D36ee_002D4973_002Da0d4_002D6a6342e387e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="BoardPrintsWithCorrectCoordinates #2" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.AppRunnerTests.BoardPrintsWithCorrectCoordinates&lt;/TestId&gt;
@@ -28,6 +33,9 @@
     &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.GameTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.WinCheckerTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.BoardTests.PrintBoardMethodPrintsCorrectBoardAsGenerated&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.CoordinteParserTests.GetCoordinateReturnsCoordinate&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.CoordinateParserTests.ValidFormatReturnsCoordinate&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.CoordinateParserTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
