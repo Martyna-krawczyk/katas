@@ -8,7 +8,7 @@ namespace TicTacToe
     {
         private Cell[,] _cell;
         private readonly IOutput _output;
-        public int Size { get; set; }
+        private int Size { get; set; }
         
         public Board(IOutput output, int size)
         {
