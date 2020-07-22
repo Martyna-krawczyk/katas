@@ -56,17 +56,24 @@ namespace TicTacToe
         }
         public Cell[,] GetCellArray() //the .Clone creates a shallow copy
         {
-            Cell[,] copy = _cell.Clone() as Cell[,];
+            var copy = _cell.Clone() as Cell[,];
             return copy;
         }
         public void PrintBoard()
         {
-            _output.OutputText(
-                string.Format(Prompts.BoardCoordinates, _cell[0,0].Value, _cell[0,1].Value, _cell[0,2].Value) 
-                + Environment.NewLine 
-                + string.Format(Prompts.BoardCoordinates, _cell[1,0].Value, _cell[1,1].Value, _cell[1,2].Value) 
-                + Environment.NewLine 
-                + string.Format(Prompts.BoardCoordinates, _cell[2,0].Value, _cell[2,1].Value, _cell[2,2].Value));
+            var boardString = "";
+            for (var x = 0; x < Size; x++)
+            {
+                for (var y = 0; y < Size; y++)
+                {
+                    boardString +=_cell[x,y].Value + " ";
+                }
+                if (x < Size - 1)
+                {
+                    boardString += Environment.NewLine;
+                }
+            }
+            _output.OutputText(boardString);
         }
     }
 }

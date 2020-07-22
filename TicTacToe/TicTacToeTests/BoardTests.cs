@@ -14,8 +14,7 @@ namespace TicTacToeTests
             
             board.PrintBoard();
 
-            Assert.Contains(". . .\n. . .\n. . .", output.CalledText);
+            Assert.Contains(". . . \n. . . \n. . . ", output.CalledText);
         }
-        
     }
 }

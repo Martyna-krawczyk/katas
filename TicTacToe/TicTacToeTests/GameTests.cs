@@ -94,7 +94,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.Contains("X . .\n. . .\n. . .", output.CalledText);
+            Assert.Contains("X . . \n. . . \n. . . ", output.CalledText);
         }
         
         [Fact]
@@ -110,7 +110,7 @@ namespace TicTacToeTests
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(9, input.CalledCount);
-            Assert.Contains("X O X\nO O X\nX X O", output.CalledText);
+            Assert.Contains("X O X \nO O X \nX X O ", output.CalledText);
         }
         
         [Fact]
