@@ -11,5 +11,10 @@ namespace TicTacToeTests
         {
             CalledText.Add(text);
         }
+
+        public void ClearConsole()
+        {
+            
+        }
     }
 }

@@ -8,5 +8,10 @@ namespace TicTacToe
         {
             Console.WriteLine(text);
         }
+
+        public void ClearConsole()
+        {
+            Console.Clear();
+        }
     }
 }
