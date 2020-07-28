@@ -17,8 +17,6 @@ namespace TicTacToeTests
         
         private readonly bool[] _cellAvailableResults;
         
-        
-        
         public void PrintBoard()
         {
            
@@ -34,13 +32,13 @@ namespace TicTacToeTests
             CalledCount++;
             return _cellAvailableResults[CalledCount];
         }
-        
-        public Cell[,] GetCellArray()
-        {
-            return new Cell[0,0];
-        }
 
         public List<List<string>> GetRowValues()
+        {
+            return new List<List<string>>();
+        }
+
+        public List<List<string>> GetColumnValues()
         {
             return new List<List<string>>();
         }
