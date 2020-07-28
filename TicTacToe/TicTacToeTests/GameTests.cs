@@ -10,10 +10,10 @@ namespace TicTacToeTests
         [Fact]
         public void CellOutsideOfBoardBounds_ReturnsNotification()
         {
-            var input = new TestInput(new string[] {"4,5", "q"});
+            var input = new TestInput(new[] {"4,5", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new TestBoard(new bool[] {false}, new bool[] { });
+            var players = new List<Player> {new Player("Player 1", "X")};
+            var board = new TestBoard(new[] {false});
             var runner = new Game(input, output, players, board);
 
             runner.Run();
@@ -25,10 +25,10 @@ namespace TicTacToeTests
         [Fact]
         public void CellNotAvailable_ReturnsNotification()
         {
-            var input = new TestInput(new string[] {"1,3", "q"});
+            var input = new TestInput(new[] {"1,3", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new TestBoard(new bool[] {true}, new bool[] {false});
+            var board = new TestBoard(new[] {false});
             var runner = new Game(input, output, players, board);
 
             runner.Run();
@@ -56,10 +56,10 @@ namespace TicTacToeTests
         [Fact]
         public void ValidPlayerMoveFormatDoesNotPrintError()
         {
-            var input = new TestInput(new string[] {"1,3", "q"});
+            var input = new TestInput(new[] {"1,3", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new TestBoard(new bool[] {true}, new bool[] {false});
+            var board = new TestBoard(new[] {true});
             var runner = new Game(input, output, players, board);
 
             runner.Run();
@@ -71,22 +71,22 @@ namespace TicTacToeTests
         [Fact]
         public void InvalidPlayerMoveFormatDoesNotCallBoardIsValidCoordinate()
         {
-            var input = new TestInput(new string[] {"1", "q"});
+            var input = new TestInput(new[] {"1", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            var board = new TestBoard(new bool[] {false}, new bool[] {false});
+            var board = new TestBoard(new bool[] {false});
             var runner = new Game(input, output, players, board);
 
             runner.Run();
             
             Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
-            Assert.Equal(-1, board.CalledCount);
+            Assert.Equal(0, board.CalledCount);
         }
         
         [Fact]
         public void BoardPrintsWithCorrectCoordinates()
         {
-            var input = new TestInput(new string[] {"1,1", "q"});
+            var input = new TestInput(new[] {"1,1", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new Board(output, 3);
@@ -100,9 +100,9 @@ namespace TicTacToeTests
         [Fact]
         public void NineTurnsWithoutWinReturnsMessage()
         {
-            var input = new TestInput(new string[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
+            var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var players = new List<Player> {new Player("Player 1", "X"), new Player("Player 2", "O")};
             var board = new Board(output, 3);
             var runner = new Game(input, output, players, board);
 
@@ -131,9 +131,9 @@ namespace TicTacToeTests
         [Fact]
         public void HorizontalWinCallsExitApp()
         {
-            var input = new TestInput(new string[] {"1,1", "2,2", "1,2", "3,1", "1,3"});
+            var input = new TestInput(new[] {"1,1", "2,2", "1,2", "3,1", "1,3"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var players = new List<Player> {new Player("Player 1", "X"), new Player("Player 2", "O")};
             var board = new Board(output, 3);
             var runner = new Game(input, output, players, board);
 

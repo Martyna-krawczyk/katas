@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 
 namespace TicTacToe
 {
     public interface IBoard
     {
+        int Size { get; }
         void PrintBoard();
-        bool IsValidCoordinate(Coordinate coordinate);
         void AssignTokenToCell(Player player, Coordinate coordinate);
         bool CellIsAvailable(Coordinate coordinate);
         public Cell[,] GetCellArray();
+        public List<List<string>> GetRowValues();
     }
 }
