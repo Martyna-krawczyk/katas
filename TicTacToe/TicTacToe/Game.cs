@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace TicTacToe
 {
-    public class Game : IGame
+    public class Game 
     {
         
         private readonly IInput _input;
@@ -86,18 +86,6 @@ namespace TicTacToe
             return _coordinateParser.GetCoordinates(playerMove);
         }
         
-        // private void ProcessTurn(int turns, Player player) //original working solution
-        // {
-        //     if (HasDraw(turns))
-        //     {
-        //         RunDraw();
-        //     }
-        //     else
-        //     {
-        //         if (!WinChecker.HasWin(player, _board.GetCellArray())) return;
-        //         RunWin(player);
-        //     }
-        // }
         private void ProcessTurn(int turns, Player player)
         {
             if (HasDraw(turns))
@@ -106,7 +94,7 @@ namespace TicTacToe
             }
             else
             {
-                if (!WinChecker.HasHorizontalWin(player, _board.GetRowValues())) return;
+                if (!WinChecker.HasWin(player, _board)) return;
                 RunWin(player);
             }
         }

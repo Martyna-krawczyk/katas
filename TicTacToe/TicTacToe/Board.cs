@@ -17,13 +17,6 @@ namespace TicTacToe
 
         private readonly IOutput _output;
         public int Size { get; }
-        private List<List<string>> HorizontalValueList { get; set; }
-
-        public Cell[,] GetCellArray()
-        {
-            var copy = _cell.Clone() as Cell[,];
-            return copy;
-        }
 
         private void CreateBoard()
         {
@@ -39,13 +32,12 @@ namespace TicTacToe
         
         public List<List<string>> GetRowValues()
         {
-            HorizontalValueList = new List<List<string>>();
+            var HorizontalValueList = new List<List<string>>();
             var firstRow = new List<string>();
             var secondRow = new List<string>();
             var thirdRow = new List<string>();
             
-                int col;
-                for (col = 0; col < Size; col++)
+                for (var col = 0; col < Size; col++)
                 {
                     firstRow.Add(_cell[0,col].Value);
                     secondRow.Add(_cell[1,col].Value);
@@ -58,7 +50,28 @@ namespace TicTacToe
             
             return HorizontalValueList;
         }
-        
+
+        public List<List<string>> GetColumnValues()
+        {
+            var VerticalValueList = new List<List<string>>();
+            var firstColumn = new List<string>();
+            var secondColumn = new List<string>();
+            var thirdColumn = new List<string>();
+            
+            for (var row = 0; row < Size; row++)
+            {
+                firstColumn.Add(_cell[row,0].Value);
+                secondColumn.Add(_cell[row,1].Value);
+                thirdColumn.Add(_cell[row,2].Value);
+            }
+
+            VerticalValueList.Add(firstColumn);
+            VerticalValueList.Add(secondColumn);
+            VerticalValueList.Add(thirdColumn);
+            
+            return VerticalValueList;
+        }
+
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCellByCoordinates(coordinate).Value = player.Token;
