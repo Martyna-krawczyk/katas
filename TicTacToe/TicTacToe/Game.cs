@@ -7,14 +7,13 @@ namespace TicTacToe
 {
     public class Game : IGame
     {
-        public bool Running { get; private set; } = true;
-        private Coordinate _coordinate;
+        
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly CoordinateParser _coordinateParser;
-
+        public bool Running { get; private set; } = true;
 
         public Game(IInput input, IOutput output, List<Player> players, IBoard board)
         {
@@ -31,24 +30,12 @@ namespace TicTacToe
             _output.OutputText(Prompts.WelcomeMessage);
             _output.OutputText(Prompts.BoardIntro);
             _board.PrintBoard();
-
             do
             {
                 var player = _players[turns % _players.Count];
                 RunPlay(player);
                 turns++;
-
-                if (HasDraw(turns))
-                {
-                    _output.OutputText(Prompts.Draw);
-                    ExitApp();
-                }
-                else
-                {
-                    if (!WinChecker.HasWin(player, _board.GetCellArray())) continue;
-                    _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
-                    ExitApp();
-                }
+                ProcessTurn(turns, player);
             } while (Running);
         }
         
@@ -65,22 +52,23 @@ namespace TicTacToe
                     break;
                 }
 
+                Coordinate coordinate;
                 if (CoordinateParser.IsValidFormat(playerMove))
                 {
-                    _coordinate = _coordinateParser.GetCoordinates(playerMove);
+                    coordinate = SetCoordinate(playerMove);
                 }
                 else
                 {
                     _output.OutputText(Prompts.IncorrectFormat);
-                    _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
+                    _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
                     continue;
                 }
                 
-                if (_board.IsValidCoordinate(_coordinate))
+                if (_coordinateParser.IsValidCoordinate(coordinate, _board))
                 {
-                    if (_board.CellIsAvailable(_coordinate))
+                    if (_board.CellIsAvailable(coordinate))
                     {
-                        PlayMove(player, _coordinate);
+                        PlayMove(player, coordinate);
                         break;
                     }
                     _output.OutputText(string.Format(Prompts.CellUnavailable)); 
@@ -92,7 +80,49 @@ namespace TicTacToe
                 _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
             } while (true);
         }
+
+        private Coordinate SetCoordinate(string playerMove)
+        {
+            return _coordinateParser.GetCoordinates(playerMove);
+        }
         
+        // private void ProcessTurn(int turns, Player player) //original working solution
+        // {
+        //     if (HasDraw(turns))
+        //     {
+        //         RunDraw();
+        //     }
+        //     else
+        //     {
+        //         if (!WinChecker.HasWin(player, _board.GetCellArray())) return;
+        //         RunWin(player);
+        //     }
+        // }
+        private void ProcessTurn(int turns, Player player)
+        {
+            if (HasDraw(turns))
+            {
+                RunDraw();
+            }
+            else
+            {
+                if (!WinChecker.HasHorizontalWin(player, _board.GetRowValues())) return;
+                RunWin(player);
+            }
+        }
+
+        private void RunWin(Player player)
+        {
+            _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
+            ExitApp();
+        }
+
+        private void RunDraw()
+        {
+            _output.OutputText(Prompts.Draw);
+            ExitApp();
+        }
+
         private static bool HasDraw(int turns)
         {
             return turns == 9;
