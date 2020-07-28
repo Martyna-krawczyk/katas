@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TicTacToe;
 
@@ -5,25 +6,22 @@ namespace TicTacToeTests
 {
     public class TestBoard : IBoard
     {
-        private readonly bool[] _validCoordinateResults;
-        private readonly bool[] _cellAvailableResults;
-        public int CalledCount { get; private set; } = -1; //need to clarify why we need to start at -1
+        public int Size { get; }
         
-        public TestBoard(bool[] validCoordinateResults, bool[] cellAvailableResults)
+        public int CalledCount { get; private set; } = 0;
+        
+        public TestBoard(bool[] cellAvailableResults)
         {
-            _validCoordinateResults = validCoordinateResults;
             _cellAvailableResults = cellAvailableResults;
         }
+        
+        private readonly bool[] _cellAvailableResults;
+        
+        
         
         public void PrintBoard()
         {
            
-        }
-
-        public bool IsValidCoordinate(Coordinate coordinate)
-        {
-            CalledCount++;
-            return _validCoordinateResults[CalledCount];
         }
 
         public void AssignTokenToCell(Player player, Coordinate coordinate)
@@ -33,12 +31,18 @@ namespace TicTacToeTests
 
         public bool CellIsAvailable(Coordinate coordinate)
         {
+            CalledCount++;
             return _cellAvailableResults[CalledCount];
         }
         
         public Cell[,] GetCellArray()
         {
             return new Cell[0,0];
+        }
+
+        public List<List<string>> GetRowValues()
+        {
+            return new List<List<string>>();
         }
     }
 }
