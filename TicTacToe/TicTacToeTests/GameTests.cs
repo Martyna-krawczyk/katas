@@ -25,7 +25,7 @@ namespace TicTacToeTests
         [Fact]
         public void CellNotAvailable_ReturnsNotification()
         {
-            var input = new TestInput(new[] {"1,3", "q"});
+            var input = new TestInput(new[] {"1,1", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new[] {false});
