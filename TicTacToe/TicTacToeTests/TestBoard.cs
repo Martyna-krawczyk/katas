@@ -8,7 +8,7 @@ namespace TicTacToeTests
     {
         public int Size { get; }
         
-        public int CalledCount { get; private set; } = 0;
+        public int CalledCount { get; private set; }
         
         public TestBoard(bool[] cellAvailableResults)
         {
@@ -33,12 +33,17 @@ namespace TicTacToeTests
             return _cellAvailableResults[CalledCount];
         }
 
-        public List<List<string>> GetRowValues()
+        public IEnumerable<List<string>> GetRowValues()
         {
             return new List<List<string>>();
         }
 
-        public List<List<string>> GetColumnValues()
+        public IEnumerable<List<string>> GetColumnValues()
+        {
+            return new List<List<string>>();
+        }
+
+        public IEnumerable<List<string>> GetDiagonalValues()
         {
             return new List<List<string>>();
         }

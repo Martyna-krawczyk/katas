@@ -1,4 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1aa298b1_002Ddf3a_002D4313_002Db69a_002De1bb4ee9e8e3/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="CellNotAvailable_ReturnsNotification" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.GameTests.CellNotAvailable_ReturnsNotification&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::90E3C913-0D1D-4D81-A8FA-5B55A1B50DE4::.NETCoreApp,Version=v3.1::TicTacToeTests.WinCheckerTests.HorizontalWinReturnsTrue&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=865871df_002De381_002D48c3_002Dbc4f_002D8de9ffbba47e/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="HorizontalWinReturnsTrue" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>

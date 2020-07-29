@@ -30,9 +30,10 @@ namespace TicTacToe
             }
         }
         
-        public List<List<string>> GetRowValues()
+        public IEnumerable<List<string>> GetRowValues()
         {
-            var HorizontalValueList = new List<List<string>>();
+            var horizontalValueList = new List<List<string>>();
+            //crate a new list for each increment of size with unique name??
             var firstRow = new List<string>();
             var secondRow = new List<string>();
             var thirdRow = new List<string>();
@@ -44,16 +45,16 @@ namespace TicTacToe
                     thirdRow.Add(_cell[2,col].Value);
                 }
 
-                HorizontalValueList.Add(firstRow);
-                HorizontalValueList.Add(secondRow);
-                HorizontalValueList.Add(thirdRow);
+                horizontalValueList.Add(firstRow);
+                horizontalValueList.Add(secondRow);
+                horizontalValueList.Add(thirdRow);
             
-            return HorizontalValueList;
+            return horizontalValueList;
         }
 
-        public List<List<string>> GetColumnValues()
+        public IEnumerable<List<string>> GetColumnValues()
         {
-            var VerticalValueList = new List<List<string>>();
+            var verticalValueList = new List<List<string>>();
             var firstColumn = new List<string>();
             var secondColumn = new List<string>();
             var thirdColumn = new List<string>();
@@ -65,11 +66,31 @@ namespace TicTacToe
                 thirdColumn.Add(_cell[row,2].Value);
             }
 
-            VerticalValueList.Add(firstColumn);
-            VerticalValueList.Add(secondColumn);
-            VerticalValueList.Add(thirdColumn);
+            verticalValueList.Add(firstColumn);
+            verticalValueList.Add(secondColumn);
+            verticalValueList.Add(thirdColumn);
             
-            return VerticalValueList;
+            return verticalValueList;
+        }
+        
+        public IEnumerable<List<string>> GetDiagonalValues()
+        {
+            var diagonalValueList = new List<List<string>>();
+            var lTr = new List<string>();
+            var rTl = new List<string>();
+            int col = Size-1;
+            
+            for (var row = 0; row < Size; row++)
+            {
+                lTr.Add(_cell[row,row].Value);
+                rTl.Add(_cell[row,col].Value);
+                col--;
+            }
+            
+            diagonalValueList.Add(lTr);
+            diagonalValueList.Add(rTl);
+            
+            return diagonalValueList;
         }
 
         public void AssignTokenToCell(Player player, Coordinate coordinate)

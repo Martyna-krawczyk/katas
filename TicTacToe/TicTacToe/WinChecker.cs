@@ -9,28 +9,24 @@ namespace TicTacToe
     {
         public static bool HasWin(Player player, IBoard board)
         {
-            return HasWin(player, board.GetRowValues()) ||
-                   HasVerticalWin(player, board.GetColumnValues());
+            return HasHorizontalWin(player, board.GetRowValues()) ||
+                   HasVerticalWin(player, board.GetColumnValues()) ||
+                   HasDiagonalWin(player, board.GetDiagonalValues());
         }
-        public static bool HasWin(Player player, List<List<string>> horizontalValueList)
+
+        private static bool HasHorizontalWin(Player player, IEnumerable<List<string>> horizontalValueList)
         {
-            foreach (var rowList in horizontalValueList)
-            {
-                var rowHasWin = rowList.All(value => value == player.Token);
-                if (!rowHasWin) continue;
-                return true;
-            }
-            return false;
+            return horizontalValueList.Select(rows => rows.All(value => value == player.Token)).Any(HasWin => HasWin);
         }
-        public static bool HasVerticalWin(Player player, List<List<string>> verticalValueList)
+
+        private static bool HasVerticalWin(Player player, IEnumerable<List<string>> verticalValueList)
         {
-            foreach (var columnList in verticalValueList)
-            {
-                var columnHasWin = columnList.All(value => value == player.Token);
-                if (!columnHasWin) continue;
-                return true;
-            }
-            return false;
+            return verticalValueList.Select(columns => columns.All(value => value == player.Token)).Any(HasWin => HasWin);
+        }
+        
+        private static bool HasDiagonalWin(Player player, IEnumerable<List<string>> diagonalValueList)
+        {
+            return diagonalValueList.Select(diagonals => diagonals.All(value => value == player.Token)).Any(HasWin => HasWin);
         }
     }
 }
