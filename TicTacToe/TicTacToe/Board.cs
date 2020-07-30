@@ -30,47 +30,59 @@ namespace TicTacToe
             }
         }
         
-        public IEnumerable<List<string>> GetRowValues()
+        // public IEnumerable<List<string>> GetRowValues()
+        // {
+        //     var horizontalValueList = new List<List<string>>();
+        //     for (var row = 0; row < Size; row++)
+        //     {
+        //         var rowList = new List<string>();
+        //         for (var col = 0; col < Size; col++)
+        //         {
+        //             rowList.Add(_cell[row,col].Value);
+        //         }
+        //         horizontalValueList.Add(rowList);
+        //     }
+        //     return horizontalValueList;
+        // }
+        //
+        // public IEnumerable<List<string>> GetColumnValues()
+        // {
+        //     var verticalValueList = new List<List<string>>();
+        //     for (var col = 0; col < Size; col++)
+        //     {
+        //         var columnList = new List<string>();
+        //         for (var row = 0; row < Size; row++)
+        //         {
+        //             columnList.Add(_cell[row,col].Value);
+        //         }
+        //         verticalValueList.Add(columnList);
+        //     }
+        //     return verticalValueList;
+        // }
+        
+        public IEnumerable<List<List<string>>> GetBoardWinningLinesValues()
         {
+            var winningLinesList = new List<List<List<string>>>();
+            
             var horizontalValueList = new List<List<string>>();
-            //crate a new list for each increment of size with unique name??
-            var firstRow = new List<string>();
-            var secondRow = new List<string>();
-            var thirdRow = new List<string>();
-            
-                for (var col = 0; col < Size; col++)
-                {
-                    firstRow.Add(_cell[0,col].Value);
-                    secondRow.Add(_cell[1,col].Value);
-                    thirdRow.Add(_cell[2,col].Value);
-                }
-
-                horizontalValueList.Add(firstRow);
-                horizontalValueList.Add(secondRow);
-                horizontalValueList.Add(thirdRow);
-            
-            return horizontalValueList;
-        }
-
-        public IEnumerable<List<string>> GetColumnValues()
-        {
             var verticalValueList = new List<List<string>>();
-            var firstColumn = new List<string>();
-            var secondColumn = new List<string>();
-            var thirdColumn = new List<string>();
             
             for (var row = 0; row < Size; row++)
             {
-                firstColumn.Add(_cell[row,0].Value);
-                secondColumn.Add(_cell[row,1].Value);
-                thirdColumn.Add(_cell[row,2].Value);
+                var rowList = new List<string>();
+                var columnList = new List<string>();
+                for (var col = 0; col < Size; col++)
+                {
+                    rowList.Add(_cell[row,col].Value);
+                    columnList.Add(_cell[col,row].Value);
+                }
+                horizontalValueList.Add(rowList);
+                verticalValueList.Add(columnList);
             }
-
-            verticalValueList.Add(firstColumn);
-            verticalValueList.Add(secondColumn);
-            verticalValueList.Add(thirdColumn);
+            winningLinesList.Add(horizontalValueList);
+            winningLinesList.Add(verticalValueList);
             
-            return verticalValueList;
+            return winningLinesList;
         }
         
         public IEnumerable<List<string>> GetDiagonalValues()

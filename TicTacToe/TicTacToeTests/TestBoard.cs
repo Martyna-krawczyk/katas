@@ -46,5 +46,10 @@ namespace TicTacToeTests
         {
             return new List<List<string>>();
         }
+
+        public IEnumerable<List<List<string>>> GetBoardWinningLinesValues()
+        {
+            return new List<List<List<string>>>();
+        }
     }
 }
