@@ -6,7 +6,7 @@ namespace TicTacToeTests
 {
     public class TestBoard : IBoard
     {
-        public int Size { get; } = 3;
+        public int Size { get; }
         
         public int CalledCount { get; private set; }
         
@@ -29,8 +29,7 @@ namespace TicTacToeTests
 
         public bool CellIsAvailable(Coordinate coordinate)
         {
-            CalledCount++;
-            return _cellAvailableResults[CalledCount];
+            return _cellAvailableResults[CalledCount++];
         }
 
         public IEnumerable<List<string>> GetRowValues()

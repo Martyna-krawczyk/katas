@@ -13,9 +13,8 @@ namespace TicTacToeTests
             var input = new TestInput(new[] {"4,5", "q"});
             var output = new TestOutput();
             var players = new List<Player> {new Player("Player 1", "X")};
-            var board = new TestBoard(new[] {true});
-            //var coordinateParser = new TestCoordinateParser(new[] {false}, new [] {true});
-            var coordinateParser = new CoordinateParser();
+            var board = new TestBoard(new[] {false});
+            var coordinateParser = new TestCoordinateParser( validCoordinateResults: false, true);
             var runner = new Game(input, output, players, board, coordinateParser);
 
             runner.Run();
@@ -27,19 +26,17 @@ namespace TicTacToeTests
         [Fact]
         public void CellNotAvailable_ReturnsNotification()
         {
-            var input = new TestInput(new[] {"1,1", "1,1", "q"});
+            var input = new TestInput(new[] {"1,1", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X"), new Player("Player 2", "O")};
-            //var coordinateParser = new TestCoordinateParser(new[] {true}, new [] {true});
-            //var board = new TestBoard(new bool[] {false});
-            var board = new Board(output, 3);
-            var coordinateParser = new CoordinateParser();
+            var players = new List<Player>() {new Player("Player 1", "X")};
+            var board = new TestBoard(new bool[] {false});
+            var coordinateParser = new TestCoordinateParser( validCoordinateResults: true, true);
             var runner = new Game(input, output, players, board, coordinateParser);
 
             runner.Run();
 
             Assert.Contains("Oh no, a piece is already at this place! Try again...", output.CalledText);
-            Assert.Equal(3, input.CalledCount);
+            Assert.Equal(2, input.CalledCount);
         }
 
 
@@ -65,16 +62,14 @@ namespace TicTacToeTests
             var input = new TestInput(new[] {"1,2", "q"});
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
-            //var board = new TestBoard(new[] {false});
-            var board = new Board(output, 3);
-            //var coordinateParser = new TestCoordinateParser(new [] {true}, new []{true});
-            var coordinateParser = new CoordinateParser();
+            var board = new TestBoard(new[] {true});
+            var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, true);
             var runner = new Game(input, output, players, board, coordinateParser);
 
             runner.Run();
             
             Assert.DoesNotContain("Sorry - that format is incorrect! Try again...", output.CalledText);
-            //Assert.Equal(0, board.CalledCount);
+            Assert.Equal(1, board.CalledCount);
         }
         
         [Fact]
@@ -84,8 +79,7 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X")};
             var board = new TestBoard(new[] {false});
-            // var coordinateParser = new TestCoordinateParser(new [] {true}, new bool[] {false});
-            var coordinateParser = new CoordinateParser();
+            var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, false);
             var runner = new Game(input, output, players, board, coordinateParser);
 
             runner.Run();

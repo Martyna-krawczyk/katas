@@ -19,7 +19,9 @@ namespace TicTacToeTests
         [Fact]
         public void ValidFormatReturnsCoordinate()
         {
-            var result = CoordinateParser.IsValidFormat("a,3");
+            var coordinateParser = new CoordinateParser();
+            
+            var result = coordinateParser.IsValidFormat("a,3");
             
             Assert.False(result);
         } 
@@ -30,13 +32,11 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var board = new Board(output, 3);
             var coordinate = new Coordinate(2,2);
-            //var coordinateParser = new TestCoordinateParser(validCoordinateResults: new[] {true}); //this returns a System.IndexOutOfRangeException : Index was outside the bounds of the array.
             var coordinateParser = new CoordinateParser(); 
 
             var result = coordinateParser.IsValidCoordinate(coordinate, board);
             
             Assert.True(result);
-            //Assert.Equal(2, coordinateParser.CalledCount);
         }
     }
     
