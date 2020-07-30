@@ -5,7 +5,7 @@ namespace TicTacToe
 {
     public class CoordinateParser : ICoordinateParser
     {
-        public static bool IsValidFormat(string playerMove)
+        public bool IsValidFormat(string playerMove)
         {
             var regex = new Regex(@"^\d,\d$");
             return regex.IsMatch(playerMove);

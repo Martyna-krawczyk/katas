@@ -15,7 +15,8 @@ namespace TicTacToe
                 new Player("Player 2", "O")
             };
             var board = new Board(output, 3);
-            var runner = new Game(input, output, players, board);
+            var coordinateParser = new CoordinateParser();
+            var runner = new Game(input, output, players, board, coordinateParser);
             
             runner.Run();
         }
