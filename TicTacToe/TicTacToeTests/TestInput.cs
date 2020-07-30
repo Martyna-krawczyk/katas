@@ -5,7 +5,7 @@ namespace TicTacToeTests
     public class TestInput : IInput
     {
         public int CalledCount { get; private set; }
-        public string[] Inputs { get; set; }
+        private string[] Inputs { get; }
         
         public TestInput(string[] inputs)
         {

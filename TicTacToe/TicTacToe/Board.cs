@@ -78,7 +78,7 @@ namespace TicTacToe
             var diagonalValueList = new List<List<string>>();
             var lTr = new List<string>();
             var rTl = new List<string>();
-            int col = Size-1;
+            var col = Size - 1;
             
             for (var row = 0; row < Size; row++)
             {

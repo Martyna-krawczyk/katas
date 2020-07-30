@@ -12,16 +12,16 @@ namespace TicTacToe
         private readonly IOutput _output;
         private readonly List<Player> _players;
         private readonly IBoard _board;
-        private readonly CoordinateParser _coordinateParser;
+        private readonly ICoordinateParser _coordinateParser;
         public bool Running { get; private set; } = true;
 
-        public Game(IInput input, IOutput output, List<Player> players, IBoard board)
+        public Game(IInput input, IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
         {
             _input = input;
             _output = output;
             _players = players;
             _board = board;
-            _coordinateParser = new CoordinateParser();
+            _coordinateParser = coordinateParser;
         }
         
         public void Run()
@@ -53,7 +53,7 @@ namespace TicTacToe
                 }
 
                 Coordinate coordinate;
-                if (CoordinateParser.IsValidFormat(playerMove))
+                if (_coordinateParser.IsValidFormat(playerMove))
                 {
                     coordinate = SetCoordinate(playerMove);
                 }

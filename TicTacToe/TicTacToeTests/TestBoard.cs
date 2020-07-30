@@ -6,7 +6,7 @@ namespace TicTacToeTests
 {
     public class TestBoard : IBoard
     {
-        public int Size { get; }
+        public int Size { get; } = 3;
         
         public int CalledCount { get; private set; }
         
@@ -16,7 +16,7 @@ namespace TicTacToeTests
         }
         
         private readonly bool[] _cellAvailableResults;
-        
+
         public void PrintBoard()
         {
            
