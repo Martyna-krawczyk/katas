@@ -29,80 +29,38 @@ namespace TicTacToe
                 }
             }
         }
-        
-        // public IEnumerable<List<string>> GetRowValues()
-        // {
-        //     var horizontalValueList = new List<List<string>>();
-        //     for (var row = 0; row < Size; row++)
-        //     {
-        //         var rowList = new List<string>();
-        //         for (var col = 0; col < Size; col++)
-        //         {
-        //             rowList.Add(_cell[row,col].Value);
-        //         }
-        //         horizontalValueList.Add(rowList);
-        //     }
-        //     return horizontalValueList;
-        // }
-        //
-        // public IEnumerable<List<string>> GetColumnValues()
-        // {
-        //     var verticalValueList = new List<List<string>>();
-        //     for (var col = 0; col < Size; col++)
-        //     {
-        //         var columnList = new List<string>();
-        //         for (var row = 0; row < Size; row++)
-        //         {
-        //             columnList.Add(_cell[row,col].Value);
-        //         }
-        //         verticalValueList.Add(columnList);
-        //     }
-        //     return verticalValueList;
-        // }
-        
-        public IEnumerable<List<List<string>>> GetBoardWinningLinesValues()
+
+        public IEnumerable<List<string>> GetBoardWinningLinesValues()
         {
-            var winningLinesList = new List<List<List<string>>>();
+            var linesValuesList = new List<List<string>>();
+            var diagonalListLtr = new List<string>();
+            var diagonalListRtl = new List<string>();
             
-            var horizontalValueList = new List<List<string>>();
-            var verticalValueList = new List<List<string>>();
+            var reverseIndexer = Size - 1;
             
             for (var row = 0; row < Size; row++)
             {
                 var rowList = new List<string>();
                 var columnList = new List<string>();
+
+                diagonalListLtr.Add(_cell[row,row].Value);
+                diagonalListRtl.Add(_cell[row, reverseIndexer].Value);
+                
+                
                 for (var col = 0; col < Size; col++)
                 {
                     rowList.Add(_cell[row,col].Value);
                     columnList.Add(_cell[col,row].Value);
                 }
-                horizontalValueList.Add(rowList);
-                verticalValueList.Add(columnList);
+                reverseIndexer--;
+                
+                linesValuesList.Add(rowList);
+                linesValuesList.Add(columnList);
+                
             }
-            winningLinesList.Add(horizontalValueList);
-            winningLinesList.Add(verticalValueList);
-            
-            return winningLinesList;
-        }
-        
-        public IEnumerable<List<string>> GetDiagonalValues()
-        {
-            var diagonalValueList = new List<List<string>>();
-            var lTr = new List<string>();
-            var rTl = new List<string>();
-            var col = Size - 1;
-            
-            for (var row = 0; row < Size; row++)
-            {
-                lTr.Add(_cell[row,row].Value);
-                rTl.Add(_cell[row,col].Value);
-                col--;
-            }
-            
-            diagonalValueList.Add(lTr);
-            diagonalValueList.Add(rTl);
-            
-            return diagonalValueList;
+            linesValuesList.Add(diagonalListLtr);
+            linesValuesList.Add(diagonalListRtl);
+            return linesValuesList;
         }
 
         public void AssignTokenToCell(Player player, Coordinate coordinate)
