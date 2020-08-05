@@ -6,7 +6,7 @@ namespace TicTacToeTests
     public class CoordinateParserTests
     {
         [Fact]
-        public void PlayerMoveStringReturnsCoordinate()
+        public void PlayerMoveReturnsCoordinate()
         {
             var coordinateParser = new CoordinateParser();
             
@@ -17,7 +17,17 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void ValidFormatReturnsCoordinate()
+        public void ValidFormatReturnsTrue()
+        {
+            var coordinateParser = new CoordinateParser();
+            
+            var result = coordinateParser.IsValidFormat("1,3");
+            
+            Assert.True(result);
+        } 
+        
+        [Fact]
+        public void InValidFormatReturnsFalse()
         {
             var coordinateParser = new CoordinateParser();
             
@@ -38,6 +48,18 @@ namespace TicTacToeTests
             
             Assert.True(result);
         }
+        
+        [Fact]
+        public void InValidCoordinateReturnsFalse()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+            var coordinate = new Coordinate(2,7);
+            var coordinateParser = new CoordinateParser(); 
+
+            var result = coordinateParser.IsValidCoordinate(coordinate, board);
+            
+            Assert.False(result);
+        }
     }
-    
 }
