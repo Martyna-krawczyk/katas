@@ -32,7 +32,7 @@ namespace TicTacToeTests
             return _cellAvailableResults[CalledCount++];
         }
 
-        public IEnumerable<List<string>> GetBoardWinningLinesValues()
+        public IEnumerable<List<string>> GetAllBoardLineValues()
         {
             return new List<List<string>>();
         }

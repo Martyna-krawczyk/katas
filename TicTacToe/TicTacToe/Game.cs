@@ -7,7 +7,6 @@ namespace TicTacToe
 {
     public class Game 
     {
-        
         private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
@@ -35,7 +34,7 @@ namespace TicTacToe
                 var player = _players[turns % _players.Count];
                 RunPlay(player);
                 turns++;
-                ProcessTurn(turns, player);
+                CheckGameRules(player);
             } while (Running);
         }
         
@@ -86,15 +85,15 @@ namespace TicTacToe
             return _coordinateParser.GetCoordinates(playerMove);
         }
         
-        private void ProcessTurn(int turns, Player player)
+        private void CheckGameRules(Player player)
         {
-            if (HasDraw(turns))
+            if (GameRuleChecker.HasDraw(_board))
             {
                 RunDraw();
             }
             else
             {
-                if (!WinChecker.HasWin(player, _board)) return;
+                if (!GameRuleChecker.HasWin(player, _board)) return;
                 RunWin(player);
             }
         }
@@ -110,13 +109,8 @@ namespace TicTacToe
             _output.OutputText(Prompts.Draw);
             ExitApp();
         }
-
-        private static bool HasDraw(int turns)
-        {
-            return turns == 9;
-        }
         
-        private void PlayMove( Player player, Coordinate coordinate)
+        private void PlayMove(Player player, Coordinate coordinate)
         {
             _board.AssignTokenToCell(player, coordinate);
             _output.ClearConsole();

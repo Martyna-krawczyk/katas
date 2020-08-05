@@ -3,7 +3,7 @@ using Xunit;
 
 namespace TicTacToeTests
 {
-    public class WinCheckerTests
+    public class GameRuleCheckerTests
     {
         [Fact]
           public void HorizontalWinReturnsTrue() 
@@ -15,7 +15,7 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(0,1));
               board.AssignTokenToCell(player, new Coordinate(0,2));
 
-              var result = WinChecker.HasWin(player, board);
+              var result = GameRuleChecker.HasWin(player, board);
               
               Assert.True(result);
           } 
@@ -30,7 +30,7 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(1,0));
               board.AssignTokenToCell(player, new Coordinate(2,0));
           
-              var result = WinChecker.HasWin(player, board);
+              var result = GameRuleChecker.HasWin(player, board);
               
               Assert.True(result);
           }
@@ -45,7 +45,7 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,2));
           
-              var result = WinChecker.HasWin(player, board);
+              var result = GameRuleChecker.HasWin(player, board);
               
               Assert.True(result);
           }
@@ -60,7 +60,7 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,0));
           
-              var result = WinChecker.HasWin(player, board);
+              var result = GameRuleChecker.HasWin(player, board);
               
               Assert.True(result);
           }
@@ -75,7 +75,7 @@ namespace TicTacToeTests
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,0));
           
-              var result = WinChecker.HasWin(player, board);
+              var result = GameRuleChecker.HasWin(player, board);
               
               Assert.False(result);
           }

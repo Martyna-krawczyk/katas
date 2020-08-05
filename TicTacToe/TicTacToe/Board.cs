@@ -30,7 +30,7 @@ namespace TicTacToe
             }
         }
 
-        public IEnumerable<List<string>> GetBoardWinningLinesValues()
+        public IEnumerable<List<string>> GetAllBoardLineValues()
         {
             var linesValuesList = new List<List<string>>();
             var diagonalListLtr = new List<string>();
