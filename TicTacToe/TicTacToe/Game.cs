@@ -26,8 +26,8 @@ namespace TicTacToe
         public void Run()
         {
             var turns = 0;
-            _output.OutputText(Prompts.WelcomeMessage);
-            _output.OutputText(Prompts.BoardIntro);
+            _output.OutputText(Resources.WelcomeMessage);
+            _output.OutputText(Resources.BoardIntro);
             _board.PrintBoard();
             do
             {
@@ -40,7 +40,7 @@ namespace TicTacToe
         
         private void RunPlay(Player player)
         {
-            _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
+            _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
             do
             {
                 var playerMove = _input.InputText();
@@ -58,8 +58,8 @@ namespace TicTacToe
                 }
                 else
                 {
-                    _output.OutputText(Prompts.IncorrectFormat);
-                    _output.OutputText(string.Format(Prompts.TakeTurn, player.Name));
+                    _output.OutputText(Resources.IncorrectFormat);
+                    _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
                     continue;
                 }
                 
@@ -70,13 +70,13 @@ namespace TicTacToe
                         PlayMove(player, coordinate);
                         break;
                     }
-                    _output.OutputText(string.Format(Prompts.CellUnavailable)); 
+                    _output.OutputText(string.Format(Resources.CellUnavailable)); 
                 }
                 else
                 {
-                    _output.OutputText(string.Format(Prompts.OutsideOfBounds));
+                    _output.OutputText(string.Format(Resources.OutsideOfBounds));
                 }
-                _output.OutputText(string.Format(Prompts.TakeTurn,player.Name));
+                _output.OutputText(string.Format(Resources.TakeTurn,player.Name));
             } while (true);
         }
 
@@ -100,13 +100,13 @@ namespace TicTacToe
 
         private void RunWin(Player player)
         {
-            _output.OutputText(string.Format(Prompts.YouHaveWon, player.Name));
+            _output.OutputText(string.Format(Resources.YouHaveWon, player.Name));
             ExitApp();
         }
 
         private void RunDraw()
         {
-            _output.OutputText(Prompts.Draw);
+            _output.OutputText(Resources.Draw);
             ExitApp();
         }
         
@@ -114,7 +114,7 @@ namespace TicTacToe
         {
             _board.AssignTokenToCell(player, coordinate);
             _output.ClearConsole();
-            _output.OutputText(Prompts.MoveAccepted);
+            _output.OutputText(Resources.MoveAccepted);
             _board.PrintBoard();
         }
         
