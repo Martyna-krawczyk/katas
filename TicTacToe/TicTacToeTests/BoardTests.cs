@@ -53,10 +53,18 @@ namespace TicTacToeTests
             Assert.Equal("X", player.Token );
         }
         
+        [Fact]
+        public void UsedCoordinateMarkedUnavailable()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+            var coordinate = new Coordinate(1,1);
+            
+            var result = board.CellIsAvailable(coordinate);
 
+            Assert.True(result);
+        }
         
-        //all board cells available property set to true when board is initialised
-        //used coord is marked unavailable
         //coordinate set to cell object
         
     }
