@@ -28,8 +28,20 @@ namespace TicTacToeTests
 
             Assert.All(cellsAvailabilityList, Assert.True);
         }
+
+        [Fact]
+        public void BoardWinningLineValuesListCountEquals8_ForBoardSize3()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+
+            var boardWinningLineValuesCount = board.GetAllBoardWinningLineValues().Count();
+            
+            Assert.Equal(8, boardWinningLineValuesCount);
+        }
         
-        //board line values list = 8 items for size 3 board
+        
+        
         //player token assigned to cell
         //all board cells available property set to true when board is initialised
         //used coord is marked unavailable
