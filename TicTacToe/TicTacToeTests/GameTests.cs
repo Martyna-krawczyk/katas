@@ -103,6 +103,21 @@ namespace TicTacToeTests
         }
         
         [Fact]
+        public void BoardPrintsWithMultipleCoordinates()
+        {
+            var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
+            var output = new TestOutput();
+            var players = new List<Player> {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var board = new Board(output, 3);
+            var coordinateParser = new CoordinateParser();
+            var runner = new Game(input, output, players, board, coordinateParser);
+
+            runner.Run();
+            
+            Assert.Contains("X O X \nO O X \nX X O ", output.CalledText);
+        }
+        
+        [Fact]
         public void DrawReturnsNotification_IfBoardSize3()
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
@@ -116,9 +131,8 @@ namespace TicTacToeTests
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(9, input.CalledCount);
-            Assert.Contains("X O X \nO O X \nX X O ", output.CalledText);
         }
-        
+
         [Fact]
         public void DrawReturnsNotification_IfBoardSize4()
         {
@@ -133,7 +147,6 @@ namespace TicTacToeTests
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(16, input.CalledCount);
-            Assert.Contains("X O X O \nX O X O \nX X O O \nO O X X ", output.CalledText);
         }
         
         [Fact]
@@ -153,7 +166,7 @@ namespace TicTacToeTests
         }
 
         [Fact]
-        public void HorizontalWinCallsExitApp()
+        public void WinCallsExitApp()
         {
             var input = new TestInput(new[] {"1,1", "2,2", "1,2", "3,1", "1,3"});
             var output = new TestOutput();
@@ -166,6 +179,22 @@ namespace TicTacToeTests
             
             Assert.False(runner.Running);
             Assert.Equal(5, input.CalledCount);
+        }
+        
+        [Fact]
+        public void DrawCallsExitApp()
+        {
+            var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
+            var output = new TestOutput();
+            var players = new List<Player> {new Player("Player 1", "X"), new Player("Player 2", "O")};
+            var board = new Board(output, 3);
+            var coordinateParser = new CoordinateParser();
+            var runner = new Game(input, output, players, board, coordinateParser);
+
+            runner.Run();
+            
+            Assert.False(runner.Running);
+            Assert.Equal(9, input.CalledCount);
         }
     }
 }
