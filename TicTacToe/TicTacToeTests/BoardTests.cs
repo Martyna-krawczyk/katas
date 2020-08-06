@@ -40,15 +40,24 @@ namespace TicTacToeTests
             Assert.Equal(8, boardWinningLineValuesCount);
         }
         
+        [Fact]
+        public void PlayerTokenAssignedToCellValue()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+            var player = new Player("Player 1", "X");
+            var coordinate = new Coordinate(1,1);
+            
+            board.AssignTokenToCell(player, coordinate);
+            
+            Assert.Equal("X", player.Token );
+        }
         
+
         
-        //player token assigned to cell
         //all board cells available property set to true when board is initialised
         //used coord is marked unavailable
         //coordinate set to cell object
         
     }
-    
-    
-    
 }
