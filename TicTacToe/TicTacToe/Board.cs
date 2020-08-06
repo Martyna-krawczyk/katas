@@ -91,7 +91,7 @@ namespace TicTacToe
             return GetCellByCoordinates(coordinate).IsAvailable;
         }
 
-        private Cell GetCellByCoordinates(Coordinate coordinate)
+        public Cell GetCellByCoordinates(Coordinate coordinate)
         {
             return _cell[coordinate.X, coordinate.Y];
         }
