@@ -65,7 +65,16 @@ namespace TicTacToeTests
             Assert.True(result);
         }
         
-        //coordinate set to cell object
-        
+        [Fact]
+        public void GetCellByCoordinatesReturnsCell()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+            var coordinate = new Coordinate(1,1);
+            
+            var result = board.GetCellByCoordinates(coordinate);
+
+            Assert.IsType<Cell>(result);
+        }
     }
 }
