@@ -30,7 +30,21 @@ namespace TicTacToe
             }
         }
 
-        public IEnumerable<List<string>> GetAllBoardLineValues()
+        public IEnumerable<bool> GetAllCellsAvailabilityFromBoard()
+        {
+            var cellsAvailabilityList = new List<bool>();
+            
+            for (var x = 0; x < Size; x++)
+            {
+                for (var y = 0; y < Size; y++)
+                {
+                    cellsAvailabilityList.Add(_cell[x, y].IsAvailable);
+                }
+            }
+            return cellsAvailabilityList;
+        }
+        
+        public IEnumerable<List<string>> GetAllBoardWinningLineValues()
         {
             var linesValuesList = new List<List<string>>();
             var diagonalListLtr = new List<string>();
@@ -46,7 +60,6 @@ namespace TicTacToe
                 diagonalListLtr.Add(_cell[row,row].Value);
                 diagonalListRtl.Add(_cell[row, reverseIndexer].Value);
                 
-                
                 for (var col = 0; col < Size; col++)
                 {
                     rowList.Add(_cell[row,col].Value);
@@ -56,7 +69,6 @@ namespace TicTacToe
                 
                 linesValuesList.Add(rowList);
                 linesValuesList.Add(columnList);
-                
             }
             linesValuesList.Add(diagonalListLtr);
             linesValuesList.Add(diagonalListRtl);

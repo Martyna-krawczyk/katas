@@ -9,6 +9,7 @@ namespace TicTacToe
         void PrintBoard();
         void AssignTokenToCell(Player player, Coordinate coordinate);
         bool CellIsAvailable(Coordinate coordinate);
-        IEnumerable<List<string>> GetAllBoardLineValues();
+        IEnumerable<List<string>> GetAllBoardWinningLineValues();
+        IEnumerable<bool> GetAllCellsAvailabilityFromBoard();
     }
 }

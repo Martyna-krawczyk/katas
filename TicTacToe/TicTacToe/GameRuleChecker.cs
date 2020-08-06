@@ -9,7 +9,7 @@ namespace TicTacToe
     {
         public static bool HasWin(Player player, IBoard board)
         {
-            return HasWinOnBoard(player, board.GetAllBoardLineValues());
+            return HasWinOnBoard(player, board.GetAllBoardWinningLineValues());
         }
         
         private static bool HasWinOnBoard(Player player, IEnumerable<List<string>> boardValues)
@@ -20,12 +20,12 @@ namespace TicTacToe
         
         public static bool HasDraw(IBoard board)
         {
-            return IsDraw(board.GetAllBoardLineValues());
+            return IsDraw(board.GetAllCellsAvailabilityFromBoard());
         }
-        
-        private static bool IsDraw(IEnumerable<List<string>> boardValues)
+
+        private static bool IsDraw(IEnumerable<bool> listOfCellsAvailability)
         {
-            return boardValues.All(list => !list.Any(value => value.Equals(".")));
+            return listOfCellsAvailability.All(cell => cell.Equals(false));
         }
     }
 }
