@@ -6,7 +6,7 @@ namespace TicTacToeTests
     public class CoordinateParserTests
     {
         [Fact]
-        public void PlayerMoveReturnsCoordinate()
+        public void ValidPlayerMoveReturnsCoordinate()
         {
             var coordinateParser = new CoordinateParser();
             
