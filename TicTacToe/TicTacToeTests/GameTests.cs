@@ -39,7 +39,6 @@ namespace TicTacToeTests
             Assert.Equal(2, input.CalledCount);
         }
 
-
         [Fact]
         public void ExitAppCalledOnQInput()
         {
@@ -104,7 +103,7 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void DrawReturnsMessage_IfBoardSizeIs3()
+        public void DrawReturnsNotification_IfBoardSize3()
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
@@ -121,7 +120,7 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void DrawReturnsMessage_IfBoardSizeIs4()
+        public void DrawReturnsNotification_IfBoardSize4()
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "1,4", "2,1", "2,2", "2,3", "2,4", "3,1", "3,3", "3,2", "3,4", "4,4", "4,2", "4,3", "4,1"});
             var output = new TestOutput();
@@ -138,7 +137,7 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void WinReturnsMessage()
+        public void WinReturnsNotification()
         {
             var input = new TestInput(new string[] {"1,1", "1,2", "2,2", "2,3", "3,3"});
             var output = new TestOutput();
@@ -152,7 +151,7 @@ namespace TicTacToeTests
             Assert.Contains("Congratulations Player 1! You have won!", output.CalledText);
             Assert.Equal(5, input.CalledCount);
         }
-        
+
         [Fact]
         public void HorizontalWinCallsExitApp()
         {
