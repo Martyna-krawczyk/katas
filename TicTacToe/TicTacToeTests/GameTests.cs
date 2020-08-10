@@ -211,5 +211,20 @@ namespace TicTacToeTests
 
             Assert.Contains("Human enter a coord x,y to place your X or enter 'q' to give up:", output.CalledText);
         }
+        
+        [Fact]
+        public void ComputerPlayerTurnCallsRunComputerPlay()
+        {
+            var input = new TestInput(new[] {"1,1", "q"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Computer", "X")};
+            var board = new TestBoard(new bool[] {true});
+            var coordinateParser = new TestCoordinateParser( validCoordinateResults: true, true);
+            var runner = new Game(input, output, players, board, coordinateParser);
+
+            runner.Run();
+
+            Assert.Contains("Just one moment, Computer is taking it's turn...", output.CalledText);
+        }
     }
 }
