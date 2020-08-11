@@ -32,20 +32,22 @@ namespace TicTacToe
             do
             {
                 var player = _players[turns % _players.Count];
+                
                 if (player.Name == "Human")
                 {
-                    RunPlay(player);
+                    _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
                 }
                 else
                 {
-                    RunComputerPlay(player);
+                    _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
                 }
+                RunPlay(player);
                 turns++;
                 CheckGameRules(player);
             } while (Running);
         }
 
-        private void RunComputerPlay(Player player)
+        private void RunComputerPlay(Player player) //todo implement logic
         {
             _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
         }

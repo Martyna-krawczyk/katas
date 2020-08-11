@@ -74,7 +74,7 @@ namespace TicTacToe
             linesValuesList.Add(diagonalListRtl);
             return linesValuesList;
         }
-
+        
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCellByCoordinates(coordinate).Value = player.Token;
@@ -111,6 +111,23 @@ namespace TicTacToe
                 }
             }
             _output.OutputText(boardString);
+        }
+
+        public IEnumerable<Cell> GetAvailableCells()
+        {
+            var availableCellsList = new List<Cell>();
+            
+            for (var x = 0; x < Size; x++)
+            {
+                for (var y = 0; y < Size; y++)
+                {
+                    if (_cell[x,y].IsAvailable)
+                    {
+                        availableCellsList.Add(_cell[x, y]);
+                    }
+                }
+            }
+            return availableCellsList;
         }
     }
 }
