@@ -56,7 +56,7 @@ The protégé should be comfortable using the command line and will have demonst
 ​
 The protégé should have demonstrated their understanding of the different ways of pair programming and will have practiced this technique with different people.
 
-- [ ] Can describe the different kinds of pair programming techniques
+- [x] Can describe the different kinds of pair programming techniques
 - [x] Has participated in at least 4 sessions of pair-programming
 ​
 ### Foundational Programming
@@ -74,7 +74,7 @@ The protégé should be aware of the following concepts, be able to describe wha
 - [x] Classes - Static methods vs Instance methods
 - [x] Classes - Constructor & passing values through a constructor
 - [x] Classes - Private / Protected Variables
-- [ ] Inheritance with classes (and why it should usually be avoided)
+- [x] Inheritance with classes (and why it should usually be avoided)
 - [ ] Composition with classes (why this is usually better than inheritance)
 - [x] Interfaces
 - [x] Exceptions
@@ -108,7 +108,7 @@ The protégé should strive for Level 3 which is defined as:
 ​
 > Classes and methods are broken up into small components with clear responsibilities. Methods are consistently kept small.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### Test Driven Development
 ​
@@ -124,7 +124,7 @@ The protégé should use where appropriate Test Doubles when testing their code.
 ​
 > Leverages a test framework to utilize out of the box test doubles. Can articulate what type of test double the test framework is providing for different test scenarios. Able to swap out parts of the solution code base with appropriate test double framework implementations to isolate behaviour for testing.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### You Ain't Gonna Need It - YAGNI
 ​
@@ -140,7 +140,7 @@ The protégé should understand and demonstrate usage of the Command Query Separ
 ​
 > Generally applies command query separation when writing methods.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### Object Composition
 ​
@@ -154,4 +154,4 @@ The protégé should demonstrate their knowledge of object oriented programming,
 ​
 Being able to sketch out designs or diagrams to explain how code or systems work is an essential skill. You don't need to know [UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language) but you should be able to sketch out diagrams which will aid in explaining systems, code, or user interfaces. The protégé should be able to demonstrate the solution of 2 katas by use of whiteboard or the equivalent whiteboard tools.
 ​
-- [ ] Used a whiteboard (real or virtual) as an aid to explain 2 solutions.
+- [x] Used a whiteboard (real or virtual) as an aid to explain 2 solutions.
