@@ -8,7 +8,7 @@ namespace TicTacToe
     {
         private static readonly Random Random = new Random();
 
-        public static int ChooseIntegerForCoordinate(int min, in int boardSize)
+        public static int ChooseIntegerForCoordinate(int min, int boardSize)
         {
             return Random.Next(min, boardSize);
         }
