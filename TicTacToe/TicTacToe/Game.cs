@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace TicTacToe
 {
@@ -32,29 +33,49 @@ namespace TicTacToe
             do
             {
                 var player = _players[turns % _players.Count];
-                
                 if (player.Name == "Human")
                 {
                     _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
+                    RunPlay(player);
+                    CheckGameRules(player);
                 }
                 else
                 {
-                    _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
+                    RunComputerPlay(player);
+                    CheckGameRules(player);
                 }
-                RunPlay(player);
                 turns++;
-                CheckGameRules(player);
             } while (Running);
         }
+        Coordinate coordinate;
 
-        private void RunComputerPlay(Player player) //todo implement logic
+        private void RunComputerPlay(Player player)
         {
-            _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
+            while (true)
+            {
+                _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
+                
+                Thread.Sleep(2000);
+                coordinate = CoordinateParser.GetCoordinates(SelectCoordinates(), SelectCoordinates());
+                if (_coordinateParser.IsValidCoordinate(coordinate, _board) && _board.CellIsAvailable(coordinate))
+                {
+                    PlayMove(player, coordinate);
+                }
+                else
+                {
+                    continue;
+                }
+                break;
+            }
+        }
+
+        private int SelectCoordinates()
+        {
+            return TurnSelector.ChooseIntegerForCoordinate(0, _board.Size);
         }
 
         private void RunPlay(Player player)
         {
-            _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
             do
             {
                 var playerMove = _input.InputText();
@@ -64,8 +85,7 @@ namespace TicTacToe
                     ExitApp();
                     break;
                 }
-
-                Coordinate coordinate;
+                
                 if (_coordinateParser.IsValidFormat(playerMove))
                 {
                     coordinate = SetCoordinate(playerMove);

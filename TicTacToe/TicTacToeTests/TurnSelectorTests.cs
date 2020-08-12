@@ -32,8 +32,5 @@ namespace TicTacToeTests
             Assert.IsType<Coordinate>(coordinate);
             Assert.NotNull(coordinate);
         }
-        
-        //AreComputerSelectedCoordinatesValid?
-        //AreComputerSelectedCoordinatesAvailable?
     }
 }
