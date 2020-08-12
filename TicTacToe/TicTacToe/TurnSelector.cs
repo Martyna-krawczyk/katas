@@ -12,5 +12,10 @@ namespace TicTacToe
         {  
             return Random.Next(min, max);  
         }
+
+        public static int ChooseYCoordinateString(int min, in int boardSize)
+        {
+            return Random.Next(min, boardSize);  
+        }
     }
 }

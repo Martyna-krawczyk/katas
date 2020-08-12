@@ -18,6 +18,17 @@ namespace TicTacToeTests
             Assert.InRange(3,1,3);
         }
         
+        [Fact]
+        public void ComputerSelectsStringForYCoordinate()
+        {
+            var output = new TestOutput();
+            var board = new Board(output, 3);
+            
+            TurnSelector.ChooseYCoordinateString(1, board.Size);
+
+            Assert.InRange(3,1,3);
+        }
+        
         
         
         //ComputerSelectsStringForYCoordinate()
