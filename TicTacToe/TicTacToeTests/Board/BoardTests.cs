@@ -76,16 +76,5 @@ namespace TicTacToeTests
 
             Assert.IsType<Cell>(result);
         }
-        
-        [Fact]
-        public void BoardGetsAvailableCellsList()
-        {
-            var output = new TestOutput();
-            var board = new Board(output, 3);
-
-            var result = board.GetAvailableCells().Count();
-
-            Assert.Equal(9, result);
-        }
     }
 }

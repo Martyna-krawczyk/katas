@@ -41,5 +41,10 @@ namespace TicTacToeTests
         {
             return new List<bool>();
         }
+
+        public IEnumerable<Cell> GetAvailableCells()
+        {
+            return new List<Cell>();
+        }
     }
 }
