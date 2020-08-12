@@ -7,15 +7,10 @@ namespace TicTacToe
     public static class TurnSelector
     {
         private static readonly Random Random = new Random();
-        
-        public static int ChooseXCoordinateString(int min, int max)  
-        {  
-            return Random.Next(min, max);  
-        }
 
-        public static int ChooseYCoordinateString(int min, in int boardSize)
+        public static int ChooseIntegerForCoordinate(int min, in int boardSize)
         {
-            return Random.Next(min, boardSize);  
+            return Random.Next(min, boardSize);
         }
     }
 }

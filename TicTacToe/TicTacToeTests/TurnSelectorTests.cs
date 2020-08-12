@@ -8,30 +8,16 @@ namespace TicTacToeTests
     public class TurnSelectorTests
     {
         [Fact]
-        public void ComputerSelectsStringForXCoordinate()
+        public void ComputerSelectsIntForCoordinates()
         {
             var output = new TestOutput();
             var board = new Board(output, 3);
             
-            TurnSelector.ChooseXCoordinateString(1, board.Size);
+            TurnSelector.ChooseIntegerForCoordinate(1, board.Size);
 
             Assert.InRange(3,1,3);
         }
         
-        [Fact]
-        public void ComputerSelectsStringForYCoordinate()
-        {
-            var output = new TestOutput();
-            var board = new Board(output, 3);
-            
-            TurnSelector.ChooseYCoordinateString(1, board.Size);
-
-            Assert.InRange(3,1,3);
-        }
-        
-        
-        
-        //ComputerSelectsStringForYCoordinate()
         //randomXAndYGenerated()
         //ComputerProvidesPlayerMove
     }
