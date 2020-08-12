@@ -104,5 +104,11 @@ namespace TicTacToe {
                 return ResourceManager.GetString("YouHaveWon", resourceCulture);
             }
         }
+        
+        internal static string ComputerTakeTurn {
+            get {
+                return ResourceManager.GetString("ComputerTakeTurn", resourceCulture);
+            }
+        }
     }
 }
