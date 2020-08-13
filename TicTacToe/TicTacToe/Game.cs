@@ -57,7 +57,7 @@ namespace TicTacToe
                 
                 Thread.Sleep(2000);
                 coordinate = CoordinateParser.GetCoordinates(SelectCoordinates(), SelectCoordinates());
-                if (_coordinateParser.IsValidCoordinate(coordinate, _board) && _board.CellIsAvailable(coordinate))
+                if ( _board.CellIsAvailable(coordinate))
                 {
                     PlayMove(player, coordinate);
                 }

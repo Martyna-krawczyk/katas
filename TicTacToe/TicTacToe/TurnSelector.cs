@@ -6,11 +6,12 @@ namespace TicTacToe
 {
     public static class TurnSelector
     {
-        private static readonly Random Random = new Random();
+        
 
         public static int ChooseIntegerForCoordinate(int min, int boardSize)
         {
-            return Random.Next(min, boardSize);
+            var random = new Random();
+            return random.Next(min, boardSize);
         }
     }
 }
