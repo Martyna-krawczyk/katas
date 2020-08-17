@@ -19,10 +19,5 @@ namespace TicTacToeTests
             
             Assert.Equal("O", player.Token);
         }
-
-        public void HumanPlayerMove()
-        {
-            
-        }
     }
 }

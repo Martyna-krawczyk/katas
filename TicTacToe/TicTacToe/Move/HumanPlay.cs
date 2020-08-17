@@ -7,12 +7,13 @@ namespace TicTacToe
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
 
-        public HumanPlay(IInput input, IOutput output, IBoard board, ICoordinateParser coordinateParser)
+        public HumanPlay(IInput input, IOutput output, IBoard board, ICoordinateParser coordinateParser, Game game)
         {
             _input = input;
             _output = output;
             _board = board;
             _coordinateParser = coordinateParser;
+            _game = game;
         }
         public void Move(Player player)
         {
@@ -52,11 +53,13 @@ namespace TicTacToe
             } while (true);
         }
 
-        private Game game;
+        
+        private Game _game;
         public bool IsExitIntent(string playerMove) 
         {
             if (playerMove != "q") return false;
             //game.ExitApp(); //TODO Implement the correct method to exit
+            _game.Running = false;
             return true;
         }
 

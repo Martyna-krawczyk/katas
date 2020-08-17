@@ -37,7 +37,7 @@ namespace TicTacToe
                 var player = _players[turns % _players.Count];
                 if (player.Name == "Human")
                 {
-                    var human = new HumanPlay(_input, _output, _board, _coordinateParser);
+                    var human = new HumanPlay(_input, _output, _board, _coordinateParser, this);
                     human.Move(player);
                     CheckGameRules(player);
                 }
