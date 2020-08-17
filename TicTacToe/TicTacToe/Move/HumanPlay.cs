@@ -56,7 +56,7 @@ namespace TicTacToe
         public bool IsExitIntent(string playerMove) 
         {
             if (playerMove != "q") return false;
-            game.ExitApp();
+            //game.ExitApp(); //TODO Implement the correct method to exit
             return true;
         }
 

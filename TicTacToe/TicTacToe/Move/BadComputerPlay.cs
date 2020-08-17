@@ -17,9 +17,8 @@ namespace TicTacToe
             while (true)
             {
                 _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
-                
                 Thread.Sleep(2000);
-                var coordinate = CoordinateParser.GetCoordinates(SelectCoordinates(), SelectCoordinates());
+                var coordinate = SetCoordinate();
                 if ( _board.CellIsAvailable(coordinate))
                 {
                     PlayMove(player, coordinate);
@@ -30,6 +29,11 @@ namespace TicTacToe
                 }
                 break;
             }
+        }
+
+        private Coordinate SetCoordinate()
+        {
+            return CoordinateParser.GetCoordinates(SelectCoordinates(), SelectCoordinates());
         }
 
         private int SelectCoordinates()

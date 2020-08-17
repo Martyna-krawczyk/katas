@@ -39,22 +39,7 @@ namespace TicTacToeTests
             Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
             Assert.Equal(0, board.CalledCount);
         }
-        
-        [Fact]
-        public void BoardPrintsWithCorrectCoordinates()
-        {
-            var input = new TestInput(new[] {"1,1", "q"});
-            var output = new TestOutput();
-            var players = new List<Player>() {new Player("Human", "X")};
-            var board = new Board(output, 3);
-            var coordinateParser = new CoordinateParser();
-            var runner = new Game(input, output, players, board, coordinateParser);
 
-            runner.Run();
-            
-            Assert.Contains("X . . \n. . . \n. . . ", output.CalledText);
-        }
-        
         [Fact]
         public void BoardPrintsWithMultipleCoordinates()
         {
