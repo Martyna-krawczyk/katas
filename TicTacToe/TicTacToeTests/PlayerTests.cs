@@ -19,7 +19,10 @@ namespace TicTacToeTests
             
             Assert.Equal("O", player.Token);
         }
-        
-        //Computer player picks random spot from the board which is available
+
+        public void HumanPlayerMove()
+        {
+            
+        }
     }
 }
