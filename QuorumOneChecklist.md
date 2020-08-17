@@ -95,10 +95,10 @@ The Language Design part of Acceleration program includes these topics:
 ​
 Based on Kent Beck's recommendation there are four simple rules which if you follow them will help you build good quality software. The protégé should be able to explain and demonstrate use of the following concepts:
 ​
-- [ ] Code Passes the Tests
-- [ ] Reveals Intention - it is easy to understand what the program is doing by reading the code
-- [ ] No Duplication - do not repeat yourself
-- [ ] Fewest elements - do not write more than you need to
+- [x] Code Passes the Tests
+- [x] Reveals Intention - it is easy to understand what the program is doing by reading the code
+- [x] No Duplication - do not repeat yourself
+- [x] Fewest elements - do not write more than you need to
 ​
 The protégé should strive for Level 3 which is defined as:
 ​
@@ -116,7 +116,7 @@ The protégé should follow the guidelines of Test Driven Development in complet
 ​
 > The basic TDD cycle is followed where in general each time new functionality is added to the solution an appropriate test is written first.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### Test Doubles
 ​

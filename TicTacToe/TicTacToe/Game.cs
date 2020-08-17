@@ -13,7 +13,8 @@ namespace TicTacToe
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
-        public bool Running { get; private set; } = true;
+        public bool Running { get; set; } = true;
+        
 
         public Game(IInput input, IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
         {
@@ -23,6 +24,7 @@ namespace TicTacToe
             _board = board;
             _coordinateParser = coordinateParser;
         }
+        
         
         public void Run()
         {
@@ -35,88 +37,18 @@ namespace TicTacToe
                 var player = _players[turns % _players.Count];
                 if (player.Name == "Human")
                 {
-                    _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
-                    RunPlay(player);
+                    var human = new HumanPlay(_input, _output, _board, _coordinateParser, this);
+                    human.Move(player);
                     CheckGameRules(player);
                 }
                 else
                 {
-                    RunComputerPlay(player);
+                    var badComputer = new BadComputerPlay(_output, _board);
+                    badComputer.Move(player);
                     CheckGameRules(player);
                 }
                 turns++;
             } while (Running);
-        }
-        Coordinate coordinate;
-
-        private void RunComputerPlay(Player player)
-        {
-            while (true)
-            {
-                _output.OutputText(string.Format(Resources.ComputerTakeTurn, player.Name));
-                
-                Thread.Sleep(2000);
-                coordinate = CoordinateParser.GetCoordinates(SelectCoordinates(), SelectCoordinates());
-                if (_coordinateParser.IsValidCoordinate(coordinate, _board) && _board.CellIsAvailable(coordinate))
-                {
-                    PlayMove(player, coordinate);
-                }
-                else
-                {
-                    continue;
-                }
-                break;
-            }
-        }
-
-        private int SelectCoordinates()
-        {
-            return TurnSelector.ChooseIntegerForCoordinate(0, _board.Size);
-        }
-
-        private void RunPlay(Player player)
-        {
-            do
-            {
-                var playerMove = _input.InputText();
-                
-                if (playerMove == "q")
-                {
-                    ExitApp();
-                    break;
-                }
-                
-                if (_coordinateParser.IsValidFormat(playerMove))
-                {
-                    coordinate = SetCoordinate(playerMove);
-                }
-                else
-                {
-                    _output.OutputText(Resources.IncorrectFormat);
-                    _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
-                    continue;
-                }
-                
-                if (_coordinateParser.IsValidCoordinate(coordinate, _board))
-                {
-                    if (_board.CellIsAvailable(coordinate))
-                    {
-                        PlayMove(player, coordinate);
-                        break;
-                    }
-                    _output.OutputText(string.Format(Resources.CellUnavailable)); 
-                }
-                else
-                {
-                    _output.OutputText(string.Format(Resources.OutsideOfBounds));
-                }
-                _output.OutputText(string.Format(Resources.TakeTurn,player.Name));
-            } while (true);
-        }
-
-        private Coordinate SetCoordinate(string playerMove)
-        {
-            return _coordinateParser.GetCoordinates(playerMove);
         }
         
         private void CheckGameRules(Player player)
@@ -143,16 +75,8 @@ namespace TicTacToe
             _output.OutputText(Resources.Draw);
             ExitApp();
         }
-        
-        private void PlayMove(Player player, Coordinate coordinate)
-        {
-            _board.AssignTokenToCell(player, coordinate);
-            _output.ClearConsole();
-            _output.OutputText(Resources.MoveAccepted);
-            _board.PrintBoard();
-        }
-        
-        private void ExitApp()
+
+        public void ExitApp()
         {
             Running = false;
         }
