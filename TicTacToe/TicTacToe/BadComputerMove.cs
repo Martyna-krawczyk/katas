@@ -6,18 +6,24 @@ namespace TicTacToe
 {
     public class BadComputerMove : IInput
     {
-        public BadComputerMove(IInput input, int boardSize)
+        public BadComputerMove(IInput input, IBoard board)
         {
             _input = input;
-            _boardSize = boardSize;
+            _board = board;
         }
         
         private readonly IInput _input;
-        private int _boardSize;
+        private readonly IBoard _board;
 
         public string GetPlayerMove(string input)
         {
             return input;
+        }
+        
+        public string InputText()
+        {
+            Thread.Sleep(2000);
+            return CoordinateParser.ConvertCoordinateToString(GetAvailableCell(_board));
         }
 
         public string PlayMove()
@@ -25,12 +31,6 @@ namespace TicTacToe
             return GetPlayerMove(_input.InputText());
         }
         
-        public string InputText()
-        {
-            return "2,1";
-        }
-        
-
         public Coordinate GetAvailableCell(IBoard board)
         {
             var coordinate = SetCoordinate();
@@ -41,15 +41,15 @@ namespace TicTacToe
             return coordinate;
         }
 
-        public int ChooseIntegerForCoordinate()
-        {
-            var random = new Random();
-            return random.Next(0, _boardSize);
-        }
-        
         private Coordinate SetCoordinate()
         {
             return CoordinateParser.GetCoordinates(ChooseIntegerForCoordinate(), ChooseIntegerForCoordinate());
+        }
+        
+        public int ChooseIntegerForCoordinate()
+        {
+            var random = new Random();
+            return random.Next(0, _board.Size);
         }
     }
 }

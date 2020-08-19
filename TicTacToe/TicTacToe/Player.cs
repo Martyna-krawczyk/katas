@@ -6,26 +6,24 @@ namespace TicTacToe
         {
             Name = name;
             Token = token;
-            _input = input;
-            _output = output;
+            Input = input;
+            Output = output;
         }
 
-        private IOutput _output { get; set; }
-        private IInput _input { get; set; }
-        public string Name { get; set; }
-        public string Token { get; set; }
+        private IOutput Output { get; set; }
+        private IInput Input { get; set; }
+        public string Name { get; private set; }
+        public string Token { get; private set; }
         
         public string PlayMove()
         {
-            _output.OutputText(string.Format(Resources.TakeTurn, Name));
-            return GetPlayerMove(_input.InputText());
+            Output.OutputText(string.Format(Resources.TakeTurn, Name));
+            return GetPlayerMove(Input.InputText());
         }
 
-        public string GetPlayerMove(string input)
+        private static string GetPlayerMove(string input)
         {
             return input;
         }
     }
-
-    
 }
