@@ -43,9 +43,10 @@ namespace TicTacToeTests
         [Fact]
         public void PlayerTokenAssignedToCellValue()
         {
+            var input = new ConsoleInput();
             var output = new TestOutput();
             var board = new Board(output, 3);
-            var player = new Player("Player 1", "X");
+            var player = new Player("Player 1", "X", input, output);
             var coordinate = new Coordinate(1,1);
             
             board.AssignTokenToCell(player, coordinate);

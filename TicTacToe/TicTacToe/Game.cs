@@ -7,16 +7,14 @@ namespace TicTacToe
 {
     public class Game 
     {
-        private readonly IInput _input;
         private readonly IOutput _output;
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
         public bool Running { get; private set; } = true;
 
-        public Game(IInput input, IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
+        public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
         {
-            _input = input;
             _output = output;
             _players = players;
             _board = board;
@@ -40,11 +38,9 @@ namespace TicTacToe
         
         private void RunPlay(Player player)
         {
-            _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
             do
             {
-                var playerMove = _input.InputText();
-                
+                var playerMove = player.PlayMove();
                 if (playerMove == "q")
                 {
                     ExitApp();
@@ -59,7 +55,6 @@ namespace TicTacToe
                 else
                 {
                     _output.OutputText(Resources.IncorrectFormat);
-                    _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
                     continue;
                 }
                 
@@ -67,7 +62,7 @@ namespace TicTacToe
                 {
                     if (_board.CellIsAvailable(coordinate))
                     {
-                        PlayMove(player, coordinate);
+                        RunMove(player, coordinate);
                         break;
                     }
                     _output.OutputText(string.Format(Resources.CellUnavailable)); 
@@ -76,7 +71,6 @@ namespace TicTacToe
                 {
                     _output.OutputText(string.Format(Resources.OutsideOfBounds));
                 }
-                _output.OutputText(string.Format(Resources.TakeTurn,player.Name));
             } while (true);
         }
 
@@ -110,7 +104,7 @@ namespace TicTacToe
             ExitApp();
         }
         
-        private void PlayMove(Player player, Coordinate coordinate)
+        private void RunMove(Player player, Coordinate coordinate)
         {
             _board.AssignTokenToCell(player, coordinate);
             _output.ClearConsole();

@@ -11,14 +11,14 @@ namespace TicTacToe
             var output = new ConsoleOutput();
             var players = new List<Player>()
             {
-                new Player("Player 1", "X"),
-                new Player("Player 2", "O")
+                new Player("Player 1", "O", input, output),
+                new Player("Player 2", "X", input, output)
             };
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(input, output, players, board, coordinateParser);
+            var game = new Game(output, players, board, coordinateParser);
             
-            runner.Run();
+            game.Run();
         }
     }
 }

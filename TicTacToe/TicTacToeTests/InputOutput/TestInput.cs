@@ -16,10 +16,5 @@ namespace TicTacToeTests
         {
             return Inputs[CalledCount++];
         }
-
-        public void PlayMove(IOutput output, Player player)
-        {
-           
-        }
     }
 }
