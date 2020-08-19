@@ -5,7 +5,7 @@ namespace TicTacToe
 {
     public class BadComputerMove : IInput
     {
-        public BadComputerMove(IInput input)
+        public BadComputerMove(IInput input, int boardSize)
         {
             _input = input;
         }
@@ -25,6 +25,12 @@ namespace TicTacToe
         public string InputText()
         {
             return "2,1";
+        }
+
+        public int ChooseIntegerForCoordinate(int i, in int boardSize)
+        {
+            var random = new Random();
+            return random.Next(0, boardSize);
         }
     }
 }

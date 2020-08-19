@@ -22,7 +22,7 @@ namespace TicTacToeTests
         public void BadComputerPlayerTurnCallsPlayMove()
         {
             var input = new ConsoleInput();
-            var compInput = new BadComputerMove(input);
+            var compInput = new BadComputerMove(input, 3);
             var output = new TestOutput();
             var player = new Player("BadComputer", "X", compInput, output);
             
@@ -35,7 +35,7 @@ namespace TicTacToeTests
         public void BadComputerPlayMoveCallsGetPlayerMove()
         {
             var input = new ConsoleInput();
-            var compInput = new BadComputerMove(input);
+            var compInput = new BadComputerMove(input, 3);
             var output = new TestOutput();
             var player = new Player("BadComputer", "X", compInput, output);
 
@@ -56,5 +56,18 @@ namespace TicTacToeTests
             Assert.Equal("1,2", result);
         }
         
+        [Fact]
+         public void ComputerSelectsIntForCoordinates()
+         {
+             var boardSize = 3;
+             var output = new TestOutput();
+             var input = new ConsoleInput();
+             var compInput = new BadComputerMove(input, boardSize);
+             var board = new Board(output, boardSize);
+             
+             var result = compInput.ChooseIntegerForCoordinate(0, board.Size);
+
+             Assert.InRange(result,0,boardSize);
+         }
     }
 }
