@@ -8,10 +8,12 @@ namespace TicTacToe
         public BadComputerMove(IInput input, int boardSize)
         {
             _input = input;
+            _boardSize = boardSize;
         }
         
         private readonly IInput _input;
-        
+        private int _boardSize;
+
         public string GetPlayerMove(string input)
         {
             return input;
@@ -30,7 +32,12 @@ namespace TicTacToe
         public int ChooseIntegerForCoordinate(int i, in int boardSize)
         {
             var random = new Random();
-            return random.Next(0, boardSize);
+            return random.Next(0, _boardSize);
+        }
+        
+        private Coordinate SetCoordinate(int boardSize)
+        {
+            return CoordinateParser.GetCoordinates(ChooseIntegerForCoordinate(0, _boardSize), ChooseIntegerForCoordinate(0, _boardSize));
         }
     }
 }

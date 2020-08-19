@@ -48,14 +48,13 @@ namespace TicTacToeTests
         [Fact]
         public void BadComputerGetsCoordinate()
         {
+            var boardSize = 3;
             var input = new ConsoleInput();
-            var compInput = new BadComputerMove(input, 3);
-            var coordinateParser = new CoordinateParser();
+            var compInput = new BadComputerMove(input, boardSize);
 
-            var coordinate = coordinateParser.GetCoordinates(compInput.GetPlayerMove("2,2"));
+            var coordinate = CoordinateParser.GetCoordinates(compInput.ChooseIntegerForCoordinate(0, boardSize), compInput.ChooseIntegerForCoordinate(0, boardSize));
 
-            Assert.Equal(1,coordinate.X);
-            Assert.Equal(1,coordinate.Y);
+            Assert.IsType<Coordinate>(coordinate);
         }
     }
 }
