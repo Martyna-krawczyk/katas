@@ -51,10 +51,12 @@ namespace TicTacToeTests
             var boardSize = 3;
             var input = new ConsoleInput();
             var compInput = new BadComputerMove(input, boardSize);
+            var randomInteger = compInput.ChooseIntegerForCoordinate(0, boardSize);
 
-            var coordinate = CoordinateParser.GetCoordinates(compInput.ChooseIntegerForCoordinate(0, boardSize), compInput.ChooseIntegerForCoordinate(0, boardSize));
+            var coordinate = CoordinateParser.GetCoordinates(randomInteger, randomInteger);
 
             Assert.IsType<Coordinate>(coordinate);
+            Assert.NotNull(coordinate);
         }
     }
 }
