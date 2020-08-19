@@ -40,7 +40,7 @@ namespace TicTacToeTests
             var compInput = new BadComputerMove(input, boardSize);
             var board = new Board(output, boardSize);
              
-            var result = compInput.ChooseIntegerForCoordinate(0, board.Size);
+            var result = compInput.ChooseIntegerForCoordinate();
 
             Assert.InRange(result,0,boardSize);
         }
@@ -51,12 +51,25 @@ namespace TicTacToeTests
             var boardSize = 3;
             var input = new ConsoleInput();
             var compInput = new BadComputerMove(input, boardSize);
-            var randomInteger = compInput.ChooseIntegerForCoordinate(0, boardSize);
+            var randomInteger = compInput.ChooseIntegerForCoordinate();
 
             var coordinate = CoordinateParser.GetCoordinates(randomInteger, randomInteger);
 
             Assert.IsType<Coordinate>(coordinate);
             Assert.NotNull(coordinate);
+        }
+        [Fact]
+        public void BadComputerGetsAvailableCoordinate()
+        {
+            var boardSize = 3;
+            var output = new TestOutput();
+            var board = new Board(output, boardSize);
+            var input = new ConsoleInput();
+            var compInput = new BadComputerMove(input, boardSize);
+
+            var coordinate = compInput.GetAvailableCell(board);
+            
+            Assert.True(board.CellIsAvailable(coordinate));
         }
     }
 }

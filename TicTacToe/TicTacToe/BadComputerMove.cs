@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Threading;
 
 namespace TicTacToe
@@ -28,16 +29,27 @@ namespace TicTacToe
         {
             return "2,1";
         }
+        
 
-        public int ChooseIntegerForCoordinate(int i, in int boardSize)
+        public Coordinate GetAvailableCell(IBoard board)
+        {
+            var coordinate = SetCoordinate();
+            if (!board.CellIsAvailable(coordinate))
+            {
+                GetAvailableCell(board);
+            }
+            return coordinate;
+        }
+
+        public int ChooseIntegerForCoordinate()
         {
             var random = new Random();
             return random.Next(0, _boardSize);
         }
         
-        private Coordinate SetCoordinate(int boardSize)
+        private Coordinate SetCoordinate()
         {
-            return CoordinateParser.GetCoordinates(ChooseIntegerForCoordinate(0, _boardSize), ChooseIntegerForCoordinate(0, _boardSize));
+            return CoordinateParser.GetCoordinates(ChooseIntegerForCoordinate(), ChooseIntegerForCoordinate());
         }
     }
 }
