@@ -32,7 +32,7 @@ namespace TicTacToeTests
         }
         
         [Fact]
-        public void ComputerSelectsIntForCoordinates()
+        public void BadComputerSelectsIntForCoordinates()
         {
             var boardSize = 3;
             var output = new TestOutput();
@@ -43,6 +43,19 @@ namespace TicTacToeTests
             var result = compInput.ChooseIntegerForCoordinate(0, board.Size);
 
             Assert.InRange(result,0,boardSize);
+        }
+        
+        [Fact]
+        public void BadComputerGetsCoordinate()
+        {
+            var input = new ConsoleInput();
+            var compInput = new BadComputerMove(input, 3);
+            var coordinateParser = new CoordinateParser();
+
+            var coordinate = coordinateParser.GetCoordinates(compInput.GetPlayerMove("2,2"));
+
+            Assert.Equal(1,coordinate.X);
+            Assert.Equal(1,coordinate.Y);
         }
     }
 }
