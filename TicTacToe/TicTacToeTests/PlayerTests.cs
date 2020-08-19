@@ -22,14 +22,13 @@ namespace TicTacToeTests
         public void PlayMoveCallsGetPlayerMove()
         {
             var input = new ConsoleInput();
+            var compInput = new BadComputerMove(input);
             var output = new TestOutput();
-            var player = new Player("Human", "O", input, output);
+            var player = new Player("BadComputer", "X", compInput, output);
+
+            var result = player.PlayMove();
             
-        
-            var result = player.GetPlayerMove("1,1");
-        
-            Assert.IsType<string>(result);
-            Assert.Equal("1,1", result);
+            Assert.Equal("2,1", result);
         }
     }
 }
