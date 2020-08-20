@@ -16,5 +16,15 @@ namespace TicTacToeTests
         {
             return Inputs[CalledCount++];
         }
+
+        public string PlayMove()
+        {
+            return GetPlayerMove(InputText());
+        }
+
+        public string GetPlayerMove(string input)
+        {
+            return input;
+        }
     }
 }

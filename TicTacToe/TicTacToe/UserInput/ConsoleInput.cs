@@ -8,5 +8,15 @@ namespace TicTacToe
         {
             return Console.ReadLine()?.Trim();
         }
+
+        public string PlayMove()
+        {
+            return GetPlayerMove(InputText());
+        }
+
+        public string GetPlayerMove(string input)
+        {
+            return input;
+        }
     }
 }

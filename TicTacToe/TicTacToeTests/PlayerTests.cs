@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TicTacToe;
 using Xunit;
 
@@ -6,18 +7,27 @@ namespace TicTacToeTests
     public class PlayerTests
     {
         [Fact]
-        public void ComputerPlayerTokenIsX()
+        public void HumanPlayerTurnCallsPlayMove()
         {
-            var computer = new Player("Computer", "X");
+            var input = new TestInput(new[] {"1,2", "q"});
+            var output = new TestOutput();
+            var player = new Player("Human", "O", input, output);
             
-            Assert.Equal("X", computer.Token);
+            player.PlayMove();
+
+            Assert.Contains("Human enter a coord x,y to place your X or enter 'q' to give up:", output.CalledText);
         }
+        
         [Fact]
-        public void HumanPlayerTokenIsO()
+        public void HumanPlayMoveCallsGetPlayerMove()
         {
-            var player = new Player("Player", "O");
+            var input = new TestInput(new[] {"1,2", "q"});
+            var output = new TestOutput();
+            var player = new Player("Human", "O", input, output);
             
-            Assert.Equal("O", player.Token);
+            var result = player.PlayMove();
+
+            Assert.Equal("1,2", result);
         }
     }
 }

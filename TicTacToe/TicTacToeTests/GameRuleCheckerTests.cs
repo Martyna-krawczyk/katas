@@ -11,7 +11,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(0,1));
               board.AssignTokenToCell(player, new Coordinate(0,2));
@@ -26,7 +27,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(1,0));
               board.AssignTokenToCell(player, new Coordinate(2,0));
@@ -41,7 +43,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,2));
@@ -56,7 +59,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,2));
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,0));
@@ -71,7 +75,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(1,2));
               board.AssignTokenToCell(player, new Coordinate(1,1));
               board.AssignTokenToCell(player, new Coordinate(2,0));
@@ -86,7 +91,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(0,1));
               board.AssignTokenToCell(player, new Coordinate(0,2));
@@ -107,7 +113,8 @@ namespace TicTacToeTests
           {
               var output = new TestOutput();
               var board = new Board(output, 3);
-              var player = new Player("Player 1", "X");
+              var input = new ConsoleInput();
+              var player = new Player("Player 1", "X", input, output);
               board.AssignTokenToCell(player, new Coordinate(0,0));
               board.AssignTokenToCell(player, new Coordinate(0,1));
               board.AssignTokenToCell(player, new Coordinate(0,2));
