@@ -41,11 +41,7 @@ namespace TicTacToe
             do
             {
                 var playerMove = player.PlayMove();
-                if (playerMove == "q")
-                {
-                    ExitApp();
-                    break;
-                }
+                if (ExitIntent(playerMove)) break;
 
                 Coordinate coordinate;
                 if (_coordinateParser.IsValidFormat(playerMove))
@@ -72,6 +68,14 @@ namespace TicTacToe
                     _output.OutputText(string.Format(Resources.OutsideOfBounds));
                 }
             } while (true);
+        }
+
+        private bool ExitIntent(string playerMove)
+        {
+            if (playerMove != "q") return false;
+            ExitApp();
+            return true;
+
         }
 
         private Coordinate SetCoordinate(string playerMove)
