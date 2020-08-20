@@ -4,9 +4,9 @@ using System.Threading;
 
 namespace TicTacToe
 {
-    public class BadComputerMove : IInput
+    public class BadComputerInput : IInput
     {
-        public BadComputerMove(IInput input, IBoard board)
+        public BadComputerInput(IInput input, IBoard board)
         {
             _input = input;
             _board = board;

@@ -12,7 +12,7 @@ namespace TicTacToe
             var input = new ConsoleInput();
             var output = new ConsoleOutput();
             var board = new Board(output, boardSize);
-            var badComputerInput = new BadComputerMove(input, board);
+            var badComputerInput = new BadComputerInput(input, board);
             
             var players = new List<Player>()
             {
