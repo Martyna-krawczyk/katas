@@ -74,7 +74,7 @@ namespace TicTacToe
             linesValuesList.Add(diagonalListRtl);
             return linesValuesList;
         }
-
+        
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCellByCoordinates(coordinate).Value = player.Token;

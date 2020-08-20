@@ -56,7 +56,7 @@ The protégé should be comfortable using the command line and will have demonst
 ​
 The protégé should have demonstrated their understanding of the different ways of pair programming and will have practiced this technique with different people.
 
-- [ ] Can describe the different kinds of pair programming techniques
+- [x] Can describe the different kinds of pair programming techniques
 - [x] Has participated in at least 4 sessions of pair-programming
 ​
 ### Foundational Programming
@@ -95,10 +95,10 @@ The Language Design part of Acceleration program includes these topics:
 ​
 Based on Kent Beck's recommendation there are four simple rules which if you follow them will help you build good quality software. The protégé should be able to explain and demonstrate use of the following concepts:
 ​
-- [ ] Code Passes the Tests
-- [ ] Reveals Intention - it is easy to understand what the program is doing by reading the code
-- [ ] No Duplication - do not repeat yourself
-- [ ] Fewest elements - do not write more than you need to
+- [x] Code Passes the Tests
+- [x] Reveals Intention - it is easy to understand what the program is doing by reading the code
+- [x] No Duplication - do not repeat yourself
+- [x] Fewest elements - do not write more than you need to
 ​
 The protégé should strive for Level 3 which is defined as:
 ​
@@ -116,7 +116,7 @@ The protégé should follow the guidelines of Test Driven Development in complet
 ​
 > The basic TDD cycle is followed where in general each time new functionality is added to the solution an appropriate test is written first.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### Test Doubles
 ​
@@ -124,7 +124,7 @@ The protégé should use where appropriate Test Doubles when testing their code.
 ​
 > Leverages a test framework to utilize out of the box test doubles. Can articulate what type of test double the test framework is providing for different test scenarios. Able to swap out parts of the solution code base with appropriate test double framework implementations to isolate behaviour for testing.
 ​
-- [ ] Has achieved Level 3
+- [x] Has achieved Level 3
 ​
 ### You Ain't Gonna Need It - YAGNI
 ​
