@@ -12,7 +12,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"4,5", "q"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {false});
             var coordinateParser = new TestCoordinateParser( validCoordinateResults: false, true);
             var runner = new Game(output, players, board, coordinateParser);
@@ -28,7 +28,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new bool[] {false});
             var coordinateParser = new TestCoordinateParser( validCoordinateResults: true, true);
             var runner = new Game(output, players, board, coordinateParser);
@@ -44,7 +44,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new string[] {"q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new Board(output, 3);
             var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, true);
             var runner = new Game(output, players, board, coordinateParser);
@@ -60,7 +60,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,2", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {true});
             var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, true);
             var runner = new Game(output, players, board, coordinateParser);
@@ -76,7 +76,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {false});
             var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, false);
             var runner = new Game(output, players, board, coordinateParser);
@@ -92,7 +92,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "q"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -107,7 +107,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -122,7 +122,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -138,7 +138,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "1,4", "2,1", "2,2", "2,3", "2,4", "3,1", "3,3", "3,2", "3,4", "4,4", "4,2", "4,3", "4,1"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 4);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -154,7 +154,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new string[] {"1,1", "1,2", "2,2", "2,3", "3,3"});
             var output = new TestOutput();
-            var players = new List<Player>() {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player>() {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -170,7 +170,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "2,2", "1,2", "3,1", "1,3"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);
@@ -186,7 +186,7 @@ namespace TicTacToeTests
         {
             var input = new TestInput(new[] {"1,1", "1,2", "1,3", "2,1", "2,3", "2,2", "3,1", "3,3", "3,2"});
             var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input, output), new Player("Player 2", "O", input, output)};
+            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(output, 3);
             var coordinateParser = new CoordinateParser();
             var runner = new Game(output, players, board, coordinateParser);

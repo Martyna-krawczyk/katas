@@ -12,12 +12,12 @@ namespace TicTacToe
             var input = new ConsoleInput();
             var output = new ConsoleOutput();
             var board = new Board(output, boardSize);
-            var badComputerInput = new BadComputerInput(input, board);
+            var badComputerInput = new BadComputerInput(board);
             
             var players = new List<Player>()
             {
-                new Player("Player 1", "O", input, output),
-                new Player("Bad Computer Player", "X", badComputerInput, output)
+                new Player("Player 1", "O", input),
+                new Player("Bad Computer Player", "X", badComputerInput)
             };
             
             var coordinateParser = new CoordinateParser();

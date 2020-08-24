@@ -6,40 +6,32 @@ namespace TicTacToe
 {
     public class BadComputerInput : IInput
     {
-        public BadComputerInput(IInput input, IBoard board)
+        public BadComputerInput(IBoard board)
         {
-            _input = input;
             _board = board;
         }
         
-        private readonly IInput _input;
         private readonly IBoard _board;
 
-        public string GetPlayerMove(string input)
-        {
-            return input;
-        }
-        
         public string InputText()
         {
             Thread.Sleep(2000);
             return CoordinateParser.ConvertCoordinateToString(GetAvailableCell(_board));
         }
-
-        public string PlayMove()
-        {
-            return GetPlayerMove(_input.InputText());
-        }
         
         public Coordinate GetAvailableCell(IBoard board)
         {
-            var coordinate = SetCoordinate();
-            if (!board.CellIsAvailable(coordinate))
-            {
-                GetAvailableCell(board);
+            while (true)
+            { 
+                var coordinate = SetCoordinate();
+
+                if (board.CellIsAvailable(coordinate))
+                {
+                    return coordinate;
+                }
             }
-            return coordinate;
         }
+        
 
         private Coordinate SetCoordinate()
         {
