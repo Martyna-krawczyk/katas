@@ -49,7 +49,4 @@
     <data name="YouHaveWon" xml:space="preserve">
         <value>Congratulations {0}! You have won!</value>
     </data>
-    <data name="ComputerTakeTurn" xml:space="preserve">
-        <value>Just one moment, {0} is taking it's turn...</value>
-    </data>
 </root>
