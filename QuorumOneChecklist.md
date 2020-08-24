@@ -75,7 +75,7 @@ The protégé should be aware of the following concepts, be able to describe wha
 - [x] Classes - Constructor & passing values through a constructor
 - [x] Classes - Private / Protected Variables
 - [x] Inheritance with classes (and why it should usually be avoided)
-- [ ] Composition with classes (why this is usually better than inheritance)
+- [x] Composition with classes (why this is usually better than inheritance)
 - [x] Interfaces
 - [x] Exceptions
 ​
@@ -132,7 +132,7 @@ The protégé should demonstrate that they understands the YAGNI concept, and us
 ​
 > Generally applies YAGNI principles when solving problems. Delays implementing code capabilities to support presumptive features. Solution design focusses on solving the problem at hand without gold-plating.
 ​
-- [ ] Achieved Level 3
+- [x] Achieved Level 3
 ​
 ### Command Query Separation
 ​
