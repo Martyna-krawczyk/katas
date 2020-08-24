@@ -11,7 +11,7 @@ namespace TicTacToe
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
-        public bool Running { get; private set; } = true;
+        public GameStatus GameStatus { get; private set; }
 
         public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
         {
@@ -19,6 +19,7 @@ namespace TicTacToe
             _players = players;
             _board = board;
             _coordinateParser = coordinateParser;
+            GameStatus = GameStatus.InProgress;
         }
         
         public void Run()
@@ -33,7 +34,7 @@ namespace TicTacToe
                 RunPlay(player);
                 turns++;
                 CheckGameRules(player);
-            } while (Running);
+            } while (GameStatus.Equals(GameStatus.InProgress));
         }
         
         private void RunPlay(Player player)
@@ -75,7 +76,6 @@ namespace TicTacToe
             if (playerMove != "q") return false;
             ExitApp();
             return true;
-
         }
 
         private Coordinate SetCoordinate(string playerMove)
@@ -118,7 +118,7 @@ namespace TicTacToe
         
         private void ExitApp()
         {
-            Running = false;
+            GameStatus = GameStatus.GameOver;
         }
     }
 }

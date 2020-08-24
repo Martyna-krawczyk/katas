@@ -50,8 +50,8 @@ namespace TicTacToeTests
             var runner = new Game(output, players, board, coordinateParser);
 
             runner.Run();
-
-            Assert.False(runner.Running);
+            
+            Assert.Equal(GameStatus.GameOver, runner.GameStatus);
             Assert.Equal(1, input.CalledCount);
         }
 
@@ -177,7 +177,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.False(runner.Running);
+            Assert.Equal(GameStatus.GameOver, runner.GameStatus);
             Assert.Equal(5, input.CalledCount);
         }
         
@@ -193,7 +193,7 @@ namespace TicTacToeTests
 
             runner.Run();
             
-            Assert.False(runner.Running);
+            Assert.Equal(GameStatus.GameOver, runner.GameStatus);
             Assert.Equal(9, input.CalledCount);
         }
     }
