@@ -10,9 +10,8 @@ namespace TicTacToeTests
         {
             var boardSize = 3;
             var output = new TestOutput();
-            var input = new ConsoleInput();
             var board = new Board(output, boardSize);
-            var compInput = new BadComputerInput(input, board);
+            var compInput = new BadComputerInput(board);
 
             var result = compInput.ChooseIntegerForCoordinate();
 
@@ -24,8 +23,7 @@ namespace TicTacToeTests
         {
             var output = new TestOutput();
             var board = new Board(output, 3);
-            var input = new ConsoleInput();
-            var compInput = new BadComputerInput(input, board);
+            var compInput = new BadComputerInput(board);
             var randomInteger = compInput.ChooseIntegerForCoordinate();
 
             var coordinate = CoordinateParser.GetCoordinates(randomInteger, randomInteger);
@@ -40,8 +38,7 @@ namespace TicTacToeTests
             var boardSize = 3;
             var output = new TestOutput();
             var board = new Board(output, boardSize);
-            var input = new ConsoleInput();
-            var compInput = new BadComputerInput(input, board);
+            var compInput = new BadComputerInput(board);
 
             var coordinate = compInput.GetAvailableCell(board);
             
@@ -54,8 +51,7 @@ namespace TicTacToeTests
             var boardSize = 3;
             var output = new TestOutput();
             var board = new Board(output, boardSize);
-            var input = new ConsoleInput();
-            var compInput = new BadComputerInput(input, board);
+            var compInput = new BadComputerInput(board);
 
             var coordinate = compInput.GetAvailableCell(board);
             var coordinateAsString = CoordinateParser.ConvertCoordinateToString(coordinate);

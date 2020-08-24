@@ -42,7 +42,7 @@ namespace TicTacToe
             do
             {
                 _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
-                var playerMove = player.PlayMove();
+                var playerMove = player.InputText();
                 if (ExitIntent(playerMove)) break;
 
                 Coordinate coordinate;

@@ -11,15 +11,10 @@ namespace TicTacToe
         private IInput Input { get; set; }
         public string Name { get; private set; }
         public string Token { get; private set; }
-        
-        public string PlayMove()
-        {
-            return GetPlayerMove(Input.InputText());
-        }
 
-        private static string GetPlayerMove(string input)
+        public string InputText()
         {
-            return input;
+            return Input.InputText();
         }
     }
 }
