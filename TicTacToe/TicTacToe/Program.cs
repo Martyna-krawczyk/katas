@@ -16,8 +16,8 @@ namespace TicTacToe
             
             var players = new List<Player>()
             {
-                new Player("Player 1", "O", input, output),
-                new Player("Bad Computer Player", "X", badComputerInput, output)
+                new Player("Player 1", "O", input),
+                new Player("Bad Computer Player", "X", badComputerInput)
             };
             
             var coordinateParser = new CoordinateParser();

@@ -41,6 +41,7 @@ namespace TicTacToe
         {
             do
             {
+                _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
                 var playerMove = player.PlayMove();
                 if (ExitIntent(playerMove)) break;
 
