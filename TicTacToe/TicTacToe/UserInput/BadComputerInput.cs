@@ -18,16 +18,20 @@ namespace TicTacToe
             Thread.Sleep(2000);
             return CoordinateParser.ConvertCoordinateToString(GetAvailableCell(_board));
         }
-
+        
         public Coordinate GetAvailableCell(IBoard board)
         {
-            var coordinate = SetCoordinate();
-            if (!board.CellIsAvailable(coordinate))
-            {
-                GetAvailableCell(board);
+            while (true)
+            { 
+                var coordinate = SetCoordinate();
+
+                if (board.CellIsAvailable(coordinate))
+                {
+                    return coordinate;
+                }
             }
-            return coordinate;
         }
+        
 
         private Coordinate SetCoordinate()
         {
