@@ -49,4 +49,13 @@
     <data name="YouHaveWon" xml:space="preserve">
         <value>Congratulations {0}! You have won!</value>
     </data>
+    <data name="ComputerOrPersonPlayerSelection" xml:space="preserve">
+        <value>Select 1 to play against the computer, or 2 to play with another person.</value>
+    </data>
+    <data name="ComputerPlayerChosen" xml:space="preserve">
+        <value>You've chosen to play the computer - You are playing as Player 1</value>
+    </data>
+    <data name="IncorrectPlayerSelection" xml:space="preserve">
+        <value>Oops - your selection doesn't match the options.  Please try again.</value>
+    </data>
 </root>

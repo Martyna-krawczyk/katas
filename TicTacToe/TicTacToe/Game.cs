@@ -25,7 +25,6 @@ namespace TicTacToe
         public void Run()
         {
             var turns = 0;
-            _output.OutputText(Resources.WelcomeMessage);
             _output.OutputText(Resources.BoardIntro);
             _board.PrintBoard();
             do
