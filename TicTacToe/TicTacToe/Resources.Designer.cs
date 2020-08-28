@@ -111,15 +111,33 @@ namespace TicTacToe {
             }
         }
         
-        internal static string ComputerPlayerChosen {
-            get {
-                return ResourceManager.GetString("ComputerPlayerChosen", resourceCulture);
-            }
-        }
-        
         internal static string IncorrectPlayerSelection {
             get {
                 return ResourceManager.GetString("IncorrectPlayerSelection", resourceCulture);
+            }
+        }
+        
+        internal static string BoardSizeRequest {
+            get {
+                return ResourceManager.GetString("BoardSizeRequest", resourceCulture);
+            }
+        }
+        
+        internal static string PleaseEnterOneNumberOnly {
+            get {
+                return ResourceManager.GetString("PleaseEnterOneNumberOnly", resourceCulture);
+            }
+        }
+        
+        internal static string AskNumberOfComputerPlayers {
+            get {
+                return ResourceManager.GetString("AskNumberOfComputerPlayers", resourceCulture);
+            }
+        }
+        
+        internal static string AskNumberOfPlayers {
+            get {
+                return ResourceManager.GetString("AskNumberOfPlayers", resourceCulture);
             }
         }
     }
