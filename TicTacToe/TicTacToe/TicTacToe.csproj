@@ -20,8 +20,4 @@
       </Compile>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Move" />
-    </ItemGroup>
-
 </Project>
