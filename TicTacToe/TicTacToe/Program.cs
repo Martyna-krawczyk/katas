@@ -11,9 +11,8 @@ namespace TicTacToe
         {
             var output = new ConsoleOutput();
             var players = new List<Player>();
-            
             Console.WriteLine(Resources.WelcomeMessage);
-            var boardSize = UserSetsBoardSize();
+            const int boardSize = 3;
             var board = new Board(output, boardSize);
             var numberOfPlayers = UserSetsNumberOfPlayers();
             var listOfPlayerTokens = GetPlayerTokenList(numberOfPlayers);
@@ -24,20 +23,7 @@ namespace TicTacToe
             
             game.Run();
         }
-        
-        private static int UserSetsBoardSize()
-        {
-            string boardSizeSelection;
-            Console.WriteLine(Resources.BoardSizeRequest);
-            do
-            {
-                boardSizeSelection = Console.ReadLine();
-                CheckForValidInput(boardSizeSelection);
-            } while (!IsValidFormat(boardSizeSelection));
-            var size = int.Parse(boardSizeSelection);
-            return size;
-        }
-        
+
         private static void CheckForValidInput(string input) 
         {
             if (!IsValidFormat(input))
