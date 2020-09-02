@@ -16,7 +16,7 @@ namespace TicTacToe
             var board = new Board(output, boardSize);
             
             const int numberOfPlayers = 2;
-            var numberOfComputerPlayers = UserSetsGamePreference();
+            var numberOfComputerPlayers = UserSetsPlayerPreference();
             
             var players = new List<Player>();
             var tokens = new List<string> {"O","X"};
@@ -27,27 +27,26 @@ namespace TicTacToe
             
             game.Run();
         }
-
-        private static int UserSetsGamePreference()
+        
+        private static int UserSetsPlayerPreference()
         {
-            Console.WriteLine("Would you like to play against the computer? y/n ");
-            var input = Console.ReadLine();
-            var numberOfComputerPlayers = 0;
-            switch (input)
+            
+            Console.WriteLine(Resources.AskIfGameAgainstComputer);
+            string input;
+            int numberOfComputerPlayers;
+            do
             {
-                case "y":
-                    numberOfComputerPlayers = 1;
-                    break;
-                case "n":
-                    numberOfComputerPlayers = 0;
-                    break;
-                default:
-                    Console.WriteLine("Sorry, that's not an option");
-                    break;
-            }
+                input = Console.ReadLine();
+                numberOfComputerPlayers = input == "y" ? 1 : 0;
+                
+                if (input == "y" || input == "n") continue;
+                Console.WriteLine(Resources.InvalidInput);
+                Console.WriteLine(Resources.AskIfGameAgainstComputer);
+                
+            } while (input != "y" && input != "n");
             return numberOfComputerPlayers;
         }
-
+        
         private static void InitialisePlayerList(int numberOfPlayers, int numberOfComputerPlayers, List<Player> players, List<string> tokens, IBoard board)
         {
             InitialiseHumanPlayers(numberOfPlayers, numberOfComputerPlayers, players, tokens);
