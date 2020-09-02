@@ -49,22 +49,10 @@
     <data name="YouHaveWon" xml:space="preserve">
         <value>Congratulations {0}! You have won!</value>
     </data>
-    <data name="ComputerOrPersonPlayerSelection" xml:space="preserve">
-        <value>Select 1 to play against the computer, or 2 to play with another person.</value>
+    <data name="AskIfGameAgainstComputer" xml:space="preserve">
+        <value>Would you like to play against the computer? y/n </value>
     </data>
-    <data name="IncorrectPlayerSelection" xml:space="preserve">
-        <value>Oops - your selection doesn't match the options.  Please try again.</value>
-    </data>
-    <data name="BoardSizeRequest" xml:space="preserve">
-        <value>What size board would you like to play?</value>
-    </data>
-    <data name="PleaseEnterOneNumberOnly" xml:space="preserve">
-        <value>Sorry that format is incorrect - please enter one number only</value>
-    </data>
-    <data name="AskNumberOfComputerPlayers" xml:space="preserve">
-        <value>How many computer players would you like to play against?</value>
-    </data>
-    <data name="AskNumberOfPlayers" xml:space="preserve">
-        <value>How many players?</value>
+    <data name="InvalidInput" xml:space="preserve">
+        <value>Sorry, that's not an option</value>
     </data>
 </root>
