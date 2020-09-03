@@ -13,7 +13,7 @@ namespace TicTacToeTests
             _validFormatResults = validFormatResults;
         }
         
-        public Coordinate GetCoordinates(string playerMove)
+        public Coordinate GetNewCoordinate(string playerMove)
         {
             return new Coordinate(0,0);
         }

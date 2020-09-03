@@ -80,7 +80,7 @@ namespace TicTacToe
 
         private Coordinate SetCoordinate(string playerMove)
         {
-            return _coordinateParser.GetCoordinates(playerMove);
+            return _coordinateParser.GetNewCoordinate(playerMove);
         }
         
         private void CheckGameRules(Player player)

@@ -17,7 +17,7 @@ namespace TicTacToe
             return coordinate.X < board.Size && coordinate.X >= 0 && coordinate.Y < board.Size && coordinate.Y >= 0;
         }
         
-        public Coordinate GetCoordinates(string playerMove)
+        public Coordinate GetNewCoordinate(string playerMove)
         {
              var stringCoordinates = playerMove.Split(",");
              var parsedXCoordinate = Convert.ToInt32(stringCoordinates[0]);
@@ -25,11 +25,6 @@ namespace TicTacToe
              var finalXCoordinate = parsedXCoordinate - 1;
              var finalYCoordinate = parsedYCoordinate - 1;
              return new Coordinate(finalXCoordinate,finalYCoordinate);
-        }
-        
-        public static Coordinate GetCoordinates(int xCoordinate, int yCoordinate)
-        {
-            return new Coordinate(xCoordinate, yCoordinate);
         }
     }
 }
