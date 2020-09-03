@@ -31,12 +31,5 @@ namespace TicTacToe
         {
             return new Coordinate(xCoordinate, yCoordinate);
         }
-
-        public static string ConvertCoordinateToString(Coordinate coordinate)
-        {
-            var x = coordinate.X + 1;
-            var y = coordinate.Y + 1;
-            return $"{x},{y}";
-        }
     }
 }
