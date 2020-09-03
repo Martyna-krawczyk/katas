@@ -10,7 +10,7 @@ namespace TicTacToeTests
         {
             var coordinateParser = new CoordinateParser();
             
-            var coordinate = coordinateParser.GetCoordinates("2,3");
+            var coordinate = coordinateParser.GetNewCoordinate("2,3");
             
             Assert.Equal(1,coordinate.X);
             Assert.Equal(2,coordinate.Y);
