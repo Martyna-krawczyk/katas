@@ -15,7 +15,5 @@ namespace TicTacToeTests
             Assert.Equal(1,coordinate.X);
             Assert.Equal(2,coordinate.Y);
         }
-        
-        
     }
 }
