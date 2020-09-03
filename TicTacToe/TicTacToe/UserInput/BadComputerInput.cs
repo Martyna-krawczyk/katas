@@ -23,7 +23,7 @@ namespace TicTacToe
         {
             while (true)
             { 
-                var coordinate = SetCoordinate();
+                var coordinate = SetNewCoordinate();
 
                 if (board.CellIsAvailable(coordinate))
                 {
@@ -32,9 +32,9 @@ namespace TicTacToe
             }
         }
 
-        private Coordinate SetCoordinate()
+        private Coordinate SetNewCoordinate()
         {
-            return CoordinateParser.GetCoordinates(ChooseIntegerForCoordinate(), ChooseIntegerForCoordinate());
+            return new Coordinate(ChooseIntegerForCoordinate(), ChooseIntegerForCoordinate());
         }
         
         public int ChooseIntegerForCoordinate()

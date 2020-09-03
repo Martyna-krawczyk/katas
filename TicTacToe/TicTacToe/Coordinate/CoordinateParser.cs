@@ -26,10 +26,5 @@ namespace TicTacToe
              var finalYCoordinate = parsedYCoordinate - 1;
              return new Coordinate(finalXCoordinate,finalYCoordinate);
         }
-        
-        public static Coordinate GetCoordinates(int xCoordinate, int yCoordinate)
-        {
-            return new Coordinate(xCoordinate, yCoordinate);
-        }
     }
 }

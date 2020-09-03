@@ -24,7 +24,7 @@ namespace TicTacToeTests
             var compInput = new BadComputerInput(board);
             var randomInteger = compInput.ChooseIntegerForCoordinate();
 
-            var coordinate = CoordinateParser.GetCoordinates(randomInteger, randomInteger);
+            var coordinate = new Coordinate(randomInteger, randomInteger);
 
             Assert.IsType<Coordinate>(coordinate);
             Assert.NotNull(coordinate);
