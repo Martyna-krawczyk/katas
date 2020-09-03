@@ -16,7 +16,7 @@ namespace TicTacToe
         public string InputText()
         {
             Thread.Sleep(2000);
-            return CoordinateParser.ConvertCoordinateToString(GetAvailableCell(_board));
+            return GetAvailableCell(_board).ToString();
         }
         
         public Coordinate GetAvailableCell(IBoard board)
@@ -31,7 +31,6 @@ namespace TicTacToe
                 }
             }
         }
-        
 
         private Coordinate SetCoordinate()
         {

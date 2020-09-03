@@ -48,10 +48,10 @@ namespace TicTacToeTests
             var boardSize = 3;
             var board = new Board(boardSize);
             var compInput = new BadComputerInput(board);
-
+        
             var coordinate = compInput.GetAvailableCell(board);
-            var coordinateAsString = CoordinateParser.ConvertCoordinateToString(coordinate);
-
+            var coordinateAsString = coordinate.ToString();
+        
             Assert.IsType<string>(coordinateAsString);
         }
     }
