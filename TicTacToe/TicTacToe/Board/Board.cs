@@ -7,19 +7,17 @@ namespace TicTacToe
     public class Board : IBoard
     {
         private Cell[,] _cell;
-
-        public Board(IOutput output, int size)
+        public Board(int size)
         {
-            _output = output;
             Size = size;
             CreateBoard();
         }
-
-        private readonly IOutput _output;
+        
         public int Size { get; }
 
         private void CreateBoard()
         {
+            
             _cell = new Cell[Size, Size];
             for (var x = 0; x < Size; x++)
             {
@@ -77,40 +75,28 @@ namespace TicTacToe
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
-            GetCellByCoordinates(coordinate).Value = player.Token;
+            GetCell(coordinate).Value = player.Token;
             MarkCellAsUnavailable(coordinate);
         }
         
         private void MarkCellAsUnavailable(Coordinate coordinate)
         {
-            GetCellByCoordinates(coordinate).IsAvailable = false;
+            GetCell(coordinate).IsAvailable = false;
         }
         
         public bool CellIsAvailable(Coordinate coordinate)
         {
-            return GetCellByCoordinates(coordinate).IsAvailable;
+            return GetCell(coordinate).IsAvailable;
         }
 
-        public Cell GetCellByCoordinates(Coordinate coordinate)
+        public Cell GetCell(Coordinate coordinate)
         {
             return _cell[coordinate.X, coordinate.Y];
         }
-
-        public void PrintBoard()
+        
+        public Cell GetCell(int x, int y)
         {
-            var boardString = "";  
-            for (var x = 0; x < Size; x++)
-            {
-                for (var y = 0; y < Size; y++)
-                {
-                    boardString +=_cell[x,y].Value + " ";
-                }
-                if (x < Size - 1)
-                {
-                    boardString += Environment.NewLine;
-                }
-            }
-            _output.OutputText(boardString);
+            return _cell[x, y];
         }
     }
 }
