@@ -25,8 +25,8 @@ namespace TicTacToe
         public void Run()
         {
             var turns = 0;
-            _output.OutputText(Resources.BoardIntro);
-            _board.PrintBoard();
+            _output.OutputText(Resources.BoardIntro); 
+            _output.OutputText(BoardFormatter.PrintBoard(_board));
             do
             {
                 var player = _players[turns % _players.Count];
@@ -113,7 +113,7 @@ namespace TicTacToe
             _board.AssignTokenToCell(player, coordinate);
             _output.ClearConsole();
             _output.OutputText(Resources.MoveAccepted);
-            _board.PrintBoard();
+            _output.OutputText(BoardFormatter.PrintBoard(_board));
         }
         
         private void ExitApp()

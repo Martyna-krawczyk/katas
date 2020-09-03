@@ -13,7 +13,7 @@ namespace TicTacToe
             
             var output = new ConsoleOutput();
             const int boardSize = 3;
-            var board = new Board(output, boardSize);
+            var board = new Board(boardSize);
             
             const int numberOfPlayers = 2;
             var numberOfComputerPlayers = UserSetsPlayerPreference();

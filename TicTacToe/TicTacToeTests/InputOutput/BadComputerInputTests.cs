@@ -9,8 +9,7 @@ namespace TicTacToeTests
         public void BadComputerSelectsIntForCoordinates()
         {
             var boardSize = 3;
-            var output = new TestOutput();
-            var board = new Board(output, boardSize);
+            var board = new Board(boardSize);
             var compInput = new BadComputerInput(board);
 
             var result = compInput.ChooseIntegerForCoordinate();
@@ -21,8 +20,7 @@ namespace TicTacToeTests
         [Fact]
         public void BadComputerGetsCoordinate()
         {
-            var output = new TestOutput();
-            var board = new Board(output, 3);
+            var board = new Board(3);
             var compInput = new BadComputerInput(board);
             var randomInteger = compInput.ChooseIntegerForCoordinate();
 
@@ -36,8 +34,7 @@ namespace TicTacToeTests
         public void BadComputerGetsAvailableCoordinate()
         {
             var boardSize = 3;
-            var output = new TestOutput();
-            var board = new Board(output, boardSize);
+            var board = new Board(boardSize);
             var compInput = new BadComputerInput(board);
 
             var coordinate = compInput.GetAvailableCell(board);
@@ -49,8 +46,7 @@ namespace TicTacToeTests
         public void AvailableCoordinateIsConvertedToString()
         {
             var boardSize = 3;
-            var output = new TestOutput();
-            var board = new Board(output, boardSize);
+            var board = new Board(boardSize);
             var compInput = new BadComputerInput(board);
 
             var coordinate = compInput.GetAvailableCell(board);

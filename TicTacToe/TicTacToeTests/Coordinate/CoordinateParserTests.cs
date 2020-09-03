@@ -39,8 +39,7 @@ namespace TicTacToeTests
         [Fact]
         public void ValidCoordinateReturnsTrue()
         {
-            var output = new TestOutput();
-            var board = new Board(output, 3);
+            var board = new Board(3);
             var coordinate = new Coordinate(2,2);
             var coordinateParser = new CoordinateParser(); 
 
@@ -52,8 +51,7 @@ namespace TicTacToeTests
         [Fact]
         public void InValidCoordinateReturnsFalse()
         {
-            var output = new TestOutput();
-            var board = new Board(output, 3);
+            var board = new Board(3);
             var coordinate = new Coordinate(2,7);
             var coordinateParser = new CoordinateParser(); 
 
