@@ -25,8 +25,9 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player> {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {false});
-            var coordinateParser = new TestCoordinateParser( validCoordinateResults: false, true);
-            var runner = new Game(output, players, board, coordinateParser);
+            var coordinateParser = new CoordinateParser();
+            var testValidator = new TestValidator(validCoordinateResults: false, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
 
@@ -41,8 +42,9 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new bool[] {false});
-            var coordinateParser = new TestCoordinateParser( validCoordinateResults: true, true);
-            var runner = new Game(output, players, board, coordinateParser);
+            var coordinateParser = new CoordinateParser();
+            var testValidator = new TestValidator( validCoordinateResults: true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
 
@@ -57,8 +59,9 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new Board(3);
-            var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, true);
-            var runner = new Game(output, players, board, coordinateParser);
+            var coordinateParser = new CoordinateParser();
+            var testValidator = new TestValidator(validCoordinateResults: true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -73,8 +76,9 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {true});
-            var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, true);
-            var runner = new Game(output, players, board, coordinateParser);
+            var coordinateParser = new CoordinateParser();
+            var testValidator = new TestValidator(validCoordinateResults: true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -89,8 +93,9 @@ namespace TicTacToeTests
             var output = new TestOutput();
             var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new TestBoard(new[] {false});
-            var coordinateParser = new TestCoordinateParser(validCoordinateResults: true, false);
-            var runner = new Game(output, players, board, coordinateParser);
+            var coordinateParser = new CoordinateParser();
+            var testValidator = new TestValidator(validCoordinateResults: true, false);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -106,7 +111,8 @@ namespace TicTacToeTests
             var players = new List<Player>() {new Player("Player 1", "X", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -121,7 +127,8 @@ namespace TicTacToeTests
             var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -136,7 +143,8 @@ namespace TicTacToeTests
             var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -145,22 +153,6 @@ namespace TicTacToeTests
         }
 
         [Fact]
-        public void DrawReturnsNotification_IfBoardSize4()
-        {
-            var input = new TestInput(new[] {"1,1", "1,2", "1,3", "1,4", "2,1", "2,2", "2,3", "2,4", "3,1", "3,3", "3,2", "3,4", "4,4", "4,2", "4,3", "4,1"});
-            var output = new TestOutput();
-            var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
-            var board = new Board(4);
-            var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
-        
-            runner.Run();
-            
-            Assert.Contains("It's a draw!", output.CalledText);
-            Assert.Equal(16, input.CalledCount);
-        }
-        
-        [Fact]
         public void WinReturnsNotification()
         {
             var input = new TestInput(new string[] {"1,1", "1,2", "2,2", "2,3", "3,3"});
@@ -168,7 +160,8 @@ namespace TicTacToeTests
             var players = new List<Player>() {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -184,7 +177,8 @@ namespace TicTacToeTests
             var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             
@@ -200,7 +194,8 @@ namespace TicTacToeTests
             var players = new List<Player> {new Player("Player 1", "X", input), new Player("Player 2", "O", input)};
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
-            var runner = new Game(output, players, board, coordinateParser);
+            var testValidator = new TestValidator(true, true);
+            var runner = new Game(output, players, board, coordinateParser, testValidator);
 
             runner.Run();
             

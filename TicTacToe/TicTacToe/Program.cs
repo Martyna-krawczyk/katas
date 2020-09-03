@@ -23,7 +23,8 @@ namespace TicTacToe
             InitialisePlayerList(numberOfPlayers, numberOfComputerPlayers, players, tokens, board);
             
             var coordinateParser = new CoordinateParser();
-            var game = new Game(output, players, board, coordinateParser);
+            var validator = new Validator();
+            var game = new Game(output, players, board, coordinateParser, validator);
             
             game.Run();
         }

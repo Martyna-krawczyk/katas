@@ -11,14 +11,16 @@ namespace TicTacToe
         private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
+        private readonly IValidator _validator;
         public GameStatus GameStatus { get; private set; }
 
-        public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser)
+        public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser, IValidator validator)
         {
             _output = output;
             _players = players;
             _board = board;
             _coordinateParser = coordinateParser;
+            _validator = validator;
             GameStatus = GameStatus.InProgress;
         }
         
@@ -45,7 +47,7 @@ namespace TicTacToe
                 if (ExitIntent(playerMove)) break;
 
                 Coordinate coordinate;
-                if (_coordinateParser.IsValidFormat(playerMove))
+                if (_validator.IsValidFormat(playerMove))
                 {
                     coordinate = SetCoordinate(playerMove);
                 }
@@ -55,7 +57,7 @@ namespace TicTacToe
                     continue;
                 }
                 
-                if (_coordinateParser.IsValidCoordinate(coordinate, _board))
+                if (_validator.IsValidCoordinate(coordinate, _board))
                 {
                     if (_board.CellIsAvailable(coordinate))
                     {
