@@ -8,6 +8,14 @@ namespace TicTacToeTests
     public class BoardTests
     {
         [Fact]
+        public void BoardSizeSetsSizeProperty()
+        {
+            var board = new Board(3);
+            
+            Assert.Equal(3, board.Size);
+        }
+        
+        [Fact]
         public void AllCellsSetAsAvailableWhenInitialised()
         {
             var board = new Board(3);
@@ -49,17 +57,6 @@ namespace TicTacToeTests
             var result = board.CellIsAvailable(coordinate);
 
             Assert.True(result);
-        }
-        
-        [Fact]
-        public void GetCellByCoordinatesReturnsCell()
-        {
-            var board = new Board(3);
-            var coordinate = new Coordinate(1,1);
-            
-            var result = board.GetCell(coordinate);
-
-            Assert.IsType<Cell>(result);
         }
     }
 }
