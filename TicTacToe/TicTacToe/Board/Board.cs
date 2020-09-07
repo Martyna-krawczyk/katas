@@ -7,6 +7,7 @@ namespace TicTacToe
     public class Board : IBoard
     {
         private Cell[,] _cell;
+        
         public Board(int size)
         {
             Size = size;
@@ -89,14 +90,14 @@ namespace TicTacToe
             return GetCell(coordinate).IsAvailable;
         }
 
-        public Cell GetCell(Coordinate coordinate)
-        {
-            return _cell[coordinate.X, coordinate.Y];
-        }
-        
         public Cell GetCell(int x, int y)
         {
             return _cell[x, y];
+        }
+        
+        private Cell GetCell(Coordinate coordinate)
+        {
+            return _cell[coordinate.X, coordinate.Y];
         }
     }
 }
