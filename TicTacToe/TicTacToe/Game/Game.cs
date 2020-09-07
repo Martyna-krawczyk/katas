@@ -87,7 +87,7 @@ namespace TicTacToe
         
         private void CheckGameRules(Player player)
         {
-            if (GameRuleChecker.HasDraw(_board))
+            if (GameRuleChecker.HasDraw(_board) && !GameRuleChecker.HasWin(player, _board))
             {
                 RunDraw();
             }
