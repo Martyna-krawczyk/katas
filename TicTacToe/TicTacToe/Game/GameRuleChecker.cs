@@ -15,7 +15,7 @@ namespace TicTacToe
         private static bool HasWinOnBoard(Player player, IEnumerable<List<string>> boardValues)
         {
             return boardValues.Select(lines => lines.All(value => value == player.Token))
-                .Any(HasWin => HasWin);
+                .Any(hasWin => hasWin);
         }
         
         public static bool HasDraw(IBoard board)
@@ -29,4 +29,3 @@ namespace TicTacToe
         }
     }
 }
-
