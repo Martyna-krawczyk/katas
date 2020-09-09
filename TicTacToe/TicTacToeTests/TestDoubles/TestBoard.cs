@@ -17,11 +17,6 @@ namespace TicTacToeTests
         
         private readonly bool[] _cellAvailableResults;
 
-        public void PrintBoard()
-        {
-           
-        }
-
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             
