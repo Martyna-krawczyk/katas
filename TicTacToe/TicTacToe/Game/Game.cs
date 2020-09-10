@@ -12,6 +12,7 @@ namespace TicTacToe
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
         private readonly IValidator _validator;
+
         public GameStatus GameStatus { get; private set; }
 
         public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser, IValidator validator)
@@ -32,59 +33,19 @@ namespace TicTacToe
             do
             {
                 var player = _players[turns % _players.Count];
-                RunPlay(player);
+                GameValidator.TakeTurn(player, _board, _output, this, _validator,_coordinateParser);
                 turns++;
                 CheckGameRules(player);
             } while (GameStatus.Equals(GameStatus.InProgress));
         }
         
-        private void RunPlay(Player player)
-        {
-            do
-            {
-                _output.OutputText(string.Format(Resources.TakeTurn, player.Name));
-                var playerMove = player.InputText();
-                if (ExitIntent(playerMove)) break;
-
-                Coordinate coordinate;
-                if (_validator.IsValidFormat(playerMove))
-                {
-                    coordinate = SetCoordinate(playerMove);
-                }
-                else
-                {
-                    _output.OutputText(Resources.IncorrectFormat);
-                    continue;
-                }
-                
-                if (_validator.IsValidCoordinate(coordinate, _board))
-                {
-                    if (_board.CellIsAvailable(coordinate))
-                    {
-                        RunMove(player, coordinate);
-                        break;
-                    }
-                    _output.OutputText(string.Format(Resources.CellUnavailable)); 
-                }
-                else
-                {
-                    _output.OutputText(string.Format(Resources.OutsideOfBounds));
-                }
-            } while (true);
-        }
-
-        private bool ExitIntent(string playerMove)
+        public bool ExitIntent(string playerMove)
         {
             if (playerMove != "q") return false;
             ExitApp();
             return true;
         }
 
-        private Coordinate SetCoordinate(string playerMove)
-        {
-            return _coordinateParser.GetNewCoordinate(playerMove);
-        }
-        
         private void CheckGameRules(Player player)
         {
             if (GameRuleChecker.HasDraw(_board) && !GameRuleChecker.HasWin(player, _board))
@@ -109,16 +70,16 @@ namespace TicTacToe
             _output.OutputText(Resources.Draw);
             ExitApp();
         }
-        
-        private void RunMove(Player player, Coordinate coordinate)
+
+        public void RunPlayerMove(Player player, Coordinate coordinate)
         {
             _board.AssignTokenToCell(player, coordinate);
             _output.ClearConsole();
             _output.OutputText(Resources.MoveAccepted);
             _output.OutputText(BoardFormatter.PrintBoard(_board));
         }
-        
-        private void ExitApp()
+
+        public void ExitApp()
         {
             GameStatus = GameStatus.GameOver;
         }
