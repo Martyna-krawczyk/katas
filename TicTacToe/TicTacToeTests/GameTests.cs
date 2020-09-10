@@ -196,11 +196,43 @@ namespace TicTacToeTests
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
             var game = new Game(output, players, board, coordinateParser, testValidator);
-
+            
             game.Run();
             
             Assert.Equal(GameStatus.GameOver, game.GameStatus);
             Assert.Equal(9, input.CalledCount);
+        }
+        
+        [Fact]
+        public void BoardPrintsWithCorrectCoordinates_ImplementationTest()
+        {
+            var input = new TestInput(new[] {"1,1", "q"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
+            var board = new Board(3);
+            var coordinateParser = new CoordinateParser();
+            var validator = new Validator();
+            var game = new Game(output, players, board, coordinateParser, validator);
+
+            game.Run();
+            
+            Assert.Contains("X . . \n. . . \n. . . ", output.CalledText);
+        }
+        
+        [Fact]
+        public void InvalidPlayerMoveReturnsNotification_ImplementationTest()
+        {
+            var input = new TestInput(new[] {"1", "q"});
+            var output = new TestOutput();
+            var players = new List<Player>() {new Player("Player 1", "X", input)};
+            var board = new Board(3);
+            var coordinateParser = new CoordinateParser();
+            var validator = new Validator();
+            var game = new Game(output, players, board, coordinateParser, validator);
+
+            game.Run();
+            
+            Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
         }
     }
 }
