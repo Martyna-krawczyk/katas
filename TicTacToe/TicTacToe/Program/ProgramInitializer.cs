@@ -1,35 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace TicTacToe
 {
-    class Program
+    public static class ProgramInitializer
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine(Resources.WelcomeMessage);
-            
-            var output = new ConsoleOutput();
-            const int boardSize = 3;
-            var board = new Board(boardSize);
-            
-            const int numberOfPlayers = 2;
-            var numberOfComputerPlayers = UserSetsPlayerPreference();
-            
-            var players = new List<Player>();
-            var tokens = new List<string> {"O","X"};
-            InitialisePlayerList(numberOfPlayers, numberOfComputerPlayers, players, tokens, board);
-            
-            var coordinateParser = new CoordinateParser();
-            var validator = new Validator();
-            var game = new Game(output, players, board, coordinateParser, validator);
-            
-            game.Run();
-        }
-        
-        private static int UserSetsPlayerPreference()
+        public static int UserSetsPlayerPreference()
         {
             
             Console.WriteLine(Resources.AskIfGameAgainstComputer);
@@ -47,8 +23,8 @@ namespace TicTacToe
             } while (input != "y" && input != "n");
             return numberOfComputerPlayers;
         }
-        
-        private static void InitialisePlayerList(int numberOfPlayers, int numberOfComputerPlayers, List<Player> players, List<string> tokens, IBoard board)
+
+        public static void InitialisePlayerList(int numberOfPlayers, int numberOfComputerPlayers, List<Player> players, List<string> tokens, IBoard board)
         {
             InitialiseHumanPlayers(numberOfPlayers, numberOfComputerPlayers, players, tokens);
             
