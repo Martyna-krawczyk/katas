@@ -27,9 +27,9 @@ namespace TicTacToeTests
             var board = new TestBoard(new[] {false});
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(validCoordinateResults: false, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
 
             Assert.Contains("Oh no, those coordinates are outside the bounds of this board. Try again...", output.CalledText);
             Assert.Equal(2, input.CalledCount);
@@ -44,9 +44,9 @@ namespace TicTacToeTests
             var board = new TestBoard(new bool[] {false});
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator( validCoordinateResults: true, true);
-            var  game = new Game(output, players, board, coordinateParser, testValidator);
+            var  game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
 
             Assert.Contains("Oh no, a piece is already at this place! Try again...", output.CalledText);
             Assert.Equal(2, input.CalledCount);
@@ -61,9 +61,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(validCoordinateResults: true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Equal(GameStatus.GameOver, game.GameStatus);
             Assert.Equal(1, input.CalledCount);
@@ -78,9 +78,9 @@ namespace TicTacToeTests
             var board = new TestBoard(new[] {true});
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(validCoordinateResults: true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.DoesNotContain("Sorry - that format is incorrect! Try again...", output.CalledText);
             Assert.Equal(1, board.CalledCount);
@@ -95,9 +95,9 @@ namespace TicTacToeTests
             var board = new TestBoard(new[] {false});
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(validCoordinateResults: true, false);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
             Assert.Equal(0, board.CalledCount);
@@ -112,9 +112,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Contains("X . . \n. . . \n. . . ", output.CalledText);
         }
@@ -128,9 +128,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
-
-            game.Run();
+            var game = new Game(output, board, coordinateParser, testValidator);
+        
+            RunPlayerLoop(players, game);
             
             Assert.Contains("X O X \nO O X \nX X O ", output.CalledText);
         }
@@ -144,9 +144,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
-
-            game.Run();
+            var game = new Game(output, board, coordinateParser, testValidator);
+        
+            RunPlayerLoop(players, game);
             
             Assert.Contains("It's a draw!", output.CalledText);
             Assert.Equal(9, input.CalledCount);
@@ -161,9 +161,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Contains("Congratulations Player 1! You have won!", output.CalledText);
             Assert.Equal(5, input.CalledCount);
@@ -178,9 +178,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Equal(GameStatus.GameOver, game.GameStatus);
             Assert.Equal(5, input.CalledCount);
@@ -195,9 +195,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var testValidator = new TestValidator(true, true);
-            var game = new Game(output, players, board, coordinateParser, testValidator);
+            var game = new Game(output, board, coordinateParser, testValidator);
             
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Equal(GameStatus.GameOver, game.GameStatus);
             Assert.Equal(9, input.CalledCount);
@@ -212,9 +212,9 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var validator = new Validator();
-            var game = new Game(output, players, board, coordinateParser, validator);
+            var game = new Game(output, board, coordinateParser, validator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Contains("X . . \n. . . \n. . . ", output.CalledText);
         }
@@ -228,11 +228,23 @@ namespace TicTacToeTests
             var board = new Board(3);
             var coordinateParser = new CoordinateParser();
             var validator = new Validator();
-            var game = new Game(output, players, board, coordinateParser, validator);
+            var game = new Game(output, board, coordinateParser, validator);
 
-            game.Run();
+            RunPlayerLoop(players, game);
             
             Assert.Contains("Sorry - that format is incorrect! Try again...", output.CalledText);
+        }
+
+        private static void RunPlayerLoop(IReadOnlyList<Player> players, Game game)
+        {
+            var turns = 0;
+            do
+            {
+                var player = players[turns % players.Count];
+                game.Run(player);
+                turns++;
+        
+            } while (game.GameStatus == GameStatus.InProgress);
         }
     }
 }

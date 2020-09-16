@@ -8,35 +8,25 @@ namespace TicTacToe
     public class Game 
     {
         private readonly IOutput _output;
-        private readonly List<Player> _players;
         private readonly IBoard _board;
         private readonly ICoordinateParser _coordinateParser;
         private readonly IValidator _validator;
 
         public GameStatus GameStatus { get; private set; }
 
-        public Game(IOutput output, List<Player> players, IBoard board, ICoordinateParser coordinateParser, IValidator validator)
+        public Game(IOutput output, IBoard board, ICoordinateParser coordinateParser, IValidator validator)
         {
             _output = output;
-            _players = players;
             _board = board;
             _coordinateParser = coordinateParser;
             _validator = validator;
             GameStatus = GameStatus.InProgress;
         }
         
-        public void Run()
+        public void Run(Player player)
         {
-            var turns = 0;
-            _output.OutputText(Resources.BoardIntro); 
-            _output.OutputText(BoardFormatter.PrintBoard(_board));
-            do
-            {
-                var player = _players[turns % _players.Count];
-                GameValidator.TakeTurn(player, _board, _output, this, _validator,_coordinateParser);
-                turns++;
-                CheckGameRules(player);
-            } while (GameStatus.Equals(GameStatus.InProgress));
+            GameValidator.TakeTurn(player, _board, _output, this, _validator,_coordinateParser);
+            CheckGameRules(player);
         }
         
         public bool ExitIntent(string playerMove)
@@ -79,7 +69,7 @@ namespace TicTacToe
             _output.OutputText(BoardFormatter.PrintBoard(_board));
         }
 
-        public void ExitApp()
+        private void ExitApp()
         {
             GameStatus = GameStatus.GameOver;
         }
