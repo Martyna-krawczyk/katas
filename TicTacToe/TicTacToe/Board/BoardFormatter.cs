@@ -11,7 +11,7 @@ namespace TicTacToe
             {
                 for (var y = 0; y < board.Size; y++)
                 {
-                    boardString += board.GetCell(x,y).Value + " ";
+                    boardString += board.GetCellTokenValue(x, y) + " ";
                 }
                 if (x < board.Size - 1)
                 {

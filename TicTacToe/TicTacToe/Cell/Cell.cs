@@ -1,16 +1,28 @@
+using System;
 using System.Collections.Generic;
 
 namespace TicTacToe
 {
     public class Cell
     {
-        public Cell(string value, bool isAvailable = true) 
+        public Cell(bool isAvailable = true)
         {
-            Value = value;
+            Token = Token.None;
             IsAvailable = isAvailable;
         }
         
         public bool IsAvailable { get; set; }
-        public string Value { get; set; }
+        public Token Token { get; set; }
+        
+        public string TokenToString()
+        {
+            return Token switch
+            {
+                Token.None => ".",
+                Token.O => "O",
+                Token.X => "X",
+                _ => ""
+            };
+        }
     }
 }
