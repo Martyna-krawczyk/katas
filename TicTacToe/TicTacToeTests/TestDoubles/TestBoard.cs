@@ -37,9 +37,9 @@ namespace TicTacToeTests
             return new List<bool>();
         }
 
-        public Cell GetCell(int x, int y)
+        public string GetCellTokenValue(int x, int y)
         {
-            return new Cell(".");
+            return new Cell().TokenToString();
         }
     }
 }

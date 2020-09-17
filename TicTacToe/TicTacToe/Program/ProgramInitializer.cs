@@ -5,53 +5,38 @@ namespace TicTacToe
 {
     public static class ProgramInitializer
     {
-        public static int UserSetsPlayerPreference()
+        public static List<Player> UserSetsPlayerPreference(IBoard board)
         {
-            
             Console.WriteLine(Resources.AskIfGameAgainstComputer);
             string input;
-            int numberOfComputerPlayers;
             do
             {
                 input = Console.ReadLine();
-                numberOfComputerPlayers = input == "y" ? 1 : 0;
-                
                 if (input == "y" || input == "n") continue;
                 Console.WriteLine(Resources.InvalidInput);
                 Console.WriteLine(Resources.AskIfGameAgainstComputer);
-                
             } while (input != "y" && input != "n");
-            return numberOfComputerPlayers;
+            return input == "y" ? InitialiseHumanAgainstComputerPlayerList(board) : InitialiseHumanPlayerList();
         }
 
-        public static void InitialisePlayerList(int numberOfPlayers, int numberOfComputerPlayers, List<Player> players, List<string> tokens, IBoard board)
+        private static List<Player> InitialiseHumanPlayerList()
         {
-            InitialiseHumanPlayers(numberOfPlayers, numberOfComputerPlayers, players, tokens);
-            
-            if (numberOfComputerPlayers > 0)
+            var players = new List<Player>
             {
-                InitialiseComputerPlayers(players, board, tokens);
-            }
+                new Player("Player 1", Token.O, new ConsoleInput()),
+                new Player("Player 2", Token.X, new ConsoleInput())
+            };
+            return players;
         }
         
-        private static void InitialiseHumanPlayers(int numberOfPlayers, int numberOfComputerPlayers, List<Player> players, List<string> tokens)
+        private static List<Player> InitialiseHumanAgainstComputerPlayerList(IBoard board)
         {
-            for (var i = 1; i <= numberOfPlayers - numberOfComputerPlayers; i++)
+            var players = new List<Player>
             {
-                players.Add(new Player($"Player {i}", GetPlayerToken(tokens), new ConsoleInput()));
-            }
-        }
-        
-        private static void InitialiseComputerPlayers(ICollection<Player> players, IBoard board, IList<string> tokens)
-        {
-            players.Add(new Player("Computer", GetPlayerToken(tokens), new BadComputerInput(board)));
-        }
-
-        private static string GetPlayerToken(IList<string> tokens)
-        {
-            var token = tokens[0];
-            tokens.RemoveAt(0);
-            return token;
+                new Player("Player 1", Token.O, new ConsoleInput()),
+                new Player("Computer", Token.X, new BadComputerInput(board))
+            };
+            return players;
         }
     }
 }

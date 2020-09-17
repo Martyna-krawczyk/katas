@@ -18,13 +18,12 @@ namespace TicTacToe
 
         private void CreateBoard()
         {
-            
             _cell = new Cell[Size, Size];
             for (var x = 0; x < Size; x++)
             {
                 for (var y = 0; y < Size; y++)
                 {
-                    _cell[x, y] = new Cell(".");
+                    _cell[x, y] = new Cell();
                 }
             }
         }
@@ -56,13 +55,13 @@ namespace TicTacToe
                 var rowList = new List<string>();
                 var columnList = new List<string>();
 
-                diagonalListLtr.Add(_cell[row,row].Value);
-                diagonalListRtl.Add(_cell[row, reverseIndexer].Value);
+                diagonalListLtr.Add(_cell[row,row].Token.ToString());
+                diagonalListRtl.Add(_cell[row, reverseIndexer].Token.ToString());
                 
                 for (var col = 0; col < Size; col++)
                 {
-                    rowList.Add(_cell[row,col].Value);
-                    columnList.Add(_cell[col,row].Value);
+                    rowList.Add(_cell[row,col].Token.ToString());
+                    columnList.Add(_cell[col,row].Token.ToString());
                 }
                 reverseIndexer--;
                 
@@ -76,23 +75,23 @@ namespace TicTacToe
         
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
-            GetCell(coordinate).Value = player.Token;
+            GetCell(coordinate).Token = player.Token;
             MarkCellAsUnavailable(coordinate);
         }
         
         private void MarkCellAsUnavailable(Coordinate coordinate)
         {
-            GetCell(coordinate).IsAvailable = false;
+            GetCell(coordinate).IsAvailable = false; //refactor this so that cell holds this power
         }
         
         public bool CellIsAvailable(Coordinate coordinate)
         {
             return GetCell(coordinate).IsAvailable;
         }
-
-        public Cell GetCell(int x, int y)
+        
+        public string GetCellTokenValue(int x, int y)
         {
-            return _cell[x, y];
+            return _cell[x, y].TokenToString();
         }
         
         private Cell GetCell(Coordinate coordinate)

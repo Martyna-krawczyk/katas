@@ -40,12 +40,12 @@ namespace TicTacToeTests
         {
             var input = new ConsoleInput();
             var board = new Board(3);
-            var player = new Player("Player 1", "X", input);
+            var player = new Player("Player 1", Token.X, input);
             var coordinate = new Coordinate(1,1);
             
             board.AssignTokenToCell(player, coordinate);
             
-            Assert.Equal("X", player.Token );
+            Assert.Equal("X", board.GetCellTokenValue(1,1) );
         }
         
         [Fact]

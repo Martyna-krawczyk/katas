@@ -14,7 +14,7 @@ namespace TicTacToe
         
         private static bool HasWinOnBoard(Player player, IEnumerable<List<string>> boardValues)
         {
-            return boardValues.Select(lines => lines.All(value => value == player.Token))
+            return boardValues.Select(lines => lines.All(token => token == player.Token.ToString()))
                 .Any(hasWin => hasWin);
         }
         
