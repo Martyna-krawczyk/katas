@@ -5,13 +5,11 @@ namespace TicTacToe
 {
     public class Cell
     {
-        public Cell(bool isAvailable = true)
+        public Cell()
         {
             Token = Token.None;
-            IsAvailable = isAvailable;
         }
         
-        public bool IsAvailable { get; set; }
         public Token Token { get; set; }
         
         public string TokenToString()
