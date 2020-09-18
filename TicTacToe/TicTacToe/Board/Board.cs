@@ -27,20 +27,6 @@ namespace TicTacToe
                 }
             }
         }
-
-        public IEnumerable<bool> GetAllCellsAvailabilityFromBoard()
-        {
-            var cellsAvailabilityList = new List<bool>();
-            
-            for (var x = 0; x < Size; x++)
-            {
-                for (var y = 0; y < Size; y++)
-                {
-                    cellsAvailabilityList.Add(_cell[x, y].IsAvailable);
-                }
-            }
-            return cellsAvailabilityList;
-        }
         
         public IEnumerable<List<string>> GetAllBoardWinningLineValues()
         {
@@ -76,17 +62,11 @@ namespace TicTacToe
         public void AssignTokenToCell(Player player, Coordinate coordinate)
         {
             GetCell(coordinate).Token = player.Token;
-            MarkCellAsUnavailable(coordinate);
         }
-        
-        private void MarkCellAsUnavailable(Coordinate coordinate)
-        {
-            GetCell(coordinate).IsAvailable = false; //refactor this so that cell holds this power
-        }
-        
+
         public bool CellIsAvailable(Coordinate coordinate)
         {
-            return GetCell(coordinate).IsAvailable;
+            return GetCell(coordinate).Token == Token.None;
         }
         
         public string GetCellTokenValue(int x, int y)

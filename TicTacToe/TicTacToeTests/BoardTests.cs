@@ -14,16 +14,6 @@ namespace TicTacToeTests
             
             Assert.Equal(3, board.Size);
         }
-        
-        [Fact]
-        public void AllCellsSetAsAvailableWhenInitialised()
-        {
-            var board = new Board(3);
-
-            var cellsAvailabilityList = board.GetAllCellsAvailabilityFromBoard();
-
-            Assert.All(cellsAvailabilityList, Assert.True);
-        }
 
         [Fact]
         public void BoardWinningLineValuesListCountEquals8_ForBoardSize3()

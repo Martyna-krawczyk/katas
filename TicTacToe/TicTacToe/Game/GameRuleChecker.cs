@@ -20,12 +20,13 @@ namespace TicTacToe
         
         public static bool HasDraw(IBoard board)
         {
-            return IsDraw(board.GetAllCellsAvailabilityFromBoard());
+            return IsDraw(board.GetAllBoardWinningLineValues());
         }
 
-        private static bool IsDraw(IEnumerable<bool> listOfCellsAvailability)
+        private static bool IsDraw(IEnumerable<List<string>> boardValues)
         {
-            return listOfCellsAvailability.All(cell => cell.Equals(false));
+            var flattenedList = boardValues.SelectMany(x => x);
+            return flattenedList.All(token => token != Token.None.ToString());
         }
     }
 }

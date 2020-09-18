@@ -32,11 +32,6 @@ namespace TicTacToeTests
             return new List<List<string>>();
         }
 
-        public IEnumerable<bool> GetAllCellsAvailabilityFromBoard()
-        {
-            return new List<bool>();
-        }
-
         public string GetCellTokenValue(int x, int y)
         {
             return new Cell().TokenToString();
